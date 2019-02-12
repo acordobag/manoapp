@@ -18,7 +18,7 @@ Object.keys(ifaces).forEach(function (ifname) {
 
 ip = ips[0]
 
-let port = 8080
+let port = 3000
 
 const fs = require('fs')
 const path = require('path')
@@ -27,7 +27,7 @@ export default {
   enviroment: 'development',
   port: port || 'localhost',
   host: ip,
-  clientUrl: `http://${ip}:${port}`,
+  clientUrl: `http://${ip}:8080`,
   authentication: {
     jwtSecret: 'replaceAppSecretKey'
   },
@@ -48,6 +48,10 @@ export default {
     endpoint: 'http://186.15.1.196:1492/SWMP/Monster?wsdl',
     user: 'SWMP',
     password: 'S45W21M89P'
+  },
+  payments: {
+    key: "pk_test_SSc1HQD04OGEMWjzFCGDmHn1",
+    secret: "sk_test_lfl2WsKiu4tZaIsgZlxw3a8q"
   },
   dbSettings: {
     host: '40.122.170.216',
