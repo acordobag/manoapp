@@ -1,0 +1,52 @@
+%white-box {
+  margin: 10px;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@mixin white-box($padding: 20px, $alignItems: center) {
+  margin: 10px;
+  background: white;
+  padding: $padding;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: $alignItems;
+}
+
+.txt-manoapp{
+  color: $main-color;
+}
+
+.pk-white-box{
+  @include white-box(20px, none);
+}
+
+.main-color{
+  color: $main-color;
+}
+
+.data-row {
+  &:nth-child(odd){
+    background: #f5f4f4;
+  }
+  display: flex;
+  font-size: 14px;
+  padding: 10px;
+  &.bold{
+    font-weight: 900;
+  }
+  .title {
+    width: 50%;
+  }
+  .data {
+    width: 50%;
+  }
+}

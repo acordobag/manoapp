@@ -1,0 +1,209 @@
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+//
+//                ___                            _
+//               |_ _|_ __ ___  _ __   ___  _ __| |_ ___
+//  _____ _____   | || '_ ` _ \| '_ \ / _ \| '__| __/ __|  _____ _____
+// |_____|_____|  | || | | | | | |_) | (_) | |  | |_\__ \ |_____|_____|
+//               |___|_| |_| |_| .__/ \___/|_|   \__|___/
+//                             |_|
+//
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Anton');
+@import './_variables.scss';
+@import './_commons.scss';
+@import './_switch.scss';
+@import './_mixins.scss';
+@import 'node_modules/pk-styles/core.scss';
+
+
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+//
+//                _____     _   _ _             ____            _
+//               | ____|___| |_(_| | ___  ___  | __ )  __ _ ___(_) ___ ___  ___
+//  _____ _____  |  _| / __| __| | |/ _ \/ __| |  _ \ / _` / __| |/ __/ _ \/ __|  _____ _____
+// |_____|_____| | |___\__ | |_| | | (_) \__ \ | |_) | (_| \__ | | (_| (_) \__ \ |_____|_____|
+//               |_____|___/\__|_|_|\___/|___/ |____/ \__,_|___|_|\___\___/|___/
+//
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+body,html {
+  margin: 0;
+  padding: 0;
+  font-family: $primary-font;
+  background-color: $background-color;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.secondary-color{
+  color: $secondary-color;
+}
+
+.full{
+  display: block;
+  width: 100%;
+}
+
+.btn{
+  border-radius: 0;
+}
+
+.btn-strategic{
+  background-color: $primary-color;
+  border: $primary-color;
+  color: white;
+  transition: all .5s;
+  &:hover{
+    color: white;
+    background-color: rgba($primary-color, 0.7);
+    border: rgba($primary-color, 0.7);
+    transform: scale(1.01)
+  }
+}
+
+
+.link-red{
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .5s;
+}
+.link-white{
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .5s;
+}
+
+
+.btn-fb{
+  background-color: #3B5989;
+  border: #3B5989;
+  color: white;
+  transition: all .5s;
+  &:hover{
+    color: white;
+    background-color: rgba(#3B5989, 0.7);
+    border: rgba(#3B5989, 0.7);
+    transform: scale(1.01)
+  }
+}
+
+.no-padding{
+  padding: 0!important;
+}
+
+.overlay{
+  background-color: rgba(#000,.9);
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 999;
+}
+
+.link{
+  color: #007bff;
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
+  &.white{
+    color: white;
+  }
+}
+
+
+// Slideshow
+.overlay-slideshow{
+  background-color: rgba(#000,.6);
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+
+a{
+  color: $primary-color;
+}
+
+
+.passwordHint{
+  padding: 10px;
+  border-radius: 3px;
+  width: auto;
+  margin: 10px;
+  flex: 0 0 auto;
+  &.error{
+    background: rgb(248, 147, 147);
+    color: rgb(105, 0, 0);
+  }
+  &.warn{
+    background: rgb(238, 199, 128);
+    color: rgb(109, 71, 0);
+  }
+}
+
+
+.alertify, .alertify *, .alertify-logs {
+  z-index: 9999;
+}
+.alertify .alert > *, .alertify .dialog > * {
+    width: 400px;
+    max-width: 95%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 12px;
+    color:white;
+    background: $primary-color;
+    box-shadow: 0 0 10px rgba(#030303,.60);
+}
+
+.alertify .alert nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button), .alertify .dialog nav button:not(.btn):not(.pure-button):not(.md-button):not(.mdl-button) {
+    background: white;
+    box-sizing: border-box;
+    color: $primary-color;
+    position: relative;
+    outline: 0;
+    border: 0;
+    display: inline-block;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+    padding: 0 6px;
+    margin: 6px 8px;
+    line-height: 36px;
+    min-height: 36px;
+    white-space: nowrap;
+    min-width: 88px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid $secondary-color;
+    border-radius: none;
+    transition: all .5s;
+    &:hover, &:active, &:focus{
+      background: $primary-color;
+      border: 1px solid white;
+      color: white;
+    }
+}
+
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}

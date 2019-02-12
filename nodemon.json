@@ -1,0 +1,7 @@
+{
+  "verbose": false,
+  "ignore": ["node_modules", "src"],
+  "execMap": {
+    "js": "babel-node server.js --presets env"
+  }
+}

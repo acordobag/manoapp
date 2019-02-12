@@ -1,0 +1,56 @@
+<template lang="pug">
+  main
+    div.lds-ring
+      div
+      div
+      div
+      div
+</template>
+
+<style lang="scss" scoped>
+@import '~styles/main.scss';
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 50px auto;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 55px;
+  height: 55px;
+  div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    margin: 6px;
+    border: 6px solid $main-color;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: $main-color transparent transparent transparent;
+    &:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    &:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    &:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+  }
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>

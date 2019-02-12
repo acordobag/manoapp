@@ -1,0 +1,9 @@
+
+  @mixin section($background, $color, $padding: 0px) {
+    background: $background;
+    height: auto;
+    padding: $padding;
+    display: flex;
+    justify-content: center;
+    color: $color;
+  }
