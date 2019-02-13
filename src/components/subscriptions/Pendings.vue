@@ -8,7 +8,8 @@
         p.padding-20.txt-center(v-if="!subscriptions.length") No tienes suscripciones pendientes
         .susctiptions(v-else) 
           pSubscription(
-            v-for="subscription in subscriptions", 
+            v-for="subscription in subscriptions",
+            :key="subscription.id", 
             :subscription="subscription",
             :to="{name: 'subscription/detail', params: {hash: subscription.hash}, query: {os: true}}"
           )
