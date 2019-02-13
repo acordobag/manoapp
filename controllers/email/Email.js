@@ -8,9 +8,9 @@ import _notification from './email_templates/notification'
 
 
 export async function invitationEmail (to, name, username) {
-  if (process.env.NODE_ENV !== 'production') {
-    to = ['mariocampbellr@gmail.com', 'pruebasmanoapp@gmail.com']
-  }
+  // if (process.env.NODE_ENV !== 'production') {
+  //   to = ['mariocampbellr@gmail.com', 'pruebasmanoapp@gmail.com']
+  // }
 
   let data = {
     to,

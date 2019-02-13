@@ -1,0 +1,1 @@
+INSERT INTO `manoapp`.`users` (`name`, `email`, `username`, `permissions`, `createdAt`, `updatedAt`, `countryId`) VALUES ('manoapp', 'amcordobag@gmail.com', 'manoapp', 'admin', '2019-02-13 04:40:29', '2019-02-13 04:40:29', '1');
