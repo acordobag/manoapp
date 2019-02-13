@@ -6,19 +6,19 @@ import http from 'http'
 import chalk from 'chalk'
 import config from './server.config'
 import dbConfig from './db/db.config'
-import {name} from './package.json'
+import { name } from './package.json'
 
 const app = express()
 
 let _server
 
 const server = {
-  start () {
+  start() {
     _server = http.createServer(app)
 
     config(app, _server)
     if (setting.enviroment === 'development') {
-      _server.listen(setting.port, setting.host, () => {
+      _server.listen(setting.port, setting.host, () => { //,
         console.log(chalk.cyan(`[Server] -  ${name}`))
         console.log(chalk.cyan(`Port: http://${setting.host}:${setting.port}/`))
         console.log(chalk.yellow(`App Port: http://${setting.host}:8080/`))
@@ -29,7 +29,7 @@ const server = {
       dbConfig()
     }
   },
-  stop () {
+  stop() {
     _server.close()
   }
 }
