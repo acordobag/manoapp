@@ -18,7 +18,7 @@ const server = {
 
     config(app, _server)
     if (setting.enviroment === 'development') {
-      _server.listen(setting.port, setting.host, () => { //,
+      _server.listen(setting.port, () => { //,
         console.log(chalk.cyan(`[Server] -  ${name}`))
         console.log(chalk.cyan(`Port: http://${setting.host}:${setting.port}/`))
         console.log(chalk.yellow(`App Port: http://${setting.host}:8080/`))
