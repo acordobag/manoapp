@@ -24,7 +24,7 @@ const fs = require('fs')
 const path = require('path')
 
 export default {
-  enviroment: 'development',
+  enviroment: 'production',
   port: port || 'localhost',
   host: ip,
   clientUrl: `http://${ip}:8080`,

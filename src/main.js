@@ -80,7 +80,7 @@ new Vue({
     let locations = window.location
     if (config.NODE_ENV === 'production' && locations.protocol !== 'https:') {
       let href = locations.href
-      href = href.replace('http:', 'https:')
+      //href = href.replace('http:', 'https:')
       window.location = href
     }
 

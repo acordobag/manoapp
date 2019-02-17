@@ -7,7 +7,7 @@
     "dev:server": "gulp development && set DEBUG=manoapp:*&& nodemon",
     "dev:vue": "vue-cli-service serve",
     "dev": "npm-run-all --parallel dev:server dev:vue",
-    "build": "gulp production && vue-cli-service build",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "engines": {
