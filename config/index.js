@@ -18,7 +18,7 @@ Object.keys(ifaces).forEach(function (ifname) {
 
 ip = ips[0]
 
-let port = 3000
+let port = 80
 
 const fs = require('fs')
 const path = require('path')
@@ -27,7 +27,7 @@ export default {
   enviroment: 'production',
   port: port || 'localhost',
   host: ip,
-  clientUrl: `http://${ip}:8080`,
+  clientUrl: `http://${ip}:${port}`,
   authentication: {
     jwtSecret: 'replaceAppSecretKey'
   },
@@ -37,8 +37,8 @@ export default {
     enviroment: 'sandbox'
   },
   mailSettings: {
-    user: 'strategicwmp',
-    pass: 'mC@mPbEl1'
+    user: 'kperaza ',
+    pass: 'ProyectoMano2019'
   },
   smsSettings: {
     key: '485baa88',

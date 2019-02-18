@@ -32,13 +32,16 @@ async function createAnnex(req, res, next) {
 
     if(otherAnnexes.length) return res.status(500).send({error: "Ya tiene un anexo creado"}).end()
 
-    let newAnnex = await Annex.create({
+
+    let annex = {
       status: 'active',
       currentLevel: null,
       ownerId: _id,
       annexTypeId: 1
-    })
-  
+    };
+    console.log(annex);
+    let newAnnex = await Annex.create(annex)
+
     //Creamos el primer Nivel 
     await _createLevel(newAnnex.id)
   
