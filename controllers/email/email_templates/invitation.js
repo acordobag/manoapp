@@ -4,7 +4,7 @@
  * @return {[type]}      [description]
  */
 
-export default (name, email, username) => {
+export default (name, email, username, config) => {
   return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><meta content="exported via StampReady" name="sr_export"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="IE=edge"><style type="text/css">
 
   @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
@@ -236,13 +236,13 @@ export default (name, email, username) => {
            <table align="center" bgcolor="#FFFFFF" cellpadding="0" cellspacing="0" style="margin: 0 auto;" data-bgcolor="Confirm Email Button">
              <tr>
                <th>
-                  <a href="http://example.com" target="_blank" style="border: 0 solid #FFFFFF; color: #FF4556; display: inline-block; font-size: 14px; padding: 13px 25px; text-decoration: none;" data-color="Password Reset Link" data-size="Password Reset Link Size">
+                  <a href="${config.clientUrl}" target="_blank" style="border: 0 solid #FFFFFF; color: #FF4556; display: inline-block; font-size: 14px; padding: 13px 25px; text-decoration: none;" data-color="Password Reset Link" data-size="Password Reset Link Size">
 Su usuario temporal: ${username}</a>
                </th>
              </tr>
                            <tr>
                <th>
-                  <a href="http://example.com" target="_blank" style="border: 0 solid #FFFFFF; color: #FF4556; display: inline-block; font-size: 14px; padding: 13px 25px; text-decoration: none;" data-color="Password Reset Link" data-size="Password Reset Link Size">
+                  <a href="${config.clientUrl}" target="_blank" style="border: 0 solid #FFFFFF; color: #FF4556; display: inline-block; font-size: 14px; padding: 13px 25px; text-decoration: none;" data-color="Password Reset Link" data-size="Password Reset Link Size">
 Su contraseña: 123456</a>
                </th>
              </tr>

@@ -5,6 +5,7 @@ import {sendMail} from '../../helpers/email'
 // TEMPLATES
 import _invitation from './email_templates/invitation'
 import _notification from './email_templates/notification'
+import config from '../../config'
 
 
 export async function invitationEmail (to, name, username) {
@@ -14,7 +15,7 @@ export async function invitationEmail (to, name, username) {
 
   let data = {
     to,
-    html: _invitation(name, to, username),
+    html: _invitation(name, to, username,config),
     text: `Invitación de ManoApp para ${name}`,
     subject: `Invitación de ManoApp para ${name}`
   }

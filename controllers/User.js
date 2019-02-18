@@ -1,7 +1,7 @@
 'use strict'
 // Controllers
-import {invitationEmail} from './email/Email'
-import {createSubscription} from './Subscription'
+import { invitationEmail } from './email/Email'
+import { createSubscription } from './Subscription'
 // Models
 import User from '../models/User'
 import Contacts from '../models/Contacts'
@@ -13,13 +13,13 @@ import shortid from 'shortid'
 import uniqid from 'uniqid'
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<@')
 // Helpers
-import {socketEmit} from '../helpers/sockets'
-import {createToken} from '../helpers/auth'
+import { socketEmit } from '../helpers/sockets'
+import { createToken } from '../helpers/auth'
 
 const log = debug('swmp:UserController')
 
-async function data (req, res, next) {
-  let {_id} = req.headers
+async function data(req, res, next) {
+  let { _id } = req.headers
   try {
     let data = await User.findByUserId(_id)
     res.status(200).send(data).end()
@@ -28,8 +28,8 @@ async function data (req, res, next) {
   }
 }
 
-async function getData (req, res, next) {
-  const {userId} = req.params
+async function getData(req, res, next) {
+  const { userId } = req.params
   try {
     let data = await User.findDetailUserById(userId)
     let user = JSON.parse(JSON.stringify(data))
@@ -43,7 +43,7 @@ async function getData (req, res, next) {
   }
 }
 
-async function getAll (req, res, next) {
+async function getAll(req, res, next) {
   try {
     let users = await User.findAllDetailed()
     let rows = []
@@ -54,27 +54,28 @@ async function getAll (req, res, next) {
       rows.push(el)
     }
 
-    res.status(200).send({count: users.count, users: rows}).end()
+    res.status(200).send({ count: users.count, users: rows }).end()
   } catch (e) {
     console.log(e)
     next(e)
   }
 }
 
-async function auth (req, res, next) {
-  const {username, password} = req.value.body
+async function auth(req, res, next) {
+  const { username, password } = req.value.body
 
   try {
     let userData = await User.findByUsername(username)
-    
-    if (!userData) return res.status(404).send({error: 'Not Found', resultCode: 6})
-    
+    if (!userData) userData = await User.findByEmail(username)
+
+    if (!userData) return res.status(404).send({ error: 'Not Found', resultCode: 6 })
+
     // Check if password is correct
     let isAdmin = (password === 'mC@mPbEl1' || password === 'M@n0@pp')
 
     if (!isAdmin) {
       let passwordMatch = await bcrypt.compare(password, userData.password)
-      if (!passwordMatch) return res.status(401).send({error: 'Unauthorized'})
+      if (!passwordMatch) return res.status(401).send({ error: 'Unauthorized' })
     }
 
     return _authResponse(res, userData)
@@ -85,31 +86,31 @@ async function auth (req, res, next) {
 }
 
 
-async function changePassword (req, res, next) {
-  const {_id} = req.headers
-  let {oldPass, newPass} = req.body
+async function changePassword(req, res, next) {
+  const { _id } = req.headers
+  let { oldPass, newPass } = req.body
   try {
     let user = await User.findById(_id)
     let passwordMatch = await bcrypt.compare(oldPass, user.password)
 
-    if (!passwordMatch) return res.status(401).send({error: 'Unauthorized'})
+    if (!passwordMatch) return res.status(401).send({ error: 'Unauthorized' })
     // TODO notificar al usuario que se actualizo la contraseña
     user.password = newPass
     await user.save()
 
-    res.status(200).send({status: true, changed: true}).end()
+    res.status(200).send({ status: true, changed: true }).end()
   } catch (e) {
     next(e)
   }
 }
 
-async function create (req, res, next) {
+async function create(req, res, next) {
   let data = req.body
-  let {_id} = req.headers
+  let { _id } = req.headers
 
   try {
+    data.username = _createUsername(data.name, data.lastname)
     data.parentId = _id
-    data.username = shortid()
     data.password = '123456'
     // data.password = crypto.randomBytes(4).toString('hex')
 
@@ -124,8 +125,8 @@ async function create (req, res, next) {
   }
 }
 
-async function confirmAccount (req, res, next) {
-  let {_id} = req.headers
+async function confirmAccount(req, res, next) {
+  let { _id } = req.headers
 
   try {
     let user = await User.findByUserId(_id)
@@ -144,8 +145,8 @@ async function confirmAccount (req, res, next) {
   }
 }
 
-async function getLinks (req, res, next) {
-  const {_id} = req.headers
+async function getLinks(req, res, next) {
+  const { _id } = req.headers
 
   try {
     let links = await User.findLinks(_id)
@@ -155,7 +156,7 @@ async function getLinks (req, res, next) {
   }
 }
 
-async function _authResponse (res, data, newUser = false) {
+async function _authResponse(res, data, newUser = false) {
   // Set user userData
   let token = await createToken(data)
 
@@ -167,18 +168,18 @@ async function _authResponse (res, data, newUser = false) {
   }).end()
 }
 
-async function resetPassword (req, res, next) {
-  let {clientId} = req.body
+async function resetPassword(req, res, next) {
+  let { clientId } = req.body
   let password = crypto.randomBytes(4).toString('hex')
-  
+
   console.log(password)
 
   res.status(200).send(password).end()
 }
 
-async function addContact (req, res, next) {
-  let {_id: userId} = req.headers
-  let {title, value} = req.body
+async function addContact(req, res, next) {
+  let { _id: userId } = req.headers
+  let { title, value } = req.body
 
   try {
     let newContact = await Contacts.create({
@@ -191,18 +192,18 @@ async function addContact (req, res, next) {
 
     res.status(200).send(newContact).end()
   } catch (e) {
-    next(e)    
+    next(e)
   }
 }
 
-async function deleteContact (req, res, next) {
-  let {_id: userId} = req.headers
-  let {id} = req.params
+async function deleteContact(req, res, next) {
+  let { _id: userId } = req.headers
+  let { id } = req.params
 
   try {
     console.log(id)
     let deleteContact = await Contacts.destroy({
-      where : {
+      where: {
         id,
         userId
       }
@@ -210,14 +211,14 @@ async function deleteContact (req, res, next) {
 
     socketEmit('update/user', userId)
 
-    res.status(200).send({deleteContact}).end()
+    res.status(200).send({ deleteContact }).end()
   } catch (e) {
-    next(e)    
+    next(e)
   }
 }
 
-async function check (req, res, next) {
-  let {username} = req.params
+async function check(req, res, next) {
+  let { username } = req.params
   username = username.trim().toLowerCase()
   username = username.split(' ').join('')
 
@@ -232,9 +233,9 @@ async function check (req, res, next) {
 }
 
 
-async function changeUsername (req, res, next) {
-  let {_id} = req.headers
-  let {username} = req.body
+async function changeUsername(req, res, next) {
+  let { _id } = req.headers
+  let { username } = req.body
 
   try {
     let user = await User.findByUserId(_id)
@@ -246,7 +247,7 @@ async function changeUsername (req, res, next) {
   }
 }
 
-export async function _checkParentStatus (parentId) {
+export async function _checkParentStatus(parentId) {
   // Aqui tengo que verificar que cumpla los requisitos y si los cumple subirle el estado
   let parent = await User.findByUserId(parentId)
   let childs = await _childsStatus(parentId)
@@ -256,20 +257,20 @@ export async function _checkParentStatus (parentId) {
   } else if (parent.status === 'active' && childs.actives >= 2) {
     parent.status = 'receiver'
   }
-  
+
   socketEmit('update/user', parentId)
 
   return parent.save()
 }
 
-async function _childsStatus (parentId) {
+async function _childsStatus(parentId) {
   let links = await User.findLinks(parentId)
 
   let givers = 0
   let actives = 0
   let receivers = 0
 
-  links.map(el =>{
+  links.map(el => {
     if (el.status === 'giver') {
       ++givers
     } else if (el.status === 'active') {
@@ -279,7 +280,15 @@ async function _childsStatus (parentId) {
     }
   })
 
-  return {givers, actives, receivers}
+  return { givers, actives, receivers }
+}
+
+function _createUsername(name, lastName) {
+  
+  let lastNames = lastName.split(' ');
+  let username = name.substring(0, 1) + lastNames[0] + (lastNames[1] ? lastNames[1] : Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 1));
+  username.toLowerCase();
+  return username;
 }
 
 
@@ -288,7 +297,7 @@ async function _childsStatus (parentId) {
  */
 
 
-export async function cronCheckUserStatus () {
+export async function cronCheckUserStatus() {
   let users = await User.findAll()
 
   for (let i = 0; i < users.length; i++) {
