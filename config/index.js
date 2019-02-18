@@ -37,7 +37,7 @@ export default {
     enviroment: 'sandbox'
   },
   mailSettings: {
-    user: 'kperaza ',
+    user: 'kperaza',
     pass: 'ProyectoMano2019'
   },
   smsSettings: {
