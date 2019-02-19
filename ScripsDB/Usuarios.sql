@@ -1,2 +1,0 @@
-INSERT INTO `manoapp`.`users` (`name`, `email`, `username`, `permissions`, `createdAt`, `updatedAt`, `countryId`) VALUES ('manoapp', 'amcordobag@gmail.com', 'manoapp', 'admin', '2019-02-13 04:40:29', '2019-02-13 04:40:29', '1');
-INSERT INTO `manoapp`.`annextypes` (`id`, `name`, `amount`, `estructure`, `createdAt`, `updatedAt`) VALUES ('1', 'Contribución', '20', 'a', '17/02/2019', '17/02/2019');
