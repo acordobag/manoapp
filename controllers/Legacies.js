@@ -5,14 +5,14 @@ import Subscriptions from '../models/Subscription'
 import Annex from '../models/Annex'
 import User from '../models/User'
 import SetOfLegacies from '../models/SetOfLegacies'
-import {_checkParentStatus} from './User'
+import { _checkParentStatus } from './User'
 
-import {createSubscription} from '../controllers/Subscription'
-import {increaseAnnexLevel} from '../controllers/Annex'
-import {socketEmit} from '../helpers/sockets'
+import { createSubscription } from '../controllers/Subscription'
+import { increaseAnnexLevel, createHelpAnnex } from '../controllers/Annex'
+import { socketEmit } from '../helpers/sockets'
 
-async function assignInLegacy (req, res, next) {
-  let {_id} = req.headers
+async function assignInLegacy(req, res, next) {
+  let { _id } = req.headers
 
   try {
     let save = await _assignInLegacy(_id)
@@ -22,8 +22,8 @@ async function assignInLegacy (req, res, next) {
   }
 }
 
-async function getPending (req, res, next) {
-  let {_id} = req.headers
+async function getPending(req, res, next) {
+  let { _id } = req.headers
 
   try {
     let pendingLegacies = await Legacies.findPendingLegacies(_id)
@@ -35,9 +35,9 @@ async function getPending (req, res, next) {
 }
 
 
-async function getDetail (req, res, next) {
-  let {_id} = req.headers
-  let {hash, id} = req.params
+async function getDetail(req, res, next) {
+  let { _id } = req.headers
+  let { hash, id } = req.params
 
   try {
     let detail = await Legacies.findDetailByHash(hash, id)
@@ -48,8 +48,8 @@ async function getDetail (req, res, next) {
   }
 }
 
-async function getBenefits (req, res, next) {
-  let {_id} = req.headers
+async function getBenefits(req, res, next) {
+  let { _id } = req.headers
   try {
     let annexes = await Annex.findByUserId(_id)
     let legacies = []
@@ -65,15 +65,15 @@ async function getBenefits (req, res, next) {
       }
     })
 
-    res.status(200).send({benefits}).end()
+    res.status(200).send({ benefits }).end()
   } catch (e) {
     next(e)
   }
 }
 
 
-async function initializeProgress (req, res, next) {
-  let {_id} = req.headers
+async function initializeProgress(req, res, next) {
+  let { _id } = req.headers
 
   try {
     // Chequear que el estado del usuario sea Suscriber para poder ponerle los 2 primero legados
@@ -83,12 +83,12 @@ async function initializeProgress (req, res, next) {
     // Chequear que no tenga otros asignados
     let otherLegacies = await SetOfLegacies.findActive(_id)
 
-    if (otherLegacies) return res.status(500).send({error: 'user have other legacies'}).end()
+    if (otherLegacies) return res.status(500).send({ error: 'user have other legacies' }).end()
 
     if (user.status = 'subscriber') {
       await createNewLegaciesSet(_id, 2, false)
     }
-    
+
     res.status(200).send(result).end()
   } catch (e) {
     console.log(e)
@@ -96,11 +96,12 @@ async function initializeProgress (req, res, next) {
   }
 }
 
-async function _assignInLegacy (userId) {
+async function _assignInLegacy(userId) {
   try {
     let legacyData = await _findRandomLegacy()
-    let legacy = await Legacies.find({where: {id: legacyData.id}})
-  
+    if (!legacyData) return
+    let legacy = await Legacies.find({ where: { id: legacyData.id } })
+
     legacy.assignedAt = Date.now()
     legacy.payerId = userId
     legacy.status = 'pending'
@@ -111,33 +112,43 @@ async function _assignInLegacy (userId) {
 
     return data
   } catch (e) {
-    return {error: e}
+    return { error: e }
   }
 }
 
 
-async function _findRandomLegacy (annexType = 1) {
+async function _findRandomLegacy(annexType = 1) {
   let annexes = await Annex.findByType(annexType)
-  
+
   let emptyLegacy
   let attemps = 0
 
-  while(!emptyLegacy && attemps !== 1000) {
+  while (!emptyLegacy && attemps < annexes.length) {
     let randNumber = Math.floor(Math.random() * annexes.length)
     emptyLegacy = annexes[randNumber].legacies[0]
     ++attemps
+  }
+
+  if (!emptyLegacy) {
+    annexes = await Annex.findByType(2)
+  
+    while (!emptyLegacy && attemps < annexes.length) {
+      let randNumber = Math.floor(Math.random() * annexes.length)
+      emptyLegacy = annexes[randNumber].legacies[0]
+      ++attemps
+    }
   }
 
 
   return emptyLegacy
 }
 
-async function paid (req, res, next) {
-  let {_id} = req.headers
-  let {id, hash} = req.body
+async function paid(req, res, next) {
+  let { _id } = req.headers
+  let { id, hash } = req.body
   try {
     let legacy = await Legacies.findDetailByHash(hash, id)
-    if (legacy.paid) return res.status(200).send({error: 'Ya se habia marcado como pagado'}).end()
+    if (legacy.paid) return res.status(200).send({ error: 'Ya se habia marcado como pagado' }).end()
 
     legacy.paid = true
     legacy.paidAt = Date.now()
@@ -146,21 +157,21 @@ async function paid (req, res, next) {
     legacy.save()
 
     socketEmit('update/legacies', legacy.payerId)
-    
-    res.status(200).send({status: true, id, hash, setOfLegacies}).end()
+
+    res.status(200).send({ status: true, id, hash, setOfLegacies }).end()
   } catch (e) {
     next(e)
   }
 }
 
-async function confirm (req, res, next) {
-  let {_id} = req.headers
-  let {id, hash} = req.body
+async function confirm(req, res, next) {
+  let { _id } = req.headers
+  let { id, hash } = req.body
   try {
     let legacy = await Legacies.findDetailByHash(hash, id)
 
-    if (!legacy.paid) return res.status(500).send({error: 'No se ha marcado como pagado'}).end()
-    if (legacy.confirmed) return res.status(500).send({error: 'Ya se ha marcado como confirmado'}).end()
+    if (!legacy.paid) return res.status(500).send({ error: 'No se ha marcado como pagado' }).end()
+    if (legacy.confirmed) return res.status(500).send({ error: 'Ya se ha marcado como confirmado' }).end()
 
     legacy.confirmed = true
     legacy.confirmedAt = Date.now()
@@ -177,14 +188,14 @@ async function confirm (req, res, next) {
     _checkAnnexStatus(legacy.hash)
 
     // Chequeo si los otros de SETOFLEGACIES ya fueron pagados para hacer el UPDATE del usuario o hacerle otros legados
-    res.status(200).send({confirmed: true, statusOfSet}).end()
+    res.status(200).send({ confirmed: true, statusOfSet }).end()
   } catch (e) {
     console.log(e)
     next(e)
   }
 }
 
-export async function createNewLegaciesSet (userId, toPay, subscription) {
+export async function createNewLegaciesSet(userId, toPay, subscription) {
   let legacies = []
   // crear X legados pendientes
   for (let i = 0; i < toPay; i++) {
@@ -206,16 +217,16 @@ export async function createNewLegaciesSet (userId, toPay, subscription) {
   })
 }
 
-async function _checkAnnexStatus (legacyHash) {
+async function _checkAnnexStatus(legacyHash) {
   try {
     // Get legacy hash
-    let legacies = await Legacies.findAll({where: {hash: legacyHash}})
+    let legacies = await Legacies.findAll({ where: { hash: legacyHash } })
     let count = legacies.length
 
     let confirmeds = 0
     let annexId
     legacies.map(el => {
-      if (el.status === 'confirmed') ++confirmeds
+      if (el.status === 'confirmed')++confirmeds
       annexId = el.annexId
     })
 
@@ -223,11 +234,11 @@ async function _checkAnnexStatus (legacyHash) {
       await increaseAnnexLevel(annexId)
     }
   } catch (e) {
-    return {error: e}
+    return { error: e }
   }
 }
 
-async function _checkPayerStatus (payerId, update) {
+async function _checkPayerStatus(payerId, update) {
   // Update Payer Status
   let payer = await User.findByUserId(payerId)
   // si es suscriptor y ya pago todo debe pasar a ser legador
@@ -247,7 +258,7 @@ async function _checkPayerStatus (payerId, update) {
 
 
 // Esto es para usar cuando se confirman los legados
-async function _checkSetStatus (payerId) {
+async function _checkSetStatus(payerId) {
   let setOfLegacies = await SetOfLegacies.findActive(payerId)
 
   if (!setOfLegacies) return false
@@ -268,7 +279,7 @@ async function _checkSetStatus (payerId) {
   for (let i = 0; i < legacies.length; i++) {
     const el = legacies[i];
     let legacy = await Legacies.findById(el)
-    if (legacy.status === 'confirmed') ++confirmedLegacies
+    if (legacy.status === 'confirmed')++confirmedLegacies
   }
 
   if (confirmedLegacies === legaciesCount) {
@@ -276,7 +287,7 @@ async function _checkSetStatus (payerId) {
       for (let j = 0; j < subscriptions.length; j++) {
         const sus = subscriptions[j];
         let subscription = await Subscriptions.findById(sus)
-        if (subscription.status === 'confirmed') ++confirmedSubscriptions
+        if (subscription.status === 'confirmed')++confirmedSubscriptions
       }
 
       if (confirmedSubscriptions === subscriptionsCount) {
@@ -295,13 +306,13 @@ async function _checkSetStatus (payerId) {
   return canUpdate
 }
 
-async function findNullByUser (req, res, next) {
-  let {_id} = req.headers
+async function findNullByUser(req, res, next) {
+  let { _id } = req.headers
 
   try {
     let nullInSet = await SetOfLegacies.findNullByUser(_id)
 
-    res.status(200).send({nullInSet: nullInSet.length}).end()
+    res.status(200).send({ nullInSet: nullInSet.length }).end()
   } catch (e) {
     next(e)
   }
@@ -311,8 +322,9 @@ async function findNullByUser (req, res, next) {
  * CRON JOBS 
  */
 
-export async function cronCheckNullLegacies () {
+export async function cronCheckNullLegacies() {
   let sets = await SetOfLegacies.findNull()
+  let pendCount = 0;
   for (let i = 0; i < sets.length; i++) {
     const el = sets[i]
     let legacies = JSON.parse(el.legacies)
@@ -320,16 +332,22 @@ export async function cronCheckNullLegacies () {
       const legacy = legacies[j];
       if (legacy === null || legacy === 'null') {
         let pending = await _assignInLegacy(el.ownerId)
-
         if (pending) {
           legacies.splice(j, 1)
           legacies.push(pending.id)
           el.legacies = JSON.stringify(legacies)
           await el.save()
+        } else {
+          pendCount++
         }
       }
     }
   }
+  if (pendCount) {
+    console.log('Creando ' + pendCount)
+    createHelpAnnex()
+  }
+
 }
 
 export default {

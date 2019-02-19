@@ -1,31 +1,37 @@
 'use strict'
 
-export function getEstructure (coordinates) {
-  let levels =  coordinates.split(';')
+export function getEstructure(coordinates) {
   let estructure = []
-  
-  for (let i = 0; i < levels.length; i++) {
-    const el = levels[i]
-  
-    let legacies = el.split(',')
-    let toRecibe = 0
-    let toPay = 0
-    let subscription = 0
-  
-    legacies.map(el => {
-      if (el === 'r') {
-        toRecibe = ++toRecibe
-      }
-      if (el === 'p') {
-        toPay = ++toPay
-      }
-      if (el === 's') {
-        subscription = ++ subscription
-      }
-    })
+  let toRecibe = 0
+  let toPay = 0
+  let subscription = 0
+  if (coordinates === '*') {
+    for (let i = 0; i < 20; i++) {
+      toRecibe++;
+    }
+    estructure.push({ toRecibe, toPay, subscription })
+  } else {
+    let levels = coordinates.split(';')
 
-    estructure.push({toRecibe, toPay, subscription})
+    for (let i = 0; i < levels.length; i++) {
+      const el = levels[i]
+
+      let legacies = el.split(',')
+
+      legacies.map(el => {
+        if (el === 'r') {
+          toRecibe = ++toRecibe
+        }
+        if (el === 'p') {
+          toPay = ++toPay
+        }
+        if (el === 's') {
+          subscription = ++subscription
+        }
+      })
+
+      estructure.push({ toRecibe, toPay, subscription })
+    }
   }
-
   return estructure
 }
