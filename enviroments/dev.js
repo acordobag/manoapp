@@ -27,7 +27,7 @@ export default {
   enviroment: 'development',
   port: port || 'localhost',
   host: ip,
-  clientUrl: `http://${ip}:8080`,
+  clientUrl: `http://${ip}:${port}`,
   authentication: {
     jwtSecret: 'replaceAppSecretKey'
   },

@@ -1,12 +1,11 @@
 'use strict'
 
+let ip = window.location.hostname
+
 export default {
-  NODE_ENV: 'production',
-  APP_PATH: 'https://www.manoapp.me',
-  API_URL: 'https://www.manoapp.me/api',
-  SOCKET_URL: 'https://www.manoapp.me',
-  PORT: '8080',
-  FB_ID: '',
-  FB_SECRET: '',
-  FB_ACCESS_TOKEN: ''
+  NODE_ENV: 'development',
+  APP_PATH: `http://${ip}`,
+  API_URL: `http://${ip}/api`,
+  SOCKET_URL: `http://${ip}`,
+  PORT: '80'
 }

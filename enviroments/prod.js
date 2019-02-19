@@ -1,41 +1,63 @@
 'use strict'
 
-let port = process.env.PORT
+let os = require('os')
+let ifaces = os.networkInterfaces()
+
+let ip
+let ips = []
+
+Object.keys(ifaces).forEach(function (ifname) {
+  ifaces[ifname].forEach(function (iface) {
+    if (iface.family !== 'IPv4' || iface.internal !== false) {
+      // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+      return
+    }
+    ips.push(iface.address)
+  })
+})
+
+ip = ips[0]
+
+let port = 3000
 
 const fs = require('fs')
 const path = require('path')
 
-module.exports = {
-  enviroment: process.env.NODE_ENV,
-  port: port,
-  host: process.env.HOST,
-  clientUrl: process.env.CLIENT_URL,
+export default {
+  enviroment: 'development',
+  port: port || 'localhost',
+  host: ip,
+  clientUrl: `http://${ip}:8080`,
   authentication: {
-    jwtSecret: process.env.SECRET_KEY
+    jwtSecret: 'replaceAppSecretKey'
   },
   paypalSettings: {
-    clientId: process.env.PAYPAL_CLIENT_ID,
-    secret: process.env.PAYPAL_SECRET,
-    enviroment: process.env.PAYPAL_ENVIROMENT
+    clientId: 'AfFR8hQDzVoBv3n-q_Lt2JLahD3zmKqWuXgfWNcaW3TLmSE4hGQM3JEbdNVE7oEcjtj82O_kJDb3ftlC',
+    secret: 'EGbZyKr62AnlLmdzcL6GgvfcE6joEAVKkZ3CoQ5J_ByuqDSO1KxIEkvzLwQJ8C_AN-EM2umx-5J92EC6',
+    enviroment: 'sandbox'
   },
   mailSettings: {
-    user: process.env.SENDGRID_USER,
-    pass: process.env.SENDGRID_PASS
+    user: 'strategicwmp',
+    pass: 'mC@mPbEl1'
   },
   smsSettings: {
-    key: process.env.NEXMO_API_KEY,
-    secret: process.env.NEXMO_API_SECRET
+    key: '485baa88',
+    secret: 'vGx3CH2lwVQ694yH'
   },
   moneyGram: {
-    endpoint: process.env.MONEYGRAM_API,
-    user: process.env.MONEYGRAM_USER,
-    password: process.env.MONEYGRAM_PASSWORD
+    endpoint: 'http://186.15.1.196:1492/SWMP/Monster?wsdl',
+    user: 'SWMP',
+    password: 'S45W21M89P'
+  },
+  payments: {
+    key: "pk_test_SSc1HQD04OGEMWjzFCGDmHn1",
+    secret: "sk_test_lfl2WsKiu4tZaIsgZlxw3a8q"
   },
   dbSettings: {
-    host: process.env.SQL_HOST,
-    username: process.env.SQL_USER,
-    password: process.env.SQL_PASSWORD,
-    database: process.env.SQL_DATABASE,
+    host: '40.122.170.216',
+    username: 'acordoba',
+    password: 'acordoba',
+    database: 'manoapp',
     dialect: 'mysql',
     // timezone: 'America/Costa_Rica',
     logging: msg => {
@@ -51,7 +73,6 @@ module.exports = {
       acquire: 30000,
       idle: 10000
     },
-    // // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
     operatorsAliases: false
   }
 }
