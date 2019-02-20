@@ -286,7 +286,7 @@ async function _childsStatus(parentId) {
 function _createUsername(name, lastName) {
   
   let lastNames = lastName.split(' ');
-  let username = name.substring(0, 1) + lastNames[0] + (lastNames[1] ? lastNames[1] : Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 1));
+  let username = name.substring(0, 1) + lastNames[0] + (lastNames[1] ? lastNames[1].substr(0, 1) : Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 1));
   username.toLowerCase();
   return username;
 }

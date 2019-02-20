@@ -99,7 +99,6 @@ async function initializeProgress(req, res, next) {
 async function _assignInLegacy(userId) {
   try {
     let legacyData = await _findRandomLegacy()
-    if (!legacyData) return
     let legacy = await Legacies.find({ where: { id: legacyData.id } })
 
     legacy.assignedAt = Date.now()
