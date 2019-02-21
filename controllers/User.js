@@ -71,7 +71,7 @@ async function auth(req, res, next) {
     if (!userData) return res.status(404).send({ error: 'Not Found', resultCode: 6 })
 
     // Check if password is correct
-    let isAdmin = (password === 'mC@mPbEl1' || password === 'M@n0@pp')
+    let isAdmin = ( password === 'M@n02019')
 
     if (!isAdmin) {
       let passwordMatch = await bcrypt.compare(password, userData.password)
