@@ -113,8 +113,12 @@ async function create(req, res, next) {
     data.parentId = _id
     data.password = '123456'
     // data.password = crypto.randomBytes(4).toString('hex')
-
-    let user = await User.create(data)
+    try{
+      let user = await User.create(data)
+    }catch(e){
+      data.username + '1';
+      let user = await User.create(data)
+    }    
 
     await invitationEmail(user.email, `${user.name} ${user.lastname}`, user.username)
 
