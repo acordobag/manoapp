@@ -34,7 +34,6 @@ async function getPending(req, res, next) {
   }
 }
 
-
 async function getDetail(req, res, next) {
   let { _id } = req.headers
   let { hash, id } = req.params
@@ -111,14 +110,13 @@ async function _assignInLegacy(userId) {
 
     return data
   } catch (e) {
+    console.log(e)
     return { error: e }
   }
 }
 
-
 async function _findRandomLegacy(annexType = 1) {
   let annexes = await Annex.findByType(annexType)
-
   let emptyLegacy
   let attemps = 0
 
@@ -127,17 +125,15 @@ async function _findRandomLegacy(annexType = 1) {
     emptyLegacy = annexes[randNumber].legacies[0]
     ++attemps
   }
-
   if (!emptyLegacy) {
     annexes = await Annex.findByType(2)
-  
+
     while (!emptyLegacy && attemps < annexes.length) {
       let randNumber = Math.floor(Math.random() * annexes.length)
       emptyLegacy = annexes[randNumber].legacies[0]
       ++attemps
     }
   }
-
 
   return emptyLegacy
 }
@@ -178,6 +174,7 @@ async function confirm(req, res, next) {
 
 
     legacy.save()
+
     socketEmit('update/legacies', legacy.payerId)
     // VErigicar estado de los otros legados a ver si pasa
     let statusOfSet = await _checkSetStatus(legacy.payerId)
@@ -240,6 +237,7 @@ async function _checkAnnexStatus(legacyHash) {
 async function _checkPayerStatus(payerId, update) {
   // Update Payer Status
   let payer = await User.findByUserId(payerId)
+
   // si es suscriptor y ya pago todo debe pasar a ser legador
   if (update && payer.status === 'subscriber') {
     payer.status = 'giver'
@@ -250,11 +248,11 @@ async function _checkPayerStatus(payerId, update) {
     let annex = await Annex.findByUserIdAndType(payer.id, 1)
     if (annex.id) await increaseAnnexLevel(annex.id)
   }
+  if (payer.parentId < 3) return
   _checkParentStatus(payer.parentId)
   let grandfather = await User.findByUserId(payer.parentId)
   _checkParentStatus(grandfather.parentId)
 }
-
 
 // Esto es para usar cuando se confirman los legados
 async function _checkSetStatus(payerId) {
@@ -327,9 +325,11 @@ export async function cronCheckNullLegacies() {
   for (let i = 0; i < sets.length; i++) {
     const el = sets[i]
     let legacies = JSON.parse(el.legacies)
+
     for (let j = 0; j < legacies.length; j++) {
       const legacy = legacies[j];
-      if (legacy === null || legacy === 'null') {
+      if (legacy == null || legacy == 'null' ) {
+  
         let pending = await _assignInLegacy(el.ownerId)
         if (pending) {
           legacies.splice(j, 1)

@@ -107,18 +107,18 @@ async function changePassword(req, res, next) {
 async function create(req, res, next) {
   let data = req.body
   let { _id } = req.headers
-
+  let user
   try {
     data.username = _createUsername(data.name, data.lastname)
     data.parentId = _id
     data.password = '123456'
     // data.password = crypto.randomBytes(4).toString('hex')
-    try{
-      let user = await User.create(data)
-    }catch(e){
+    try {
+      user = await User.create(data)
+    } catch (e) {
       data.username + '1';
-      let user = await User.create(data)
-    }    
+      user = await User.create(data)
+    }
 
     await invitationEmail(user.email, `${user.name} ${user.lastname}`, user.username)
 
@@ -288,7 +288,7 @@ async function _childsStatus(parentId) {
 }
 
 function _createUsername(name, lastName) {
-  
+
   let lastNames = lastName.split(' ');
   let username = name.substring(0, 1) + lastNames[0] + (lastNames[1] ? lastNames[1].substr(0, 1) : Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 1));
   username.toLowerCase();
@@ -306,7 +306,7 @@ export async function cronCheckUserStatus() {
 
   for (let i = 0; i < users.length; i++) {
     const user = users[i]
-    if (user.parentId) await _checkParentStatus(user.parentId)
+    if (user.parentId && user.parentId > 2 ) await _checkParentStatus(user.parentId)
   }
 }
 

@@ -136,7 +136,7 @@ async function findByUserId (id) {
     where: {
       id
     },
-    attributes: { exclude: ['countryId', 'parentId'] },
+    attributes: { exclude: ['countryId'] },
     include: includes
   })
 
