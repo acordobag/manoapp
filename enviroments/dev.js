@@ -37,8 +37,8 @@ export default {
     enviroment: 'sandbox'
   },
   mailSettings: {
-    user: 'strategicwmp',
-    pass: 'mC@mPbEl1'
+    user: '',
+    pass: ''
   },
   smsSettings: {
     key: '485baa88',
@@ -54,7 +54,7 @@ export default {
     secret: "sk_test_lfl2WsKiu4tZaIsgZlxw3a8q"
   },
   dbSettings: {
-    host: '40.122.170.216',
+    host: '',
     username: 'acordoba',
     password: 'acordoba',
     database: 'manoapp',

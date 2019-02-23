@@ -62,43 +62,44 @@ export default {
     ], {duration: 4000, fade: 750})
   },
   methods: {
-    fbAuthUser () {
-      this.sIsLoading(true)
-      FB.getLoginStatus(response => {
-        if (response.status === 'connected') {
-          FB.api('/me',
-            async (response) => {
-              let data = {
-                facebookId: response.id
-              }
-              this.fbLogin(data)
-            }
-          );
-        } else {
-          FB.login(response => {
-            if (response.status === 'connected') {
-              let data = {
-                facebookId: response.authResponse.userID
-              }
-              this.fbLogin(data)
-            } else {
-              this.$alertify().alert('Debe autorizar a nuestra aplicación para poder acceder a sus datos de Facebook')
-              this.sIsLoading(false)
-            }
-          }, {scope: 'email'})
-        }
-      })
-    },
-    async fbLogin (data) {
-      try {
-        let res = await Auth.facebookLogin(data)
-        if (res.data.resultCode) return this.authUser(res)
-      } catch (e) {
-        this.loginError(e)
-      } finally {
-        this.sIsLoading(false)
-      }
-    },
+    // fbAuthUser () {
+    //   this.sIsLoading(true)
+    //   FB.getLoginStatus(response => {
+    //     if (response.status === 'connected') {
+    //       FB.api('/me',
+    //         async (response) => {
+    //           let data = {
+    //             facebookId: response.id
+    //           }
+    //           this.fbLogin(data)
+    //         }
+    //       );
+    //     } else {
+    //       FB.login(response => {
+    //         if (response.status === 'connected') {
+    //           let data = {
+    //             facebookId: response.authResponse.userID
+    //           }
+    //           this.fbLogin(data)
+    //         } else {
+    //           this.$alertify().alert('Debe autorizar a nuestra aplicación para poder acceder a sus datos de Facebook')
+    //           this.sIsLoading(false)
+    //         }
+    //       }, {scope: 'email'})
+    //     }
+    //   })
+    // },
+    // async fbLogin (data) {
+    //   try {
+    //     let res = await Auth.facebookLogin(data)
+    //     if (res.data.resultCode) return this.authUser(res)
+    //   } catch (e) {
+    //     this.loginError(e)
+    //   } finally {
+    //     this.sIsLoading(false)
+    
+    //   }
+    // },
     async userlogin() {
       this.sIsLoading(true)
       try {
