@@ -1,0 +1,875 @@
+
+> manoapp@2.0.0-1 start /home/manoapp/manoapp
+> babel-node server.js --presets env
+
+[Database] Database initialized
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running User cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running User cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running User cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908\',\'jgonzalezg\',\'$2a$10$0DjC5Bn2ON8E/FLajWTty.E4j5Fk.elUmqSj55CYtisoJuKMkQBRW\',\'user\',\'created\',\'2019-02-21 21:16:01\',\'2019-02-21 21:16:01\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908\',\'jgonzalezg\',\'$2a$10$0DjC5Bn2ON8E/FLajWTty.E4j5Fk.elUmqSj55CYtisoJuKMkQBRW\',\'user\',\'created\',\'2019-02-21 21:16:01\',\'2019-02-21 21:16:01\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908\',\'jgonzalezg\',\'$2a$10$0DjC5Bn2ON8E/FLajWTty.E4j5Fk.elUmqSj55CYtisoJuKMkQBRW\',\'user\',\'created\',\'2019-02-21 21:16:01\',\'2019-02-21 21:16:01\',11,47);' }
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908\',\'jgonzalezg\',\'$2a$10$fUjPPwHGrOG6cLHosrC/6ukEZ7ctHRW8ogYt3ZhzbUooUpWJT.IQS\',\'user\',\'created\',\'2019-02-21 21:16:24\',\'2019-02-21 21:16:24\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908\',\'jgonzalezg\',\'$2a$10$fUjPPwHGrOG6cLHosrC/6ukEZ7ctHRW8ogYt3ZhzbUooUpWJT.IQS\',\'user\',\'created\',\'2019-02-21 21:16:24\',\'2019-02-21 21:16:24\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908\',\'jgonzalezg\',\'$2a$10$fUjPPwHGrOG6cLHosrC/6ukEZ7ctHRW8ogYt3ZhzbUooUpWJT.IQS\',\'user\',\'created\',\'2019-02-21 21:16:24\',\'2019-02-21 21:16:24\',11,47);' }
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'.602060908\',\'jgonzalezg\',\'$2a$10$iROrTapgNkxv7QbP0D4MBOLXAWkWK4iVD42fi2WGTu6CTcJtdT5ai\',\'user\',\'created\',\'2019-02-21 21:19:45\',\'2019-02-21 21:19:45\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'.602060908\',\'jgonzalezg\',\'$2a$10$iROrTapgNkxv7QbP0D4MBOLXAWkWK4iVD42fi2WGTu6CTcJtdT5ai\',\'user\',\'created\',\'2019-02-21 21:19:45\',\'2019-02-21 21:19:45\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'.602060908\',\'jgonzalezg\',\'$2a$10$iROrTapgNkxv7QbP0D4MBOLXAWkWK4iVD42fi2WGTu6CTcJtdT5ai\',\'user\',\'created\',\'2019-02-21 21:19:45\',\'2019-02-21 21:19:45\',11,47);' }
+Running Legacies cron
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'0602060908\',\'jgonzalezg\',\'$2a$10$X25cHOE6tQ/KrPKwo8ywAuRSLO0.KMsF/EXqpNGCNoDAJPFVsDO8O\',\'user\',\'created\',\'2019-02-21 21:20:20\',\'2019-02-21 21:20:20\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'0602060908\',\'jgonzalezg\',\'$2a$10$X25cHOE6tQ/KrPKwo8ywAuRSLO0.KMsF/EXqpNGCNoDAJPFVsDO8O\',\'user\',\'created\',\'2019-02-21 21:20:20\',\'2019-02-21 21:20:20\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'0602060908\',\'jgonzalezg\',\'$2a$10$X25cHOE6tQ/KrPKwo8ywAuRSLO0.KMsF/EXqpNGCNoDAJPFVsDO8O\',\'user\',\'created\',\'2019-02-21 21:20:20\',\'2019-02-21 21:20:20\',11,47);' }
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose\',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'0602060908\',\'jgonzalezg\',\'$2a$10$AyNxNToKjSDaRkQs4mx.QuAF9XOFuAT.pV9PwwIHY0t9HcEKm9JJe\',\'user\',\'created\',\'2019-02-21 21:23:05\',\'2019-02-21 21:23:05\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose\',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'0602060908\',\'jgonzalezg\',\'$2a$10$AyNxNToKjSDaRkQs4mx.QuAF9XOFuAT.pV9PwwIHY0t9HcEKm9JJe\',\'user\',\'created\',\'2019-02-21 21:23:05\',\'2019-02-21 21:23:05\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose\',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'0602060908\',\'jgonzalezg\',\'$2a$10$AyNxNToKjSDaRkQs4mx.QuAF9XOFuAT.pV9PwwIHY0t9HcEKm9JJe\',\'user\',\'created\',\'2019-02-21 21:23:05\',\'2019-02-21 21:23:05\',11,47);' }
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose\',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'. 602060908\',\'jgonzalezg\',\'$2a$10$x4a60zsl/M/mA4DqDjyKCO96bk3gTADoRh97fEW3TH2tHoH99U1zK\',\'user\',\'created\',\'2019-02-21 21:23:32\',\'2019-02-21 21:23:32\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose\',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'. 602060908\',\'jgonzalezg\',\'$2a$10$x4a60zsl/M/mA4DqDjyKCO96bk3gTADoRh97fEW3TH2tHoH99U1zK\',\'user\',\'created\',\'2019-02-21 21:23:32\',\'2019-02-21 21:23:32\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose\',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'. 602060908\',\'jgonzalezg\',\'$2a$10$x4a60zsl/M/mA4DqDjyKCO96bk3gTADoRh97fEW3TH2tHoH99U1zK\',\'user\',\'created\',\'2019-02-21 21:23:32\',\'2019-02-21 21:23:32\',11,47);' }
+Running Legacies cron
+Running Legacies cron
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908.\',\'jgonzalezg\',\'$2a$10$elS3sUAgOR7QyXpJBM.RFuyarMln4gd8xWiKvxvRHcqHgvT1Hzj.C\',\'user\',\'created\',\'2019-02-21 21:25:26\',\'2019-02-21 21:25:26\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908.\',\'jgonzalezg\',\'$2a$10$elS3sUAgOR7QyXpJBM.RFuyarMln4gd8xWiKvxvRHcqHgvT1Hzj.C\',\'user\',\'created\',\'2019-02-21 21:25:26\',\'2019-02-21 21:25:26\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908.\',\'jgonzalezg\',\'$2a$10$elS3sUAgOR7QyXpJBM.RFuyarMln4gd8xWiKvxvRHcqHgvT1Hzj.C\',\'user\',\'created\',\'2019-02-21 21:25:26\',\'2019-02-21 21:25:26\',11,47);' }
+Running Legacies cron
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'6 0206 0908.\',\'jgonzalezg\',\'$2a$10$ET3U1DW/Yjs4wYZDrUXBZebYmoIGukW02n7JQ0Q1zIouWLqG0J0kO\',\'user\',\'created\',\'2019-02-21 21:26:05\',\'2019-02-21 21:26:05\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'6 0206 0908.\',\'jgonzalezg\',\'$2a$10$ET3U1DW/Yjs4wYZDrUXBZebYmoIGukW02n7JQ0Q1zIouWLqG0J0kO\',\'user\',\'created\',\'2019-02-21 21:26:05\',\'2019-02-21 21:26:05\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'6 0206 0908.\',\'jgonzalezg\',\'$2a$10$ET3U1DW/Yjs4wYZDrUXBZebYmoIGukW02n7JQ0Q1zIouWLqG0J0kO\',\'user\',\'created\',\'2019-02-21 21:26:05\',\'2019-02-21 21:26:05\',11,47);' }
+Running Legacies cron
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'6 0206 0908.\',\'jgonzalezg\',\'$2a$10$7UN7pa9tijNzk7KgBCwnOe28zrbp7GBT0Jwe.Bws1F1Q5oJD8tGAe\',\'user\',\'created\',\'2019-02-21 21:27:04\',\'2019-02-21 21:27:04\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'6 0206 0908.\',\'jgonzalezg\',\'$2a$10$7UN7pa9tijNzk7KgBCwnOe28zrbp7GBT0Jwe.Bws1F1Q5oJD8tGAe\',\'user\',\'created\',\'2019-02-21 21:27:04\',\'2019-02-21 21:27:04\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'6 0206 0908.\',\'jgonzalezg\',\'$2a$10$7UN7pa9tijNzk7KgBCwnOe28zrbp7GBT0Jwe.Bws1F1Q5oJD8tGAe\',\'user\',\'created\',\'2019-02-21 21:27:04\',\'2019-02-21 21:27:04\',11,47);' }
+Running Legacies cron
+Running Legacies cron
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'6 0206 0908.\',\'jgonzalezg\',\'$2a$10$Rle0p6Yv2ekbmZoSZjPeIO/hxuznH6X/24MCkHQTpeheTpEvYRFH2\',\'user\',\'created\',\'2019-02-21 21:29:10\',\'2019-02-21 21:29:10\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'6 0206 0908.\',\'jgonzalezg\',\'$2a$10$Rle0p6Yv2ekbmZoSZjPeIO/hxuznH6X/24MCkHQTpeheTpEvYRFH2\',\'user\',\'created\',\'2019-02-21 21:29:10\',\'2019-02-21 21:29:10\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'6 0206 0908.\',\'jgonzalezg\',\'$2a$10$Rle0p6Yv2ekbmZoSZjPeIO/hxuznH6X/24MCkHQTpeheTpEvYRFH2\',\'user\',\'created\',\'2019-02-21 21:29:10\',\'2019-02-21 21:29:10\',11,47);' }
+Running Legacies cron
+Running User cron
+Running Legacies cron
+Running Legacies cron
+{ SequelizeUniqueConstraintError: Validation error
+    at Query.formatError (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:226:16)
+    at Query.handler [as onResult] (/home/manoapp/manoapp/node_modules/sequelize/lib/dialects/mysql/query.js:68:23)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:30:12)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+  name: 'SequelizeUniqueConstraintError',
+  errors: 
+   [ ValidationErrorItem {
+       message: 'username must be unique',
+       type: 'unique violation',
+       path: 'username',
+       value: 'jgonzalezg',
+       origin: 'DB',
+       instance: [Object],
+       validatorKey: 'not_unique',
+       validatorName: null,
+       validatorArgs: [] } ],
+  fields: { username: 'jgonzalezg' },
+  parent: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908.\',\'jgonzalezg\',\'$2a$10$r5w7qO899TJBFHlb31GcmeKUSjPS0u1h9NNEH.1K3CGxjrICdxgha\',\'user\',\'created\',\'2019-02-21 21:32:42\',\'2019-02-21 21:32:42\',11,47);' },
+  original: 
+   { Error: Duplicate entry 'jgonzalezg' for key 'username'
+    at Packet.asError (/home/manoapp/manoapp/node_modules/mysql2/lib/packets/packet.js:714:13)
+    at Query.Command.execute (/home/manoapp/manoapp/node_modules/mysql2/lib/commands/command.js:28:22)
+    at Connection.handlePacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:513:28)
+    at PacketParser.onPacket (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:81:16)
+    at PacketParser.executeStart (/home/manoapp/manoapp/node_modules/mysql2/lib/packet_parser.js:76:14)
+    at Socket.<anonymous> (/home/manoapp/manoapp/node_modules/mysql2/lib/connection.js:89:29)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    at Socket.Readable.push (_stream_readable.js:208:10)
+    at TCP.onread (net.js:601:20)
+     code: 'ER_DUP_ENTRY',
+     errno: 1062,
+     sqlState: '23000',
+     sqlMessage: 'Duplicate entry \'jgonzalezg\' for key \'username\'',
+     sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908.\',\'jgonzalezg\',\'$2a$10$r5w7qO899TJBFHlb31GcmeKUSjPS0u1h9NNEH.1K3CGxjrICdxgha\',\'user\',\'created\',\'2019-02-21 21:32:42\',\'2019-02-21 21:32:42\',11,47);' },
+  sql: 'INSERT INTO `users` (`id`,`name`,`lastname`,`email`,`identification`,`username`,`password`,`permissions`,`status`,`createdAt`,`updatedAt`,`parentId`,`countryId`) VALUES (DEFAULT,\'Jose Wilfredo \',\'Gonzalez Gonzalez\',\'jwilfredo1967@gmail.com\',\'602060908.\',\'jgonzalezg\',\'$2a$10$r5w7qO899TJBFHlb31GcmeKUSjPS0u1h9NNEH.1K3CGxjrICdxgha\',\'user\',\'created\',\'2019-02-21 21:32:42\',\'2019-02-21 21:32:42\',11,47);' }
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron
+Running Legacies cron

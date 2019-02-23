@@ -23,7 +23,7 @@ export default (app, server) => {
   //               |_|  |_|_|\__,_|\__,_|_|\___| \_/\_/ \__,_|_|  \___|___/
   
   app.use(cors())
-  app.use(morgan('dev'))
+  //app.use(morgan('dev'))
   app.use(express.json())
 
 
