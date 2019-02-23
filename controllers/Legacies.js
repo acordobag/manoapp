@@ -98,6 +98,7 @@ async function initializeProgress(req, res, next) {
 async function _assignInLegacy(userId) {
   try {
     let legacyData = await _findRandomLegacy()
+    if(!legacyData) return legacyData;
     let legacy = await Legacies.find({ where: { id: legacyData.id } })
 
     legacy.assignedAt = Date.now()
@@ -110,7 +111,7 @@ async function _assignInLegacy(userId) {
 
     return data
   } catch (e) {
-    console.log(e)
+    console.log('Error on generate legacies')
     return { error: e }
   }
 }
@@ -119,13 +120,15 @@ async function _findRandomLegacy(annexType = 1) {
   let annexes = await Annex.findByType(annexType)
   let emptyLegacy
   let attemps = 0
-
+  
   while (!emptyLegacy && attemps < annexes.length) {
     let randNumber = Math.floor(Math.random() * annexes.length)
     emptyLegacy = annexes[randNumber].legacies[0]
     ++attemps
   }
+
   if (!emptyLegacy) {
+    attemps = 0
     annexes = await Annex.findByType(2)
 
     while (!emptyLegacy && attemps < annexes.length) {
@@ -329,7 +332,7 @@ export async function cronCheckNullLegacies() {
     for (let j = 0; j < legacies.length; j++) {
       const legacy = legacies[j];
       if (legacy == null || legacy == 'null' ) {
-  
+        
         let pending = await _assignInLegacy(el.ownerId)
         if (pending) {
           legacies.splice(j, 1)

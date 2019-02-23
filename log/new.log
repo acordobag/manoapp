@@ -28236,3 +28236,837 @@ TypeError: Cannot read property 'id' of undefined
     at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
     at /home/manoapp/manoapp/controllers/Legacies.js:990:361
     at <anonymous>
+Running Legacies cron
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+Running Legacies cron
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+Running Legacies cron
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+Running Legacies cron
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+Running Legacies cron
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+Running Legacies cron
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+Running Legacies cron
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+Running Legacies cron
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee6$ (/home/manoapp/manoapp/controllers/Legacies.js:101:64)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:990:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:990:361
+    at <anonymous>
+
+> manoapp@2.0.0-1 start /home/manoapp/manoapp
+> babel-node server.js --presets env
+
+[Database] Database initialized
+Running Legacies cron
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+Running Legacies cron
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+TypeError: Cannot read property 'id' of undefined
+    at _callee7$ (/home/manoapp/manoapp/controllers/Legacies.js:131:39)
+    at tryCatch (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:65:40)
+    at Generator.invoke [as _invoke] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:303:22)
+    at Generator.prototype.(anonymous function) [as next] (/home/manoapp/manoapp/node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js:117:21)
+    at step (/home/manoapp/manoapp/controllers/Legacies.js:992:191)
+    at /home/manoapp/manoapp/controllers/Legacies.js:992:361
+    at <anonymous>
+
+> manoapp@2.0.0-1 start /home/manoapp/manoapp
+> babel-node server.js --presets env
+
+[Database] Database initialized
+Running Legacies cron
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Running Legacies cron
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Running Legacies cron
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Running User cron
+Running Legacies cron
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Running Legacies cron
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+
+> manoapp@2.0.0-1 start /home/manoapp/manoapp
+> babel-node server.js --presets env
+
+
+> manoapp@2.0.0-1 start /home/manoapp/manoapp
+> babel-node server.js --presets env
+
+Running Legacies cron
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+Cicloa 2 undefined
+Error
+
+> manoapp@2.0.0-1 start /home/manoapp/manoapp
+> babel-node server.js --presets env
+
+[Database] Database initialized
+Running Legacies cron
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+Running Legacies cron
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+Running Legacies cron
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+undefined
+Error
+
+> manoapp@2.0.0-1 start /home/manoapp/manoapp
+> babel-node server.js --presets env
+
+[Database] Database initialized
+Running Legacies cron
+Running Legacies cron
