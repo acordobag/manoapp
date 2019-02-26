@@ -52,16 +52,15 @@ async function createAnnex(req, res, next) {
   }
 }
 
-export async function createHelpAnnex() {
+export async function createHelpAnnex(quantity) {
   let annex = {
     status: 'active',
     currentLevel: null,
     ownerId: 2,
-    annexTypeId: 2
+    annexTypeId: 1
   };
   let newAnnex = await Annex.create(annex)
-  //Creamos el primer Nivel 
-  await _createLevel(newAnnex.id)
+  await _createLegacies(newAnnex.id, 1, quantity)
 }
 
 async function detail(req, res, next) {

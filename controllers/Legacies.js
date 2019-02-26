@@ -328,7 +328,6 @@ export async function cronCheckNullLegacies() {
   for (let i = 0; i < sets.length; i++) {
     const el = sets[i]
     let legacies = JSON.parse(el.legacies)
-
     for (let j = 0; j < legacies.length; j++) {
       const legacy = legacies[j];
       if (legacy == null || legacy == 'null' ) {
@@ -346,9 +345,10 @@ export async function cronCheckNullLegacies() {
       }
     }
   }
-  if (pendCount) {
+  if (pendCount>0) {
     console.log('Creando ' + pendCount)
-    createHelpAnnex()
+    createHelpAnnex(10)
+    //cronCheckNullLegacies()
   }
 
 }
