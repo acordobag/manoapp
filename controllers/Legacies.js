@@ -98,7 +98,7 @@ async function initializeProgress(req, res, next) {
 async function _assignInLegacy(userId) {
   try {
     let legacyData = await _findRandomLegacy()
-    if(!legacyData) return legacyData;
+    //if(!legacyData) return null;
     let legacy = await Legacies.find({ where: { id: legacyData.id } })
 
     legacy.assignedAt = Date.now()
@@ -334,7 +334,8 @@ export async function cronCheckNullLegacies() {
       if (legacy == null || legacy == 'null' ) {
         
         let pending = await _assignInLegacy(el.ownerId)
-        if (pending) {
+        //console.log(pending)
+        if (pending instanceof Legacies) {
           legacies.splice(j, 1)
           legacies.push(pending.id)
           el.legacies = JSON.stringify(legacies)
