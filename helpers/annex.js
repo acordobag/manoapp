@@ -12,9 +12,13 @@ export function getEstructure(coordinates) {
     estructure.push({ toRecibe, toPay, subscription })
   } else {
     let levels = coordinates.split(';')
-
+    
     for (let i = 0; i < levels.length; i++) {
       const el = levels[i]
+
+      toRecibe = 0
+      toPay = 0
+      subscription = 0
 
       let legacies = el.split(',')
 
