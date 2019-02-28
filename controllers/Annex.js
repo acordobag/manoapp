@@ -77,8 +77,7 @@ async function detail(req, res, next) {
 }
 
 async function test(req, res, next) {
-  let annexId = 6
-
+  let annexId = req.body.id
   try {
     let result = await _createLevel(annexId)
     res.status(200).send(result).end()
@@ -105,7 +104,7 @@ async function _createLevel(annexId) {
     if (!currentLevel) {
       toCreateLevel = 1
     } else {
-      toCreateLevel = (currentLevel) + 1
+      toCreateLevel = (currentLevel + 1)
     }
 
     // Verificamos si el nivel que hay que crear es el ultimo
@@ -116,17 +115,19 @@ async function _createLevel(annexId) {
     }
 
     // Create the corresponding Level -> se le resta 1 para que concuerde con el index del arreglo
-    let toCreate = estructure[(toCreateLevel) - 1]
+    let toCreate = estructure[(toCreateLevel - 1)]
+
+    let legaciesQuantity = toCreate.toRecibe
 
     if (toCreate.toRecibe === 0 && toCreate.toPay >= 1) {
       await createNewLegaciesSet(annex.ownerId, toCreate.toPay, toCreate.subscription)
     } else {
-      let legaciesQuantity = toCreate.toRecibe
       await _createLegacies(annexId, toCreateLevel, legaciesQuantity)
     }
 
     return { created: true, estructure, maxLevels, toCreateLevel, legaciesQuantity, currentLevel, toCreate }
   } catch (e) {
+    console.log(e)
     return { error: true }
   }
 }
