@@ -2,6 +2,7 @@
 
 import { getEstructure } from '../helpers/annex'
 import User from '../models/User'
+import Membership from '../models/Membership'
 import Annex from '../models/Annex'
 import AnnexType from '../models/AnnexType'
 import Legacies from '../models/Legacies'
@@ -13,7 +14,7 @@ import uniqid from 'uniqid'
 async function getAnnexes(req, res, next) {
   let { _id } = req.headers
   try {
-    let annex = await Annex.findByUserId(_id)
+    let annex = await Annex.findByUserId(_id)// find by mebershipId
     res.status(200).send(annex).end()
   } catch (e) {
     next(e)

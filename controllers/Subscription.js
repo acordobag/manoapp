@@ -121,11 +121,11 @@ async function allPendings (req, res, next) {
   }
 }
 
-export async function createSubscription (payerId) {
+export async function createSubscription (payerMembershipId) {
   return await Subscription.create({
     hash: uniqid().toUpperCase(),
     assignedAt: Date.now(),
-    payerId
+    payerMembershipId
   })
 }
 

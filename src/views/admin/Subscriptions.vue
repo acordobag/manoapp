@@ -36,9 +36,10 @@ export default {
       }
     },
     confirmSubscription (payer, hash) {
-      this.$alertify.confirm(`Seguro que desea confirmar la suscripcion de ${payer.fullName}`, async () => {
+      this.$alertify.okBtn('Si, estoy seguro').confirm(`Seguro que desea confirmar la suscripcion de ${payer.fullName}`, async () => {
         try {
           let {data} = await Subscriptions.confirm({hash})
+          this.getSubscriptions();
           console.log(data)
         } catch (e) {
           console.log(e)

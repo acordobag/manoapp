@@ -59,11 +59,6 @@ const model = () => {
       type: Sequelize.STRING,
       allowNull: true,
       unique: true
-    },
-    status: {
-      type: Sequelize.ENUM,
-      values: ['created', 'confirmed', 'subscriber', 'giver', 'active', 'qualified', 'receiver', 'suspended', 'deleted'],
-      defaultValue: 'created'
     }
   }, {
     getterMethods: {
@@ -83,8 +78,7 @@ const includes = [
   'images',
   'country',
   'contacts',
-  'accounts',
-  {association: 'parent', attributes: ['id', 'name', 'lastname']}
+  'accounts'
 ]
 
 const detailed = [

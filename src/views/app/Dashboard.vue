@@ -78,6 +78,8 @@ export default {
           let {data} = await Legacies.initialize()
           window.location.reload()
         } catch (e) {
+          this.$alertify.console.error(e);
+          
           console.log(e)
         }
       })

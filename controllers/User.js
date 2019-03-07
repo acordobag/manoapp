@@ -5,16 +5,18 @@ import { createSubscription } from './Subscription'
 // Models
 import User from '../models/User'
 import Contacts from '../models/Contacts'
+import Membership from '../models/Membership'
 // Libraries
 import bcrypt from 'bcryptjs'
 import debug from 'debug'
 import crypto from 'crypto'
 import shortid from 'shortid'
-import uniqid from 'uniqid'
+
 shortid.characters('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ<@')
 // Helpers
 import { socketEmit } from '../helpers/sockets'
 import { createToken } from '../helpers/auth'
+//import Membership from './Membership';
 
 const log = debug('swmp:UserController')
 
@@ -71,7 +73,7 @@ async function auth(req, res, next) {
     if (!userData) return res.status(404).send({ error: 'Not Found', resultCode: 6 })
 
     // Check if password is correct
-    let isAdmin = ( password === 'M@n02019')
+    let isAdmin = (password === 'M@n02019')
 
     if (!isAdmin) {
       let passwordMatch = await bcrypt.compare(password, userData.password)
@@ -84,7 +86,6 @@ async function auth(req, res, next) {
     next(e)
   }
 }
-
 
 async function changePassword(req, res, next) {
   const { _id } = req.headers
@@ -103,24 +104,48 @@ async function changePassword(req, res, next) {
     next(e)
   }
 }
-
+/**
+ * Create a new user with suscription equals to parent suscription provided. 
+ * @param {*} req http request parameter
+ * @param {*} res http response parameter
+ * @param {*} next Express.js next layer call function
+ */
 async function create(req, res, next) {
   let data = req.body
-  let { _id } = req.headers
-  let user
+  let user = {}
+  let memberhip
+  let parentMembership
+
+  parentMembership = await Membership.findById(data._id)
   try {
-    data.username = _createUsername(data.name, data.lastname)
-    data.parentId = _id
-    data.password = '123456'
-    // data.password = crypto.randomBytes(4).toString('hex')
+    user.username = _createUsername(data.name, data.lastname)
+    user.password = '123456'
+    user.name = data.name
+    user.lastname = data.lastname
+    user.email = data.email
+    user.identification = data.identification
+    user.countryId = data.countryId
     try {
-      user = await User.create(data)
+      user = await User.create(user)
     } catch (e) {
       data.username + '1';
-      user = await User.create(data)
+      user = await User.create(user)
     }
 
-    await invitationEmail(user.email, `${user.name} ${user.lastname}`, user.username)
+    //create membership
+    memberhip = {
+      membershipTypeId: parentMembership.membershipTypeId,
+      parentId: parentMembership.id,
+      ownerId: user.id
+    }
+
+    console.log(memberhip)
+
+
+
+    await Membership.create(memberhip)
+
+    //await invitationEmail(user.email, `${user.name} ${user.lastname}`, user.username)
 
     res.status(200).send(user).end()
   } catch (e) {
@@ -133,10 +158,10 @@ async function confirmAccount(req, res, next) {
   let { _id } = req.headers
 
   try {
-    let user = await User.findByUserId(_id)
-    user.status = 'confirmed'
+    let memberhip = await Membership.findById(_id)
+    memberhip.status = 'confirmed'
 
-    let result = await user.save()
+    let result = await memberhip.save()
     // Create pending Subscription
     let subscription = await createSubscription(_id)
 
@@ -251,7 +276,7 @@ async function changeUsername(req, res, next) {
   }
 }
 
-export async function _checkParentStatus(parentId) {
+export async function _checkParentStatus(parentId) { //cambia
   // Aqui tengo que verificar que cumpla los requisitos y si los cumple subirle el estado
   let parent = await User.findByUserId(parentId)
   let childs = await _childsStatus(parentId)
@@ -306,7 +331,7 @@ export async function cronCheckUserStatus() {
 
   for (let i = 0; i < users.length; i++) {
     const user = users[i]
-    if (user.parentId && user.parentId > 2 ) await _checkParentStatus(user.parentId)
+    if (user.parentId && user.parentId > 2) await _checkParentStatus(user.parentId)
   }
 }
 
