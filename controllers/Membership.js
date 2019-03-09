@@ -13,6 +13,18 @@ async function create(pMembership) {
   return m
 }
 
+async function getByUserId(req,res,next){
+  let { _id } = req.headers
+
+  try {
+    let pendingLegacies = await Legacies.findPendingLegacies(_id)
+
+    res.status(200).send(pendingLegacies).end()
+  } catch (e) {
+    next(e)
+  }
+}
+
 export default {
   create,
   getAll,

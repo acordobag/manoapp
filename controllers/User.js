@@ -116,7 +116,8 @@ async function create(req, res, next) {
   let memberhip
   let parentMembership
 
-  parentMembership = await Membership.findById(data._id)
+  parentMembership = await Membership.findById(data.parentId)
+  
   try {
     user.username = _createUsername(data.name, data.lastname)
     user.password = '123456'
