@@ -38,6 +38,7 @@ main.buy-contracts
 <script>
 import Utils from "@/services/Utils";
 import User from "@/services/User";
+import Membership from "@/services/Membership";
 export default {
   data() {
     return {
@@ -66,7 +67,7 @@ export default {
     },
     async getUserMemberships() {
       try {
-        let { data } = await Utils.getCountries();
+        let { data } = await Membership.userAccounts();
         this.userMemberships = data;
       } catch (e) {
         console.log(e);
