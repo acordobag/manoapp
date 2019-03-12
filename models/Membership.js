@@ -23,7 +23,8 @@ const model = () => {
 const Model = model()
 
 const includes = [
-  'type'
+  'type',
+  'owner'
 ]
 
 const detailed = [
@@ -46,10 +47,10 @@ async function findLinks(parentId) {
   return result
 }
 
-async function findById(id) {
-  let result = await Model.find({
+async function findByOwnerId(ownerId) {
+  let result = await Model.findAll({
     where: {
-      id
+      ownerId
     },
     include: includes
   })
@@ -57,18 +58,22 @@ async function findById(id) {
   return result
 }
 
+async function findInGiverStateByOId(ownerId) {
+  let result = await Model.findAll({
+    where: {
+      ownerId,
+      status: 'giver'
+    },
+    include: includes
+  })
 
+  return result
+}
 
 // Custom methods
-// Model.findByUsername = findByUsername
-// Model.findByEmail = findByEmail
-Model.findById = findById
-// Model.findByReferralCode = findByReferralCode
-// Model.findByFacebookId = findByFacebookId
-// Model.findDetailUserById = findDetailUserById
-// Model.findAllDetailed = findAllDetailed
-// Model.findAdvisers = findAdvisers
-// Model.findAdmins = findAdmins
+Model.findByOwnerId = findByOwnerId
 Model.findLinks = findLinks
+Model.findInGiverStateByOId = findInGiverStateByOId
+
 
 export default Model

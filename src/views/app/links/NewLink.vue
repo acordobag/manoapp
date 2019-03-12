@@ -31,6 +31,11 @@ main.buy-contracts
           select.pk-input.bordered(v-model="countryId") 
             option(:value="0", disabled) Seleccione un pais
             option(v-for="country in countries", :value="country.id") {{country.name}}
+        .pk-input-group
+          label.control-labell Cuenta
+          select.pk-input.bordered(v-model="selectedMembership") 
+            option(:value="0", disabled) Seleccione una cuenta
+            option(v-for="m in userMemberships", :value="m.id") {{m.type.name}}
         button.btn.btn-strategic.btn-block(type='submit')
           | Enlazar
 </template>
@@ -47,7 +52,7 @@ export default {
       email: null,
       identification: null,
       countryId: 0,
-      selectedMembership: null,
+      selectedMembership: 0,
       countries: [],
       userMemberships: []
     };
@@ -91,7 +96,7 @@ export default {
         } para la confirmación de la cuenta`,
         async () => {
           try {
-            //let result = 
+            //let result =
             await User.create(linkData);
             this.$alertify
               .okBtn("Ok")

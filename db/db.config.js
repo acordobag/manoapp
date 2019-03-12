@@ -27,7 +27,7 @@ export default async () => {
     //
     Membership.belongsTo(Membership, {as: 'parent', foreignKey: { allowNull: true, name: 'parentId'} })
     //User memberships
-    Membership.belongsTo(User, {as: 'ownerMemberships', foreignKey: { allowNull: false, name: 'ownerId'} }) // new
+    Membership.belongsTo(User, {as: 'owner', foreignKey: { allowNull: false, name: 'ownerId'} }) // new
     User.hasMany(Membership, {as: 'memberships', foreignKey: {name:'ownerId', allowNull: false }}) // new
     //
     Membership.belongsTo(MembershipType, {as: 'type', foreignKey: { allowNull: false, name: 'membershipTypeId'} }) // new
