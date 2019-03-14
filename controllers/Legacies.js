@@ -10,6 +10,7 @@ import { _checkParentStatus } from './User'
 import { createSubscription } from '../controllers/Subscription'
 import { increaseAnnexLevel, createHelpAnnex } from '../controllers/Annex'
 import { socketEmit } from '../helpers/sockets'
+import Membership from './Membership';
 
 async function assignInLegacy(req, res, next) {
   let { _id } = req.headers
@@ -24,9 +25,10 @@ async function assignInLegacy(req, res, next) {
 
 async function getPending(req, res, next) {
   let { _id } = req.headers
+  let { membershipId} = req.params
 
   try {
-    let pendingLegacies = await Legacies.findPendingLegacies(_id)
+    let pendingLegacies = await Legacies.findPendingLegacies(membershipId)
 
     res.status(200).send(pendingLegacies).end()
   } catch (e) {
@@ -72,19 +74,19 @@ async function getBenefits(req, res, next) {
 
 
 async function initializeProgress(req, res, next) {
-  let { _id } = req.headers
+  let { id } = req.body
 
   try {
     // Chequear que el estado del usuario sea Suscriber para poder ponerle los 2 primero legados
-    let user = await User.findByUserId(_id)
+    let membership = await Membership.findById(id)
     let result = {}
 
     // Chequear que no tenga otros asignados
-    let otherLegacies = await SetOfLegacies.findActive(_id)
+    let otherLegacies = await SetOfLegacies.findActive(id)
 
     if (otherLegacies) return res.status(500).send({ error: 'user have other legacies' }).end()
 
-    if (user.status = 'subscriber') {
+    if (membership.status = 'subscriber') {
       await createNewLegaciesSet(_id, 2, false)
     }
 

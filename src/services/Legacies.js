@@ -3,7 +3,7 @@
 import Api from '@/services/Api'
 
 export default {
-  initialize: () => Api.post('/legacies/initialize'),
+  initialize: (data) => Api.post('/legacies/initialize', data),
   pending: () => Api.get('/legacies/pending'),
   detail: (hash, id) => Api.get(`/legacies/${hash}/${id}`),
   paid: (data) => Api.patch(`/legacies/paid`, data),

@@ -1,5 +1,5 @@
 import Membership from '../models/Membership'
-
+import { createSubscription } from './Subscription'
 
 async function create(pMembership) {
   let m
@@ -62,14 +62,14 @@ async function confirmMembership(req, res, next){
   let { id } = req.body
 
   try {
-    let memberhip = await Membership.findById(id)
-    memberhip.status = 'confirmed'
+    let membership = await Membership.findById(id)
+    membership.status = 'confirmed'
 
-    let result = await memberhip.save()
+    let result = await membership.save()
     // Create pending Subscription
-    //let subscription = await createSubscription(id)
+    let subscription = await createSubscription(membership)
 
-    //result.subscription = null//subscription
+    result.subscription = subscription
 
     res.status(200).send(result).end()
   } catch (e) {

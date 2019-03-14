@@ -79,6 +79,7 @@ export default {
       this.sayHi()
       this.getNulls(),
       this.getMemberhips()
+      this.selectedMembership= this.selectedAccount
     },
     goToChange () {
 
@@ -86,7 +87,7 @@ export default {
     initializeProcess () {
       this.$alertify.okBtn('Si, seguro').confirm('Seguro que desea empezar su proceso en ManoApp, al aceptar a usted se le asignarán 2 Legados pendientes de $20 para empezar su proceso de activación', async () => {
         try {
-          let {data} = await Legacies.initialize()
+          let {data} = await Legacies.initialize(this.selectedMembership)
           window.location.reload()
         } catch (e) {
           this.$alertify.console.error(e);
@@ -144,7 +145,7 @@ export default {
         this.welcomeText = 'Buenas Tardes'
       }
     },
-    accountChanged(){
+    accountChanged(m){
       this.setSelectedAccount(this.selectedMembership)
       localStorage.setItem('selectedAccount', JSON.stringify(this.selectedMembership))
       this.$router.push({name: 'check-account'})
@@ -157,7 +158,7 @@ export default {
     pPendingSubscriptions: () => import('@/components/subscriptions/Pendings.vue')
   },
   computed: {
-    ...mapGetters('user', ['userData'])
+    ...mapGetters('user', ['userData', 'selectedAccount'])
   }
 }
 </script>

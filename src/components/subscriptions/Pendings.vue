@@ -42,7 +42,7 @@ export default {
     },
     async getSubscriptions () {
       try {
-        let {data} = await Subscriptions.pending()
+        let {data} = await Subscriptions.pending(this.selectedAccount.id)
         this.subscriptions = data
       } catch (e) {
         console.log(e)
@@ -53,7 +53,7 @@ export default {
     open () {
       return this.$route.query.os
     },
-    ...mapGetters('user', ['socket'])
+    ...mapGetters('user', ['socket', 'selectedAccount'])
   },
   components: {
     pSubscription: () => import('@/components/subscriptions/Single.vue')

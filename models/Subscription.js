@@ -57,10 +57,10 @@ const Model = model()
 const Op = Sequelize.Op
 
 
-Model.findPendingSubscriptions = (payerId) => {
+Model.findPendingSubscriptions = (payerMembershipId) => {
   return Model.findAll({
     where: {
-      payerId,
+      payerMembershipId,
       status: {
         [Op.in]: ['paid', 'pending']
       }
@@ -69,11 +69,11 @@ Model.findPendingSubscriptions = (payerId) => {
 }
 
 
-Model.findOtherSubscriptions = (payerId, hash) => {
+Model.findOtherSubscriptions = (payerMembershipId, hash) => {
   return Model.findAll(
     {
       where: {
-        payerId,
+        payerMembershipId,
         hash: {[Op.ne]: hash}
       }
     }

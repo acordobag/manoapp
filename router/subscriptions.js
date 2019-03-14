@@ -8,7 +8,7 @@ import {check} from '../helpers/permissions'
 
 const subscriptions = express.Router()
 
-subscriptions.get('/pending', verifyToken, SubscriptionController.getPending)
+subscriptions.get('/pendings/:membership', verifyToken, SubscriptionController.getPending)
 subscriptions.get('/pending/:hash', verifyToken, SubscriptionController.detail)
 subscriptions.patch('/paid', verifyToken, SubscriptionController.paid)
 // ADMIN ROUTES

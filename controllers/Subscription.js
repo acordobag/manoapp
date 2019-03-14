@@ -3,24 +3,25 @@
 import Subscription from '../models/Subscription'
 import Legacies from '../models/Legacies'
 import User from '../models/User'
-import {socketEmit} from '../helpers/sockets'
+import { socketEmit } from '../helpers/sockets'
 import uniqid from 'uniqid'
 
-async function getPending (req, res, next) {
-  let {_id} = req.headers
-
+async function getPending(req, res, next) {
+  let { membership } = req.params
+  console.log(membership)
   try {
-    let subscriptions = await Subscription.findPendingSubscriptions(_id)
+    let subscriptions = await Subscription.findPendingSubscriptions(membership)
 
     res.status(200).send(subscriptions).end()
   } catch (e) {
+    console.log(e)
     next(e)
   }
 }
 
-async function detail (req, res, next) {
-  let {_id} = req.headers
-  let {hash} = req.params 
+async function detail(req, res, next) {
+  let { _id } = req.headers
+  let { hash } = req.params
 
   try {
     let subscription = await Subscription.find({
@@ -37,13 +38,13 @@ async function detail (req, res, next) {
 }
 
 
-async function paid (req, res, next) {
-  let {_id} = req.headers
-  let {hash} = req.body
+async function paid(req, res, next) {
+  let { _id } = req.headers
+  let { hash } = req.body
 
 
   try {
-    let subscription = await Subscription.find({where: {hash}})
+    let subscription = await Subscription.find({ where: { hash } })
     subscription.status = 'paid'
     subscription.paid = true
     subscription.paidAt = Date.now()
@@ -52,34 +53,34 @@ async function paid (req, res, next) {
 
     socketEmit('update/subscription', subscription.payerId)
 
-    res.status(200).send({_id, subscription}).end()
+    res.status(200).send({ _id, subscription }).end()
   } catch (e) {
     console.log(e)
-    next()    
+    next()
   }
 }
 
-async function confirm (req, res, next) {
-  let {hash} = req.body
+async function confirm(req, res, next) {
+  let { hash } = req.body
   // TODO: PASAR ESTO A JOI VALIDATION
-  if (!hash) return res.status(500).send({error: 'Missing Parameters for request'}).end()
+  if (!hash) return res.status(500).send({ error: 'Missing Parameters for request' }).end()
 
   try {
-    let subscription = await Subscription.find({where: {hash}})
+    let subscription = await Subscription.find({ where: { hash } })
 
-    if (!subscription) return res.status(500).send({error: 'Not found'}).end()
+    if (!subscription) return res.status(500).send({ error: 'Not found' }).end()
 
     // let user = await
     // Primero chequear si tiene otras suscripciones o si es la primera
     let othersSubscriptions = await Subscription.findOtherSubscriptions(subscription.payerId, hash)
     let pendingLegacies = await Legacies.findPendingLegacies(subscription.payerId)
 
-    if (pendingLegacies.length) return res.status(500).send({error: 'Tiene legados pendientes'}).end()
-    
+    if (pendingLegacies.length) return res.status(500).send({ error: 'Tiene legados pendientes' }).end()
+
     subscription.status = 'confirmed'
     subscription.confirmed = true
     subscription.confirmedAt = Date.now()
-    
+
     if (!othersSubscriptions.length) {
       let user = await User.findByUserId(subscription.payerId)
       if (user.status === 'confirmed') {
@@ -95,14 +96,14 @@ async function confirm (req, res, next) {
 
     subscription.save()
 
-    res.status(200).send({subscription, othersSubscriptions}).end()
+    res.status(200).send({ subscription, othersSubscriptions }).end()
   } catch (error) {
     console.log(error)
-    next()    
+    next()
   }
 }
 
-async function allPendings (req, res, next) {
+async function allPendings(req, res, next) {
   try {
     console.log('FUNCIONA')
     let pendings = await Subscription.findAll({
@@ -121,11 +122,12 @@ async function allPendings (req, res, next) {
   }
 }
 
-export async function createSubscription (payerMembershipId) {
+export async function createSubscription(membership) {
   return await Subscription.create({
     hash: uniqid().toUpperCase(),
     assignedAt: Date.now(),
-    payerMembershipId
+    payerMembershipId: membership.id,
+    ammount: membership.type.suscriptionAmmount
   })
 }
 

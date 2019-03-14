@@ -59,10 +59,10 @@ Model.findById = (id) => {
   })
 }
 
-Model.findPendingLegacies = (payerId) => {
+Model.findPendingLegacies = (payerMembershipId) => {
   return Model.findAll({
     where: {
-      payerId,
+      payerMembershipId,
       status: {
         [Op.in]: ['paid', 'pending']
       },
@@ -71,7 +71,7 @@ Model.findPendingLegacies = (payerId) => {
       {
         association: 'annex',
         include: [
-          'owner',
+          'membership',
           'type'
         ]
       }
@@ -79,10 +79,10 @@ Model.findPendingLegacies = (payerId) => {
   })  
 }
 
-Model.findOtherLegacies = (payerId) => {
+Model.findOtherLegacies = (payerMembershipId) => {
   return Model.findAll({
     where: {
-      payerId
+      payerMembershipId
     }
   })  
 }

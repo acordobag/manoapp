@@ -81,6 +81,7 @@ async function findInGiverStateByOId(ownerId) {
 }
 
 // Custom methods
+Model.findById = findById
 Model.findByOwnerId = findByOwnerId
 Model.findLinks = findLinks
 Model.findInGiverStateByOId = findInGiverStateByOId
