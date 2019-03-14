@@ -7,7 +7,8 @@ import {verifyToken} from '../helpers/auth'
 
 const Membership = express.Router()
 
-Membership.get('/', verifyToken, MembershipController.getByUserId)
+Membership.get('/', verifyToken, MembershipController.getAllByUserId)
+Membership.get('/giver-state', verifyToken, MembershipController.getGiverAccountsByUserId)
 Membership.get('/links', verifyToken, MembershipController.getLinks)
 // Membership.get('/benefits', verifyToken, MembershipController.getBenefits)
 

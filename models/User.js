@@ -3,7 +3,7 @@
 import bcrypt from 'bcryptjs'
 
 import db from '../db'
-const {sequelize, Sequelize} = db
+const { sequelize, Sequelize } = db
 
 const model = () => {
   const User = sequelize.define('user', {
@@ -61,13 +61,13 @@ const model = () => {
       unique: true
     }
   }, {
-    getterMethods: {
-      fullName () {
-        let fullName = `${this.name} ${this.lastname}`
-        return fullName.replace(/\s\s+/g, ' ')
+      getterMethods: {
+        fullName() {
+          let fullName = `${this.name} ${this.lastname}`
+          return fullName.replace(/\s\s+/g, ' ')
+        }
       }
-    }
-  })
+    })
 
   return User
 }
@@ -82,26 +82,24 @@ const includes = [
 ]
 
 const detailed = [
-  {
-    association: 'images',
-    attributes: { exclude: ['id', 'userId'] }
-  },
-  {association: 'country', attributes: { exclude: ['id'] }}
+  { association: 'images', attributes: { exclude: ['id', 'userId'] } },
+  { association: 'country', attributes: { exclude: ['id'] } },
+  { association: 'memberships', include: ['type'] }
 ]
 
-async function findByUsername (username) {
+async function findByUsername(username) {
   let result = await Model.find({
     where: {
       username
     },
-    attributes: { exclude: ['countryId', 'parentId'] },
-    include: includes
+    attributes: { exclude: ['countryId'] },
+    include: detailed
   })
 
   return result
 }
 
-async function findByEmail (username) {
+async function findByEmail(username) {
   let result = await Model.find({
     where: {
       email: username
@@ -113,7 +111,7 @@ async function findByEmail (username) {
   return result
 }
 
-async function findLinks (parentId) {
+async function findLinks(parentId) {
   let result = await Model.findAll({
     where: {
       parentId
@@ -125,7 +123,7 @@ async function findLinks (parentId) {
   return result
 }
 
-async function findByUserId (id) {
+async function findByUserId(id) {
   let result = await Model.find({
     where: {
       id
@@ -137,7 +135,7 @@ async function findByUserId (id) {
   return result
 }
 
-function findByReferralCode (referralCode) {
+function findByReferralCode(referralCode) {
   return Model.find({
     where: {
       referralCode
@@ -146,7 +144,7 @@ function findByReferralCode (referralCode) {
   })
 }
 
-function findByFacebookId (facebookId) {
+function findByFacebookId(facebookId) {
   return Model.find({
     where: {
       facebookId
@@ -156,7 +154,7 @@ function findByFacebookId (facebookId) {
   })
 }
 
-function findDetailUserById (userId) {
+function findDetailUserById(userId) {
   return Model.findOne({
     where: {
       id: userId
@@ -166,7 +164,7 @@ function findDetailUserById (userId) {
   })
 }
 
-function findAllDetailed () {
+function findAllDetailed() {
   return Model.findAndCountAll({
     attributes: { exclude: ['countryId', 'parentId'] },
     include: detailed,
@@ -174,7 +172,7 @@ function findAllDetailed () {
   })
 }
 
-function findAdvisers () {
+function findAdvisers() {
   return Model.findAll({
     where: {
       isAdviser: true
@@ -183,7 +181,7 @@ function findAdvisers () {
   })
 }
 
-function findAdmins () {
+function findAdmins() {
   return Model.findAll({
     where: {
       permissions: 'admin'

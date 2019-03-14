@@ -9,6 +9,13 @@
             .account-number Nº de Usuario: {{userData.id}}  | 
               | Usuario: 
               router-link(:to="{name: 'profile/settings/changeUsername', query: {oc: true, op: true}}") {{userData.username}}
+            
+            div
+              label Cuenta
+              select(v-model="selectedMembership", @change="accountChanged()") 
+                option(:value="0", disabled) Seleccione una cuenta
+                option(v-for="m in userData.memberships", :value="m.id") {{m.type.name}}           
+            
             .details
               .cash-balance
                 .title Beneficios
@@ -46,6 +53,7 @@ import {mapGetters, mapMutations} from 'vuex'
 // Services
 import User from '@/services/User'
 import Legacies from '@/services/Legacies'
+import Membership from '@/services/Membership'
 
 export default {
   mounted () {
@@ -59,7 +67,9 @@ export default {
       pendingLegacies: 0,
       benefits: 0,
       nullInSet: false,
-      contentLoad: false
+      contentLoad: false,
+      selectedMembership: 0,
+      memberhips: null
     }
   },
   methods: {
@@ -67,7 +77,8 @@ export default {
       this.getLinks()
       this.getBenefits()
       this.sayHi()
-      this.getNulls()
+      this.getNulls(),
+      this.getMemberhips()
     },
     goToChange () {
 
@@ -100,6 +111,14 @@ export default {
         console.log(e)
       }
     },
+    async getMemberhips () {
+      try {
+        let {data} = await Membership.userAccounts()
+        this.memberhips = data
+      } catch (e) {
+        console.log(e)
+      }
+    },
     async getLinks () {
       try {
         let {data} = await User.getLinks()
@@ -119,11 +138,14 @@ export default {
       let hour = now.getHours()
       if (hour < 12) {
         this.welcomeText = 'Buenos Días'
-      } else if (hour >= 18) {
+      } else if (hour >= 18){
         this.welcomeText = 'Buenas Noches'
-      } else if (hour >= 12) {
+      } else if (hour >= 12){
         this.welcomeText = 'Buenas Tardes'
       }
+    },
+    accountChanged(){
+      console.log('changed')
     },
     ...mapMutations('app', ['sIsLoading'])
   },

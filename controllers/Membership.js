@@ -34,11 +34,23 @@ async function getLinks(req, res, next) {
   }
 }
 
-async function getByUserId(req, res, next) {
+async function getGiverAccountsByUserId(req, res, next) {
   let { _id } = req.headers
 
   try {
     let memberships = await Membership.findInGiverStateByOId(_id)
+
+    res.status(200).send(memberships).end()
+  } catch (e) {
+    next(e)
+  }
+}
+
+async function getAllByUserId(req, res, next) {
+  let { _id } = req.headers
+
+  try {
+    let memberships = await Membership.findByOwnerId(_id)
 
     res.status(200).send(memberships).end()
   } catch (e) {
@@ -51,5 +63,6 @@ export default {
   //getAll,
   //getData,
   getLinks,
-  getByUserId
+  getAllByUserId,
+  getGiverAccountsByUserId
 }

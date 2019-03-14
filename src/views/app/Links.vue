@@ -1,15 +1,13 @@
 <template lang="pug">
   .pk-tile
-    .pk-tile-header.dark
-      .pk-tile-title Enlazar una persona
-      .pk-tile-actions
-        router-link.btn.btn-white.btn-small(v-if="userData.status !== 'confirmed' && userData.status !== 'subscriber'" ,:to="{name: 'newLink', query: {o: true}}") Enlazar
     .a
       .o(v-if="userAccountlinks.length > 0")
         .a(v-for="account in userAccountlinks")
           .pk-tile
             .pk-tile-header.dark
               .pk-tile-title Sus Enlaces de la cuenta {{account.membership.type.name}}
+              .pk-tile-actions
+                router-link.btn.btn-white.btn-small(v-if="account.status !== 'confirmed' && account.status !== 'subscriber'" ,:to="{name: 'newLink', query: {o: true}}") Enlazar
           .pk-tile-body(v-if="account.membership.status == 'confirmed' || account.membership.status == 'subscriber'")
             .padding-20.txt.center
               p Aún no puedes enlazar amigos en esta cuenta, primero debes realizar tus legados para empezar a crear tu comunidad de ayuda
