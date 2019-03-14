@@ -8,6 +8,12 @@ export default [
     meta: { isPublic: true, staffOnly: false },
     children: [
       {
+        path: '/:username/membership',
+        name: 'check-account',
+        component: () => import('@/views/app/Dashboard.vue'),
+        meta: { isPublic: false, staffOnly: false }
+      },
+      {
         path: '/',
         name: 'home/app',
         component: () => import('@/views/app/Dashboard.vue'),

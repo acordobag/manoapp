@@ -10,6 +10,7 @@ const Membership = express.Router()
 Membership.get('/', verifyToken, MembershipController.getAllByUserId)
 Membership.get('/giver-state', verifyToken, MembershipController.getGiverAccountsByUserId)
 Membership.get('/links', verifyToken, MembershipController.getLinks)
+Membership.post('/confirm', verifyToken, MembershipController.confirmMembership)
 // Membership.get('/benefits', verifyToken, MembershipController.getBenefits)
 
 // Membership.post('/initialize', verifyToken, MembershipController.initializeProgress)

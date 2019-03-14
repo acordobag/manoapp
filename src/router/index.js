@@ -9,14 +9,14 @@ const routes = [
   {
     path: '/',
     component: () => import('@/components/layouts/Main.vue'),
-    meta: {isPublic: true},
+    meta: { isPublic: true },
     children: [
       {
         path: '/',
         alias: '/login',
         name: 'login',
         component: () => import('@/views/Login.vue'),
-        meta: {isPublic: true}
+        meta: { isPublic: true }
       },
       {
         path: '/disclaimer',
@@ -59,19 +59,19 @@ const router = new VueRouter({
 //  |_____|_____| |  _ | (_) | |_| | ||  __/ | |_| | |_| | (_| | | | (_| \__ \
 //                |_| \_\___/ \__,_|\__\___|  \____|\__,_|\__,_|_|  \__,_|___/
 
-function isAuthorized () {
-  let {localStorage} = window
-  let {user, token} = localStorage
+function isAuthorized() {
+  let { localStorage } = window
+  let { user, token, selectedAccount } = localStorage
 
   let isAuth = false
   let isStaff = false
   let active = false
 
-  if (token && user) {
+  if (token && user && selectedAccount) {
     // If user exist store user in vuex
     user = JSON.parse(user)
-
-    active = user.status !== 'created'
+    selectedAccount = JSON.parse(selectedAccount)
+    active = selectedAccount.status !== 'created'
     isAuth = true
     isStaff = user.permissions !== 'user'
 
@@ -81,6 +81,7 @@ function isAuthorized () {
 
   return {
     user,
+    selectedAccount,
     token,
     active,
     isAuth,
@@ -89,19 +90,19 @@ function isAuthorized () {
 }
 
 router.beforeEach((to, from, next) => {
-  let {isAuth, isStaff, user, active} =  isAuthorized()
-  let {isPublic, staffOnly} = to.meta
+  let { isAuth, isStaff, user, active } = isAuthorized()
+  let { isPublic, staffOnly } = to.meta
 
   if (!isAuth && !isPublic) {
     return next('/login')
   }
 
-  if(isAuth && !active && to.name !== 'activate' && to.name !== 'logout') {
-    return next({ path: `/${user.username}/activate`})
+  if (isAuth && !active && to.name !== 'activate' && to.name !== 'logout') {
+    return next({ path: `/${user.username}/activate` })
   }
 
-  if(isAuth && active && to.name === 'activate') {
-    return next({ path: `/${user.username}`})
+  if (isAuth && active && to.name === 'activate') {
+    return next({ path: `/${user.username}` })
   }
 
   if (to.name === 'login' && isAuth) {

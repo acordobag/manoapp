@@ -115,8 +115,10 @@ export default {
       let {token, user} = data
       localStorage.setItem('token', token)
       localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('selectedAccount', JSON.stringify(user.memberships[0]))
       this.setUser(user)
       this.setSocket(user)
+      this.setSelectedAccount(user.memberships[0])
       this.$router.push(`/${user.username}`)
     },
     loginError (e) {
@@ -131,7 +133,7 @@ export default {
       }
     },
     ...mapMutations('app', ['sIsLoading']),
-    ...mapActions('user', ['setUser', 'setSocket'])
+    ...mapActions('user', ['setUser', 'setSocket', 'setSelectedAccount'])
   },
   computed: {
     username () {

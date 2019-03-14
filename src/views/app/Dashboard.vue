@@ -14,7 +14,7 @@
               label Cuenta
               select(v-model="selectedMembership", @change="accountChanged()") 
                 option(:value="0", disabled) Seleccione una cuenta
-                option(v-for="m in userData.memberships", :value="m.id") {{m.type.name}}           
+                option(v-for="m in userData.memberships", :value="m") {{m.type.name}}           
             
             .details
               .cash-balance
@@ -49,7 +49,7 @@
 
 <script>
 // Libraries
-import {mapGetters, mapMutations} from 'vuex'
+import {mapGetters, mapMutations, mapActions } from 'vuex'
 // Services
 import User from '@/services/User'
 import Legacies from '@/services/Legacies'
@@ -68,7 +68,7 @@ export default {
       benefits: 0,
       nullInSet: false,
       contentLoad: false,
-      selectedMembership: 0,
+      selectedMembership: null,
       memberhips: null
     }
   },
@@ -145,9 +145,12 @@ export default {
       }
     },
     accountChanged(){
-      console.log('changed')
+      this.setSelectedAccount(this.selectedMembership)
+      localStorage.setItem('selectedAccount', JSON.stringify(this.selectedMembership))
+      this.$router.push({name: 'check-account'})
     },
-    ...mapMutations('app', ['sIsLoading'])
+    ...mapMutations('app', ['sIsLoading']),
+    ...mapActions('user', ['setSelectedAccount'])
   },
   components:{
     pPendingLegacies: () => import('@/components/pending-legacies/PendingLegacies.vue'),

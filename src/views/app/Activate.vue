@@ -16,6 +16,7 @@
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 import Auth from '@/services/Auth'
 import User from '@/services/User'
+import Membership from '@/services/Membership'
 
 export default {
   data () {
@@ -39,11 +40,11 @@ export default {
     },
     async confirmAccount() {
       try {
-        let {data} = await User.confirm()
+        let {data} = await Membership.confirm(this.selectedAccount)
         if (data.status === 'confirmed') {
           this.$alertify.alert('Felicidades, su cuenta fue confirmada con éxito!', () => {
-            localStorage.setItem('user', JSON.stringify(data))
-            this.setUser(data)
+            localStorage.setItem('selectedAccount', JSON.stringify(data))
+            this.setSelectedAccount(data)
             this.$router.push({name: 'home/app'})
           })
         }
@@ -52,10 +53,10 @@ export default {
       }
     },
     ...mapMutations('app', ['sIsLoading']),
-    ...mapActions('user', ['setUser'])
+    ...mapActions('user', ['setSelectedAccount'])
    },
    computed: {
-     ...mapGetters('user', ['userData'])
+     ...mapGetters('user', ['userData', 'selectedAccount'])
    },
    watch: {
      phoneNumber(val)  {

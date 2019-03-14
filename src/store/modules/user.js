@@ -6,12 +6,16 @@ import io from 'socket.io-client'
 
 const state = {
   userData: {},
-  socket: {}
+  socket: {},
+  selectedAccount: {}
 }
 
 const mutations = {
   setUser (state, user) {
     state.userData = user
+  },
+  setSelectedAccount (state, account) {
+    state.selectedAccount = account
   },
   setSocket (state, socket) {
     state.socket = socket
@@ -25,6 +29,9 @@ const mutations = {
 const actions = {
   setUser ({commit}, user) {
     commit('setUser', user)
+  },
+  setSelectedAccount ({commit}, account) {
+    commit('setSelectedAccount', account)
   },
   unsetSocket({commit}) {
     commit('unsetSocket')
@@ -47,6 +54,7 @@ const actions = {
 
 const getters = {
   userData: (state) => state.userData,
+  selectedAccount: (state) => state.selectedAccount,
   socket: (state) => state.socket
 }
 

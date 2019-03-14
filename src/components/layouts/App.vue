@@ -181,7 +181,7 @@ export default {
     viewToLoad () {
       return this.$route.meta.view || 'normal'
     },
-    ...mapGetters('user', ['userData', 'socket']),
+    ...mapGetters('user', ['userData', 'socket', 'selectedAccount']),
     ...mapGetters('app', ['isAuth', 'newVersion'])
   },
   components: {

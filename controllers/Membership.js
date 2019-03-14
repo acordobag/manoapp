@@ -58,10 +58,30 @@ async function getAllByUserId(req, res, next) {
   }
 }
 
+async function confirmMembership(req, res, next){
+  let { id } = req.body
+
+  try {
+    let memberhip = await Membership.findById(id)
+    memberhip.status = 'confirmed'
+
+    let result = await memberhip.save()
+    // Create pending Subscription
+    //let subscription = await createSubscription(id)
+
+    //result.subscription = null//subscription
+
+    res.status(200).send(result).end()
+  } catch (e) {
+    console.log(e)
+    next(e)
+  }
+}
+
 export default {
   create,
   //getAll,
-  //getData,
+  confirmMembership,
   getLinks,
   getAllByUserId,
   getGiverAccountsByUserId

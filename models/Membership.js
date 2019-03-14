@@ -35,6 +35,16 @@ const detailed = [
   { association: 'country', attributes: { exclude: ['id'] } }
 ]
 
+async function findById(id){
+  let result = await Model.find({
+    where: {
+      id
+    },
+    include: includes
+  })
+
+  return result
+}
 
 async function findLinks(parentId) {
   let result = await Model.findAll({
