@@ -1,7 +1,7 @@
 'use strict'
 
 import db from '../db'
-const {sequelize, Sequelize} = db
+const { sequelize, Sequelize } = db
 
 const model = () => {
   const subscriptions = sequelize.define('subscriptions', {
@@ -15,7 +15,7 @@ const model = () => {
       allowNull: false
     },
     amount: {
-      type: Sequelize.DECIMAL(10,2),
+      type: Sequelize.DECIMAL(10, 2),
       defaultValue: 20,
       allowNull: false
     },
@@ -55,7 +55,15 @@ const model = () => {
 
 const Model = model()
 const Op = Sequelize.Op
-
+const includes = [
+  'membership'
+]
+const detailed = [
+  {
+    association: 'membership',
+    include: ['owner']
+  }
+]
 
 Model.findPendingSubscriptions = (payerMembershipId) => {
   return Model.findAll({
@@ -65,7 +73,7 @@ Model.findPendingSubscriptions = (payerMembershipId) => {
         [Op.in]: ['paid', 'pending']
       }
     }
-  })  
+  })
 }
 
 
@@ -74,10 +82,20 @@ Model.findOtherSubscriptions = (payerMembershipId, hash) => {
     {
       where: {
         payerMembershipId,
-        hash: {[Op.ne]: hash}
+        hash: { [Op.ne]: hash }
       }
     }
   )
+}
+
+async function findAllPendings() {
+  let result = await Model.findAll({
+    where: {
+      confirmed: null
+    },
+    include: detailed
+  })
+  return result
 }
 
 Model.findById = id => {
@@ -87,5 +105,7 @@ Model.findById = id => {
     }
   })
 }
+
+Model.findAllPendings = findAllPendings
 
 export default Model

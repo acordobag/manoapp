@@ -77,6 +77,7 @@ function isAuthorized() {
 
     store.dispatch('app/isAuth', isAuth)
     store.dispatch('user/setUser', user)
+    store.dispatch('user/setSelectedAccount', selectedAccount)
   }
 
   return {

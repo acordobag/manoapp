@@ -40,11 +40,11 @@ export default async () => {
     Legacies.belongsTo(Annex, {as: 'annex', foreignKey: { allowNull: false, name: 'annexId'} })
     Annex.hasMany(Legacies, {as: 'legacies', foreignKey: { allowNull: false, name: 'annexId'} })
     //legados y usuario
+    Legacies.belongsTo(Membership, {as: 'membership', foreignKey: { allowNull: true, name: 'payerMembershipId'} })
     Membership.hasMany(Legacies, {as: 'pendingLegacies', foreignKey: {name:'payerMembershipId', allowNull: true }})
-    Legacies.belongsTo(Membership, {as: 'payer', foreignKey: { allowNull: true, name: 'payerMembershipId'} })
     //Suscripciones y usuarios
-    Membership.hasMany(Subscription, {as: 'pendingSubscriptions', foreignKey: {name:'payerMembershipId', allowNull: false }})
     Subscription.belongsTo(Membership, {as: 'membership', foreignKey: { allowNull: false, name: 'payerMembershipId'} })
+    Membership.hasMany(Subscription, {as: 'pendingSubscriptions', foreignKey: {name:'payerMembershipId', allowNull: false }})
 
     SetOfLegacies.belongsTo(Membership, {as: 'membership', foreignKey: { allowNull: false, name: 'membershipId'} })
 

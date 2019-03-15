@@ -1,0 +1,6 @@
+"id";"name";"lastname";"email";"identification";"username";"password";"permissions";"facebookId";"createdAt";"updatedAt";"countryId"
+1;"manoapp";"";"proyectomano@gmail.com";"";"manoapp";"";"admin";"";"2019-02-13 04:40:29";"2019-02-13 04:40:29";47
+5;"Andrea";"Flores";"2@a.cm";"4444";"aflorese";"$2a$10$jJvxBoPJOfgAiQ80NSioHOrqyIgHU5ouGA.hNcXnlNLr.zH3vWINe";"user";"";"2019-03-07 07:05:09";"2019-03-07 07:05:09";1
+6;"Adrian";"Cordoba";"aco@a.cm";"4444";"acorodbar";"$2a$10$fi9/Ic0nKTWtTuzXTwZctOc6gH2qJf3xcXMh3RBVw9xinx9BZzXeK";"user";"";"2019-03-07 07:07:18";"2019-03-07 07:07:18";1
+7;"Juan";"Mora";"jm@glll.com";"111";"jmoraa";"$2a$10$pfFhvPCYA7h1EcQ5CftyBOGX.jHC1VDAIxIFE.1odwJZp4yyU33Re";"user";"";"2019-03-12 02:27:06";"2019-03-12 02:27:06";47
+8;"Alexa";"Navarro";"a@a.com";"111";"anavarroa";"$2a$10$w/d/6eHfs5yV9Uu6UKIdt.Epy2fGaL7Hh1SppCBRSq/c.DNag30UC";"user";"";"2019-03-13 05:10:01";"2019-03-13 05:10:01";18

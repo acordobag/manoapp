@@ -39,7 +39,7 @@ export default {
     },
     async getLegacies () {
       try {
-        let {data} = await Legacies.pending()
+        let {data} = await Legacies.pending(this.selectedAccount.id)
         this.$emit('setLegaciesNumber', data.length)
         this.legacies = data
       } catch (e) {
@@ -48,7 +48,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('user', ['socket'])
+    ...mapGetters('user', ['socket', 'selectedAccount'])
   },
   components: {
     pLegacy: () => import('@/components/pending-legacies/Single.vue')

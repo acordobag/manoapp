@@ -148,7 +148,8 @@ export default {
     accountChanged(m){
       this.setSelectedAccount(this.selectedMembership)
       localStorage.setItem('selectedAccount', JSON.stringify(this.selectedMembership))
-      this.$router.push({name: 'check-account'})
+      window.location.reload()
+      //this.$forceUpdate()
     },
     ...mapMutations('app', ['sIsLoading']),
     ...mapActions('user', ['setSelectedAccount'])

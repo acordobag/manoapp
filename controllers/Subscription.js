@@ -106,14 +106,7 @@ async function confirm(req, res, next) {
 async function allPendings(req, res, next) {
   try {
     console.log('FUNCIONA')
-    let pendings = await Subscription.findAll({
-      where: {
-        confirmed: null
-      },
-      include: [
-        'payer'
-      ]
-    })
+    let pendings = await Subscription.findAllPendings()
 
     res.status(200).send(pendings).end()
   } catch (e) {
@@ -127,7 +120,7 @@ export async function createSubscription(membership) {
     hash: uniqid().toUpperCase(),
     assignedAt: Date.now(),
     payerMembershipId: membership.id,
-    ammount: membership.type.suscriptionAmmount
+    amount: membership.type.suscriptionAmmount
   })
 }
 

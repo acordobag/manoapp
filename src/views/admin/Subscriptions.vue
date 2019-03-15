@@ -4,11 +4,12 @@
       .sub(v-for="sub in subscriptions")
         .date
           backClock(:date="sub.assignedAt")
-        .userId {{sub.payer.id}}
-        .name {{sub.payer.fullName}}
+        .userId {{sub.membership.id}}
+        .name {{sub.membership.owner.fullName}}
+        .amount {{sub.amount}}
         .status {{sub.status}}
         .action(v-if="sub.paid")
-          .btn(@click="confirmSubscription(sub.payer, sub.hash)") Confirmar
+          .btn(@click="confirmSubscription(sub.membership, sub.hash)") Confirmar
 </template>
 
 <script>

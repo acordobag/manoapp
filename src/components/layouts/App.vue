@@ -169,7 +169,7 @@ export default {
       })
     },
     ...mapMutations('app', ['sIsLoading']),
-    ...mapActions('user', ['setUser', 'setSocket'])
+    ...mapActions('user', ['setUser', 'setSocket', 'setSelectedAccount'])
   },
   computed: {
     isStaff () {

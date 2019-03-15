@@ -28,6 +28,7 @@ async function getPending(req, res, next) {
   let { membershipId} = req.params
 
   try {
+    console.log(membershipId)
     let pendingLegacies = await Legacies.findPendingLegacies(membershipId)
 
     res.status(200).send(pendingLegacies).end()
