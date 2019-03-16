@@ -98,6 +98,16 @@ async function findAllPendings() {
   return result
 }
 
+async function findByHash(hash) {
+  let result = await Model.find({
+    where: {
+      hash
+    },
+    include: detailed
+  })
+  return result
+}
+
 Model.findById = id => {
   return Model.find({
     where: {
@@ -107,5 +117,6 @@ Model.findById = id => {
 }
 
 Model.findAllPendings = findAllPendings
+Model.findByHash = findByHash
 
 export default Model

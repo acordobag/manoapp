@@ -66,14 +66,14 @@ async function confirm(req, res, next) {
   if (!hash) return res.status(500).send({ error: 'Missing Parameters for request' }).end()
 
   try {
-    let subscription = await Subscription.find({ where: { hash } })
+    let subscription = await Subscription.findByHash(hash);
 
     if (!subscription) return res.status(500).send({ error: 'Not found' }).end()
 
     // let user = await
     // Primero chequear si tiene otras suscripciones o si es la primera
-    let othersSubscriptions = await Subscription.findOtherSubscriptions(subscription.payerId, hash)
-    let pendingLegacies = await Legacies.findPendingLegacies(subscription.payerId)
+    let othersSubscriptions = await Subscription.findOtherSubscriptions(subscription.payerMembershipId, hash)
+    let pendingLegacies = await Legacies.findPendingLegacies(subscription.payerMembershipId)
 
     if (pendingLegacies.length) return res.status(500).send({ error: 'Tiene legados pendientes' }).end()
 
@@ -82,7 +82,7 @@ async function confirm(req, res, next) {
     subscription.confirmedAt = Date.now()
 
     if (!othersSubscriptions.length) {
-      let user = await User.findByUserId(subscription.payerId)
+      let user = await User.findByUserId(subscription.payerMembershipId)
       if (user.status === 'confirmed') {
         user.status = 'subscriber'
         await user.save()
@@ -91,8 +91,8 @@ async function confirm(req, res, next) {
 
     // SOCKETS AND NOTIFICATIONS
     // UPDATE USER STATUS SOCKET update/user
-    socketEmit('update/user', subscription.payerId)
-    socketEmit('update/subscription', subscription.payerId)
+    socketEmit('update/user', subscription.membership.owner.id)
+    socketEmit('update/subscription', subscription.membership.id)
 
     subscription.save()
 

@@ -9,7 +9,7 @@
         .amount {{sub.amount}}
         .status {{sub.status}}
         .action(v-if="sub.paid")
-          .btn(@click="confirmSubscription(sub.membership, sub.hash)") Confirmar
+          .btn(@click="confirmSubscription(sub.membership.owner, sub.hash)") Confirmar
 </template>
 
 <script>
