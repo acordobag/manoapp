@@ -2,7 +2,7 @@
 
 import Subscription from '../models/Subscription'
 import Legacies from '../models/Legacies'
-import User from '../models/User'
+import Membership from '../models/Membership'
 import { socketEmit } from '../helpers/sockets'
 import uniqid from 'uniqid'
 
@@ -44,14 +44,14 @@ async function paid(req, res, next) {
 
 
   try {
-    let subscription = await Subscription.find({ where: { hash } })
+    let subscription = await Subscription.findByHash(hash)
     subscription.status = 'paid'
     subscription.paid = true
     subscription.paidAt = Date.now()
 
     subscription.save()
 
-    socketEmit('update/subscription', subscription.payerId)
+    socketEmit('update/subscription', subscription.membership.owner.id)
 
     res.status(200).send({ _id, subscription }).end()
   } catch (e) {
@@ -82,10 +82,10 @@ async function confirm(req, res, next) {
     subscription.confirmedAt = Date.now()
 
     if (!othersSubscriptions.length) {
-      let user = await User.findByUserId(subscription.payerMembershipId)
-      if (user.status === 'confirmed') {
-        user.status = 'subscriber'
-        await user.save()
+      let membership = await Membership.findById(subscription.payerMembershipId)
+      if (membership.status === 'confirmed') {
+        membership.status = 'subscriber'
+        await membership.save()
       }
     }
 
@@ -105,7 +105,6 @@ async function confirm(req, res, next) {
 
 async function allPendings(req, res, next) {
   try {
-    console.log('FUNCIONA')
     let pendings = await Subscription.findAllPendings()
 
     res.status(200).send(pendings).end()

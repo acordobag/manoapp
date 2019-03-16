@@ -86,7 +86,7 @@
 
 <script>
 import {mapMutations, mapActions, mapGetters} from 'vuex'
-import User from '@/services/User'
+import Membership from '@/services/Membership'
 import { setTimeout } from 'timers';
 
 export default {
@@ -142,9 +142,9 @@ export default {
       setTimeout(() => {
         this.socket.on('update/user', async () => {
           try {
-            let {data} = await User.data()
-            localStorage.setItem('user', JSON.stringify(data))
-            this.setUser(data)
+            let {data} = await Membership.findById(this.selectedAccount.id)
+            localStorage.setItem('selectedAccount', JSON.stringify(data))
+            this.setSelectedAccount(data)
           } catch (e) {
             console.log(e)
           }

@@ -12,6 +12,18 @@ async function create(pMembership) {
   return m
 }
 
+async function findById(req, res, next) {
+  let { id } = req.params
+  try {
+   return await Membership.findById(id)
+  } catch (error) {
+    next()
+    console.log(error)
+  }
+
+  return m
+}
+
 async function getLinks(req, res, next) {
   let { _id } = req.headers
   try {
@@ -81,6 +93,7 @@ async function confirmMembership(req, res, next){
 export default {
   create,
   //getAll,
+  findById,
   confirmMembership,
   getLinks,
   getAllByUserId,

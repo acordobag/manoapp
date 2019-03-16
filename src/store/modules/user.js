@@ -31,6 +31,8 @@ const actions = {
     commit('setUser', user)
   },
   setSelectedAccount ({commit}, account) {
+    localStorage.removeItem('selectedAccount')
+    localStorage.setItem('selectedAccount', JSON.stringify(account))
     commit('setSelectedAccount', account)
   },
   unsetSocket({commit}) {

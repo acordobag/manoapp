@@ -43,7 +43,6 @@ export default {
         let {data} = await Membership.confirm(this.selectedAccount)
         if (data.status === 'confirmed') {
           this.$alertify.alert('Felicidades, su cuenta fue confirmada con éxito!', () => {
-            localStorage.setItem('selectedAccount', JSON.stringify(data))
             this.setSelectedAccount(data)
             this.$router.push({name: 'home/app'})
           })

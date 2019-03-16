@@ -58,16 +58,16 @@ Model.findByType = annexTypeId => {
   })
 }
 
-Model.findByUserId = (ownerId) => {
+Model.findByUserId = (membershipId) => {
   return Model.findAll({
     where: {
-      ownerId
+      membershipId
     },
     include: [
       'type',
       {
         association: 'legacies',
-        include: ['payer'],
+        include: ['membership'],
         where: {
           status: {
             [Op.ne]: ['complete']

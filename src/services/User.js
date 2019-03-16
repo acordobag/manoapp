@@ -8,7 +8,7 @@ export default {
   create: data => Api.post('/users/create', data),
   list: () => Api.get('/users/list'),
   getAdvisers: () => Api.get('/users/advisers'),
-  getLinks: () => Api.get('/users/links'),
+  getLinks: (membershipId) => Api.get(`/users/links/${membershipId}`),
   getById: userId => Api.get(`/users/${userId}`),
   confirm: () => Api.patch('/users/confirm'),
   createContact: data => Api.post('/users/contact', data),

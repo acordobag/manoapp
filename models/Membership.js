@@ -28,11 +28,8 @@ const includes = [
 ]
 
 const detailed = [
-  {
-    association: 'images',
-    attributes: { exclude: ['id', 'userId'] }
-  },
-  { association: 'country', attributes: { exclude: ['id'] } }
+  'type',
+  { association: 'owner', include: ['country', 'images'] }
 ]
 
 async function findById(id){
@@ -51,7 +48,7 @@ async function findLinks(parentId) {
     where: {
       parentId
     },
-    include: includes
+    include: detailed
   })
 
   return result

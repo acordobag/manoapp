@@ -4,13 +4,13 @@ import Legacies from '../models/Legacies'
 import Subscriptions from '../models/Subscription'
 import Annex from '../models/Annex'
 import User from '../models/User'
+import Membership from '../models/Membership'
 import SetOfLegacies from '../models/SetOfLegacies'
 import { _checkParentStatus } from './User'
 
 import { createSubscription } from '../controllers/Subscription'
 import { increaseAnnexLevel, createHelpAnnex } from '../controllers/Annex'
 import { socketEmit } from '../helpers/sockets'
-import Membership from './Membership';
 
 async function assignInLegacy(req, res, next) {
   let { _id } = req.headers
@@ -52,8 +52,9 @@ async function getDetail(req, res, next) {
 
 async function getBenefits(req, res, next) {
   let { _id } = req.headers
+  let { membershipId } = req.params
   try {
-    let annexes = await Annex.findByUserId(_id)
+    let annexes = await Annex.findByUserId(membershipId)
     let legacies = []
     let benefits = 0
 
@@ -88,7 +89,7 @@ async function initializeProgress(req, res, next) {
     if (otherLegacies) return res.status(500).send({ error: 'user have other legacies' }).end()
 
     if (membership.status = 'subscriber') {
-      await createNewLegaciesSet(_id, 2, false)
+      await createNewLegaciesSet(id, 2, false)
     }
 
     res.status(200).send(result).end()
@@ -98,14 +99,14 @@ async function initializeProgress(req, res, next) {
   }
 }
 
-async function _assignInLegacy(userId) {
+async function _assignInLegacy(membershipId) {
   try {
     let legacyData = await _findRandomLegacy()
     //if(!legacyData) return null;
     let legacy = await Legacies.find({ where: { id: legacyData.id } })
 
     legacy.assignedAt = Date.now()
-    legacy.payerId = userId
+    legacy.payerMembershipId = membershipId
     legacy.status = 'pending'
 
     //Notificar y Sockets
@@ -114,7 +115,7 @@ async function _assignInLegacy(userId) {
 
     return data
   } catch (e) {
-    console.log('Error on generate legacies')
+    console.log('Error on assign legacies')
     return { error: e }
   }
 }
@@ -197,25 +198,25 @@ async function confirm(req, res, next) {
   }
 }
 
-export async function createNewLegaciesSet(userId, toPay, subscription) {
+export async function createNewLegaciesSet(membershipId, toPay, subscription) {
   let legacies = []
   // crear X legados pendientes
   for (let i = 0; i < toPay; i++) {
-    let legacyAssigned = await _assignInLegacy(userId)
+    let legacyAssigned = await _assignInLegacy(membershipId)
     legacies.push(legacyAssigned.id)
   }
 
   let sub
   if (subscription) {
     sub = []
-    let newSubscription = await createSubscription(userId)
+    let newSubscription = await createSubscription(membershipId)
     sub.push(newSubscription.id)
   }
 
   return SetOfLegacies.create({
     legacies: JSON.stringify(legacies),
     subscriptions: JSON.stringify(sub),
-    ownerId: userId
+    membershipId: membershipId
   })
 }
 
@@ -311,9 +312,10 @@ async function _checkSetStatus(payerId) {
 
 async function findNullByUser(req, res, next) {
   let { _id } = req.headers
-
+  let { membershipId } = req.params
+  //console.log(membershipId)
   try {
-    let nullInSet = await SetOfLegacies.findNullByUser(_id)
+    let nullInSet = await SetOfLegacies.findNullByUser(membershipId)
 
     res.status(200).send({ nullInSet: nullInSet.length }).end()
   } catch (e) {

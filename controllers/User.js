@@ -177,9 +177,10 @@ async function confirmAccount(req, res, next) {
 
 async function getLinks(req, res, next) {
   const { _id } = req.headers
+  const { membershipId } = req.params
 
   try {
-    let links = await User.findLinks(_id)
+    let links = await Membership.findLinks(membershipId)
     res.status(200).send(links).end()
   } catch (e) {
     next(e)

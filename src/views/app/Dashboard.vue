@@ -39,7 +39,7 @@
         p.txt-small.
           Pero no te preocupes estamos esperando que alguno de los usuarios de ManoApp se haga receptor para 
           que puedas continuar con tu proceso.
-    .initializeProcess(v-if="!nullInSet && userData.status === 'subscriber' && pendingLegacies === 0 && contentLoad")
+    .initializeProcess(v-if="!nullInSet && selectedAccount.status === 'subscriber' && pendingLegacies === 0 && contentLoad")
       .init Ya puedes empezar el proceso para activarte como ejecutivo ManoApp
       .btn.btn-block.margin-top-10.padding-10(@click="initializeProcess") Empezar
     pPendingLegacies(@setLegaciesNumber="setLegaciesNumber")
@@ -87,7 +87,7 @@ export default {
     initializeProcess () {
       this.$alertify.okBtn('Si, seguro').confirm('Seguro que desea empezar su proceso en ManoApp, al aceptar a usted se le asignarán 2 Legados pendientes de $20 para empezar su proceso de activación', async () => {
         try {
-          let {data} = await Legacies.initialize(this.selectedMembership)
+          let {data} = await Legacies.initialize(this.selectedAccount)
           window.location.reload()
         } catch (e) {
           this.$alertify.console.error(e);
@@ -98,7 +98,7 @@ export default {
     },
     async getNulls () {
       try {
-        let {data} = await Legacies.nulls()
+        let {data} = await Legacies.nulls(this.selectedAccount.id)
         this.nullInSet = data.nullInSet
       } catch (e) {
         console.log(e)
@@ -106,7 +106,7 @@ export default {
     },
     async getBenefits () {
       try {
-        let {data} = await Legacies.benefits()
+        let {data} = await Legacies.benefits(this.selectedAccount.id)
         this.benefits = data.benefits
       } catch (e) {
         console.log(e)
@@ -122,7 +122,7 @@ export default {
     },
     async getLinks () {
       try {
-        let {data} = await User.getLinks()
+        let {data} = await User.getLinks(this.selectedAccount.id)
         this.linksCount = data.length
       } catch (e) {
         console.log(e)

@@ -8,8 +8,8 @@ import {verifyToken} from '../helpers/auth'
 const legacies = express.Router()
 
 legacies.get('/pending/:membershipId', verifyToken, LegaciesController.getPending)
-legacies.get('/benefits', verifyToken, LegaciesController.getBenefits)
-legacies.get('/nulls', verifyToken, LegaciesController.findNullByUser)
+legacies.get('/benefits/:membershipId', verifyToken, LegaciesController.getBenefits)
+legacies.get('/nulls/:membershipId', verifyToken, LegaciesController.findNullByUser)
 legacies.get('/:hash/:id', verifyToken, LegaciesController.getDetail)
 legacies.post('/assign', verifyToken, LegaciesController.assignInLegacy)
 

@@ -9,7 +9,7 @@ import {check} from '../helpers/permissions'
 const users = express.Router()
 
 users.get('/', verifyToken, UserController.data)
-users.get('/links', verifyToken, UserController.getLinks)
+users.get('/links/:membershipId', verifyToken, UserController.getLinks)
 users.get('/check/:username', validateParam(schemas.user.username, 'username'), verifyToken, UserController.check)
 users.post('/auth', validateBody(schemas.user.login), UserController.auth)
 users.post('/create', verifyToken, UserController.create)

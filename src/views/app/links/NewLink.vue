@@ -1,10 +1,6 @@
 <template lang="pug">
 main.buy-contracts
   //- Ultimos movimientos
-  //- Crear un select para cuentas
-          select.pk-input.bordered(v-model="membershipId") 
-            option(:value="0", disabled) Seleccione un pais
-            option(v-for="m in userMemberships", :value="m.id") {{m.name}}
   .pk-tile
     .pk-tile-header.dark
       .pk-tile-title Nuevo Enlace
@@ -28,125 +24,81 @@ main.buy-contracts
           input.pk-input.bordered(type="text", placeholder="Identificación", v-model="identification")
         .pk-input-group
           label.control-labell País
-          select.pk-input.bordered(v-model="countryId") 
+          select.pk-input.bordered(v-model="countryId")
             option(:value="0", disabled) Seleccione un pais
             option(v-for="country in countries", :value="country.id") {{country.name}}
-        .pk-input-group
-          label.control-labell Cuenta
-          select.pk-input.bordered(v-model="selectedMembership") 
-            option(:value="0", disabled) Seleccione una cuenta
-            option(v-for="m in userMemberships", :value="m.id") {{m.type.name}}
         button.btn.btn-strategic.btn-block(type='submit')
           | Enlazar
 </template>
 
 <script>
-import Utils from "@/services/Utils";
-import User from "@/services/User";
-import Membership from "@/services/Membership";
+import Utils from '@/services/Utils'
+import User from '@/services/User'
+import { mapGetters } from 'vuex';
 export default {
-  data() {
+  data () {
     return {
       name: null,
       lastname: null,
       email: null,
       identification: null,
       countryId: 0,
-      selectedMembership: 0,
-      countries: [],
-      userMemberships: []
-    };
+      countries: []
+    }
   },
-  mounted() {
-    this.getCountrysList();
-    this.getUserMemberships();
+  mounted () {
+    this.getCountrysList()
   },
   methods: {
-    async getCountrysList() {
+    async getCountrysList () {
       try {
-        let { data } = await Utils.getCountries();
-        this.countries = data;
+        let {data} = await Utils.getCountries()
+        this.countries = data
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
     },
-    async getUserMemberships() {
-      try {
-        let { data } = await Membership.userAccounts();
-        this.userMemberships = data;
-      } catch (e) {
-        console.log(e);
-      }
-    },
-    newLink() {
+    newLink () {
       let linkData = {
-        parentId: this.selectedMembership,
         name: this.name,
         lastname: this.lastname,
         email: this.email,
         countryId: this.countryId,
-        identification: this.identification
-      };
-
-      this.$alertify.okBtn("Si, enlazar").confirm(
-        `Seguro que desea enlazar a ${this.name}?.
+        identification: this.identification,
+        parentId : this.selectedAccount.id
+      }
+      this.$alertify.okBtn('Si, enlazar').confirm(`Seguro que desea enlazar a ${this.name}?.
       Este proceso no puede ser revertido,
-      ${this.name} recibirá un correo electrónico a ${
-          this.email
-        } para la confirmación de la cuenta`,
-        async () => {
-          try {
-            //let result =
-            await User.create(linkData);
-            this.$alertify
-              .okBtn("Ok")
-              .alert(
-                "Se creó su enlace correctamente, puedes revisar tus enlaces para confirmarlo",
-                () => {
-                  this.$router.push({ name: "links" });
-                }
-              );
-          } catch (e) {
-            if (e.data.type === "validation") {
-              return this.handleError(e.data);
-            }
-            return this.$alertify.alert(
-              "Ocurrio un error inesperado, por favor contacte a soporte al empresario para mas ayuda"
-            );
+      ${this.name} recibirá un correo electrónico a ${this.email} para la confirmación de la cuenta`, async () => {
+        try {
+          let result = await User.create(linkData)
+          this.$alertify.okBtn('Ok').alert('Se creó su enlace correctamente, puedes revisar tus enlaces para confirmarlo', () => {
+            this.$router.push({name: 'links'})
+          })
+        } catch (e) {
+          if (e.data.type === 'validation') {
+            return this.handleError(e.data)
           }
+          return this.$alertify.alert('Ocurrio un error inesperado, por favor contacte a soporte al empresario para mas ayuda')
         }
-      );
+      })
     },
-    handleError(e) {
-      console.log(e);
+    handleError (e) {
+      console.log(e)
       if (e.error) {
         if (e.errors.length) {
           switch (e.errors[0].field) {
-            case "email":
-              return this.$alertify
-                .okBtn("Entendido")
-                .alert(
-                  `No se puede enlazar a ${this.name} ${
-                    this.lastname
-                  } ya que el correo electrónico ${
-                    this.email
-                  } ya se encuentra en nuestra base de datos`
-                );
-            case "identification":
-              return this.$alertify
-                .okBtn("Entendido")
-                .alert(
-                  `No se puede enlazar a ${this.name} ${
-                    this.lastname
-                  } ya que la identifciación ${
-                    this.identification
-                  } ya se encuentra en nuestra base de datos`
-                );
+            case 'email':
+              return this.$alertify.okBtn('Entendido').alert(`No se puede enlazar a ${this.name} ${this.lastname} ya que el correo electrónico ${this.email} ya se encuentra en nuestra base de datos`)
+            case 'identification':
+              return this.$alertify.okBtn('Entendido').alert(`No se puede enlazar a ${this.name} ${this.lastname} ya que la identifciación ${this.identification} ya se encuentra en nuestra base de datos`)
           }
         }
       }
     }
-  }
-};
+  },
+  computed: {
+    ...mapGetters('user', ['userData', 'selectedAccount'])
+  },
+}
 </script>
-

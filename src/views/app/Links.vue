@@ -1,28 +1,24 @@
 <template lang="pug">
   .pk-tile
-    .a
-      .o(v-if="userAccountlinks.length > 0")
-        .a(v-for="account in userAccountlinks")
-          .pk-tile
-            .pk-tile-header.dark
-              .pk-tile-title Sus Enlaces de la cuenta {{account.membership.type.name}}
-              .pk-tile-actions
-                router-link.btn.btn-white.btn-small(v-if="account.status !== 'confirmed' && account.status !== 'subscriber'" ,:to="{name: 'newLink', query: {o: true}}") Enlazar
-          .pk-tile-body(v-if="account.membership.status == 'confirmed' || account.membership.status == 'subscriber'")
-            .padding-20.txt.center
-              p Aún no puedes enlazar amigos en esta cuenta, primero debes realizar tus legados para empezar a crear tu comunidad de ayuda
-          .pk-tile-body(v-else)
-            .links
-              .link-person(v-for="link in account.links")
-                .photo
-                  .profile-image(v-if="link.owner.images && link.owner.images.profile", v-profile-image='userData.images.profile')
-                  .profile-image(v-else)
-                .data
-                  .name.txt-center {{link.owner.fullName}} ({{link.owner.id}})
-                  .email.txt-center {{link.owner.email}}
-                  .username.txt-center Usuario: {{link.owner.username}}
-                  .status.txt-center(:class="setColors(link.status)") {{setStatus(link.status)}}
-                  //- .country.txt-center {{link.owner.country.name}}
+    .pk-tile-header.dark
+      .pk-tile-title Sus Enlaces de {{this.selectedAccount.type.name}}
+      .pk-tile-actions
+        router-link.btn.btn-white.btn-small(v-if="userData.status !== 'confirmed' && userData.status !== 'subscriber'" ,:to="{name: 'newLink', query: {o: true}}") Enlazar
+    .pk-tile-body(v-if="userData.status === 'confirmed' || userData.status === 'subscriber'")
+      .padding-20.txt.center
+        p Aún no puedes enlazar amigos, primero debes realizar tus legados para empezar a crear tu comunidad de ayuda
+    .pk-tile-body(v-else)
+      .links(v-if="links.length")
+        .link-person(v-for="link in links")
+          .photo
+            .profile-image(v-if="link.owner.images && link.owner.images.profile", v-profile-image='userData.images.profile')
+            .profile-image(v-else)
+          .data
+            .name.txt-center {{link.owner.fullName}} ({{link.owner.id}})
+            .email.txt-center {{link.owner.email}}
+            .username.txt-center Usuario: {{link.owner.username}}
+            .status.txt-center(:class="setColors(link.status)") {{setStatus(link.status)}}
+            .country.txt-center {{link.owner.country.name}}
       .no-links(v-else)
         .padding-30.txt-center No tienes ningun enlace
           br
@@ -33,13 +29,13 @@
 
 
 <script>
-import Membership from '@/services/Membership'
+import User from '@/services/User'
 import { mapGetters } from 'vuex';
 
 export default {
   data () {
     return {
-      userAccountlinks: []
+      links: []
     }
   },
   mounted () {
@@ -51,8 +47,8 @@ export default {
     },
     async getLinks () {
       try {
-        let {data} = await Membership.getLinks()
-        this.userAccountlinks = data
+        let {data} = await User.getLinks(this.selectedAccount.id)
+        this.links = data
       } catch (e) {
         console.log(e)
       }
@@ -90,7 +86,7 @@ export default {
     open () {
       return this.$route.query.o
     },
-    ...mapGetters('user', ['userData'])
+    ...mapGetters('user', ['userData', 'selectedAccount'])
   },
   watch: {
     '$route' (to, from) {

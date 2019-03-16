@@ -8,6 +8,7 @@ import {verifyToken} from '../helpers/auth'
 const Membership = express.Router()
 
 Membership.get('/', verifyToken, MembershipController.getAllByUserId)
+Membership.get('/:id', verifyToken, MembershipController.findById)
 Membership.get('/giver-state', verifyToken, MembershipController.getGiverAccountsByUserId)
 Membership.get('/links', verifyToken, MembershipController.getLinks)
 Membership.post('/confirm', verifyToken, MembershipController.confirmMembership)

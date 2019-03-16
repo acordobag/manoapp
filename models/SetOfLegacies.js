@@ -31,10 +31,10 @@ const model = () => {
 const Model = model()
 const Op = Sequelize.Op
 
-Model.findActive = (ownerId) => {
+Model.findActive = (membershipId) => {
   return Model.find({
     where: {
-      ownerId,
+      membershipId,
       status: 'pending'
     }
   })
@@ -50,13 +50,13 @@ Model.findNull = () => {
   })
 }
 
-Model.findNullByUser = ownerId => {
+Model.findNullByUser = membershipId => {
   return Model.findAll({
     where: {
       legacies: {
         [Op.like]: '%null%'
       },
-      ownerId
+      membershipId
     }
   })
 } 

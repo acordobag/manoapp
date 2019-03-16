@@ -9,7 +9,7 @@ import morgan from 'morgan'
 import path from 'path'
 import sockets from './sockets'
 import router from './router'
-require('./cronjobs')
+//require('./cronjobs')
 
 export default (app, server) => {
   sockets(server)
