@@ -119,7 +119,7 @@ export async function createSubscription(membership) {
     hash: uniqid().toUpperCase(),
     assignedAt: Date.now(),
     payerMembershipId: membership.id,
-    amount: membership.type.suscriptionAmmount
+    amount: membership.type.suscriptionAmount
   })
 }
 

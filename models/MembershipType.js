@@ -18,7 +18,7 @@ const model = () => {
       type: Sequelize.INTEGER,
       allowNull: false
     },
-    suscriptionAmmount: {
+    suscriptionAmount: {
       type: Sequelize.DECIMAL(10,2),
       allowNull: false
     }
