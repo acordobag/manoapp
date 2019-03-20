@@ -79,7 +79,7 @@ async function confirmMembership(req, res, next){
 
     let result = await membership.save()
     // Create pending Subscription
-    let subscription = await createSubscription(membership)
+    let subscription = await createSubscription(id)
 
     result.subscription = subscription
 

@@ -14,7 +14,7 @@ users.get('/check/:username', validateParam(schemas.user.username, 'username'), 
 users.post('/auth', validateBody(schemas.user.login), UserController.auth)
 users.post('/create', verifyToken, UserController.create)
 users.patch('/username', verifyToken, UserController.changeUsername)
-users.patch('/confirm', verifyToken, UserController.confirmAccount)
+users.patch('/confirm/:membershipId', verifyToken, UserController.confirmAccount)
 
 // contacts
 users.post('/contact', verifyToken, UserController.addContact)

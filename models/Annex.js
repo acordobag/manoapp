@@ -1,7 +1,7 @@
 'use strict'
 
 import db from '../db'
-const {sequelize, Sequelize} = db
+const { sequelize, Sequelize } = db
 
 const model = () => {
   const annex = sequelize.define('annex', {
@@ -32,24 +32,26 @@ const model = () => {
 const Model = model()
 const Op = Sequelize.Op
 
-Model.findByType = annexTypeId => {
+const include = [
+  { association: 'membership', include: ['owner'] },
+  {
+    association: 'legacies',
+    where: { status: 'empty' }, order: [Sequelize.fn('RAND')], limit: 1
+  }
+]
+
+Model.findByType = (annexTypeId) => {
   return Model.findAll({
     where: {
       annexTypeId,
       status: 'active'
     },
     include: [
-      {association: 'owner', attributes: ['id', 'name', 'lastname']},
+      { association: 'membership', include: ['owner'] },
       {
         association: 'legacies',
-        where: {
-          status: 'empty'
-        },
-        order: [
-          Sequelize.fn('RAND'),
-        ],
-        limit: 1
-      },
+        where: { status: 'empty' }, order: [Sequelize.fn('RAND')], limit: 1
+      }
     ],
     order: [
       Sequelize.fn('RAND'),
@@ -58,7 +60,7 @@ Model.findByType = annexTypeId => {
   })
 }
 
-Model.findByUserId = (membershipId) => {
+Model.findByMembershipId = (membershipId) => {
   return Model.findAll({
     where: {
       membershipId
@@ -67,31 +69,32 @@ Model.findByUserId = (membershipId) => {
       'type',
       {
         association: 'legacies',
-        include: ['membership'],
+        include: [{ association: 'membership', include: ['owner'] }],
         where: {
           status: {
             [Op.ne]: ['complete']
           }
         }
-      }
+      },
+      { association: 'membership', include: ['owner'] }
     ]
   })
 }
 
-Model.findByUserIdAndType = (ownerId, annexTypeId ) => {
+Model.findByMembershipIdAndType = (membershipId, annexTypeId) => {
   return Model.find({
     where: {
-      ownerId,
+      membershipId,
       annexTypeId,
       status: 'active'
     }
   })
 }
 
-Model.findOthersOfSame = (ownerId, annexTypeId) => {
+Model.findOthersOfSame = (membershipId, annexTypeId) => {
   return Model.findAll({
     where: {
-      ownerId,
+      membershipId,
       annexTypeId,
       status: 'active'
     }

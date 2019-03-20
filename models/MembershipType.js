@@ -14,10 +14,6 @@ const model = () => {
       type: Sequelize.TEXT,
       allowNull: false
     },
-    annexTypeId: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
     suscriptionAmount: {
       type: Sequelize.DECIMAL(10,2),
       allowNull: false

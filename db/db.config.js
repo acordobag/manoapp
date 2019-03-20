@@ -26,6 +26,9 @@ export default async () => {
     Notification.belongsTo(User, { as: 'owner', foreignKey: { allowNull: false } })
     //
     Membership.belongsTo(Membership, {as: 'parent', foreignKey: { allowNull: true, name: 'parentId'} })
+    //MembershipType anex type
+    MembershipType.belongsTo(AnnexType, {as: 'AnnexType', foreignKey: { allowNull: false, name: 'annexTypeId'}})
+
     //User memberships
     Membership.belongsTo(User, {as: 'owner', foreignKey: { allowNull: false, name: 'ownerId'} }) // new
     User.hasMany(Membership, {as: 'memberships', foreignKey: {name:'ownerId', allowNull: false }}) // new

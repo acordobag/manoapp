@@ -13,8 +13,9 @@ import uniqid from 'uniqid'
 
 async function getAnnexes(req, res, next) {
   let { _id } = req.headers
+  let { membershipId } = req.params
   try {
-    let annex = await Annex.findByUserId(_id)// find by mebershipId
+    let annex = await Annex.findByMembershipId(membershipId)// find by mebershipId
     res.status(200).send(annex).end()
   } catch (e) {
     next(e)
@@ -23,24 +24,25 @@ async function getAnnexes(req, res, next) {
 
 async function createAnnex(req, res, next) {
   let { _id } = req.headers
+  let { id } = req.body
   try {
     // Verify User Status To create Annex
     let user = await User.findByUserId(_id)
-    let aType = 1
+    let membership = await Membership.findById(id);
 
-    if (user.status !== 'receiver') return res.status(500).send({ error: "No puede ser receptor todavia" }).end()
+    if (membership.status !== 'receiver') return res.status(500).send({ error: "No puede ser receptor todavia" }).end()
 
     if (user.permissions !== 'superadmin') {
       // Verificar que no tenga otro Annexo del mismo nivel activo
-      let otherAnnexes = await Annex.findOthersOfSame(_id, 1)
+      let otherAnnexes = await Annex.findOthersOfSame(id, membership.type.annexTypeId)
       if (otherAnnexes.length) return res.status(500).send({ error: "Ya tiene un anexo creado" }).end()
     }
 
     let annex = {
       status: 'active',
-      currentLevel: null,
-      ownerId: _id,
-      annexTypeId: aType
+      currentLevel: 0,
+      membershipId: id,
+      annexTypeId: membership.type.annexTypeId
     };
     let newAnnex = await Annex.create(annex)
 
@@ -102,26 +104,19 @@ async function _createLevel(annexId) {
     let toCreateLevel
     let maxLevels = estructure.length
 
-    if (!currentLevel) {
-      toCreateLevel = 1
-    } else {
-      toCreateLevel = (currentLevel + 1)
-    }
+    toCreateLevel = (currentLevel + 1)
 
     // Verificamos si el nivel que hay que crear es el ultimo
     if (currentLevel === maxLevels) {
-      // REINICIAR ANEXO
-      // CONTADOR DE VUELTAS
-      // EMPEZAR EN NIVEL 1
+      toCreateLevel = 1
     }
-
     // Create the corresponding Level -> se le resta 1 para que concuerde con el index del arreglo
     let toCreate = estructure[(toCreateLevel - 1)]
 
     let legaciesQuantity = toCreate.toRecibe
 
     if (toCreate.toRecibe === 0 && toCreate.toPay >= 1) {
-      await createNewLegaciesSet(annex.ownerId, toCreate.toPay, toCreate.subscription)
+      await createNewLegaciesSet(annex.membershipId, toCreate.toPay, toCreate.subscription)
     } else {
       await _createLegacies(annexId, toCreateLevel, legaciesQuantity)
     }

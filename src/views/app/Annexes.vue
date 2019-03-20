@@ -1,8 +1,8 @@
 <template lang="pug">
   main
-    .pk-tile(v-if="!annexes.length && userData.status !== 'receiver'")
+    .pk-tile(v-if="!annexes.length && selectedAccount.status !== 'receiver'")
       .pk-tile-body.padding-20.txt-center No se encontraron Annexos en su cuenta
-    .pk-tile(v-if="!annexes.length && userData.status === 'receiver'")
+    .pk-tile(v-if="!annexes.length && selectedAccount.status === 'receiver'")
       .pk-tile-body.activate-annex
         i.fa.fa-handshake
         .padding-20.txt-center  Felicidades {{userData.name}}. Ya puedes activar tu Anexo!
@@ -37,9 +37,9 @@ export default {
   methods: {
     async activateAnnex () {
       try {
-        let {data} = await Annex.activate()
+        let {data} = await Annex.activate(this.selectedAccount)
         if (data.newAnnex) {
-          window.location.reload(true)
+          //window.location.reload(true)
         }
       } catch (e) {
         console.log(e)
@@ -47,7 +47,7 @@ export default {
     },
     async getAnnexes () {
       try {
-        let {data} = await Annex.get()
+        let {data} = await Annex.get(this.selectedAccount.id)
         this.annexes = data
       } catch (e) {
         next(e)
@@ -58,7 +58,7 @@ export default {
     open() {
       return this.$route.query.o
     },
-    ...mapGetters('user', ['userData'])
+    ...mapGetters('user', ['userData', 'selectedAccount'])
   },
   components: {
     pLegacy: () => import('@/components/annex/Single.vue')

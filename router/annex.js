@@ -6,7 +6,7 @@ import {verifyToken} from '../helpers/auth'
 
 const annex = express.Router()
 
-annex.get('/', verifyToken, AnnexController.getAnnexes)
+annex.get('/:membershipId', verifyToken, AnnexController.getAnnexes)
 annex.get('/detail/:hash/:id', verifyToken, AnnexController.detail)
 annex.post('/create', verifyToken, AnnexController.createAnnex)
 

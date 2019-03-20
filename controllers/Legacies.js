@@ -54,7 +54,7 @@ async function getBenefits(req, res, next) {
   let { _id } = req.headers
   let { membershipId } = req.params
   try {
-    let annexes = await Annex.findByUserId(membershipId)
+    let annexes = await Annex.findByMembershipId(membershipId)
     let legacies = []
     let benefits = 0
 
@@ -70,10 +70,10 @@ async function getBenefits(req, res, next) {
 
     res.status(200).send({ benefits }).end()
   } catch (e) {
+    console.log(e)
     next(e)
   }
 }
-
 
 async function initializeProgress(req, res, next) {
   let { id } = req.body

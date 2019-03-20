@@ -114,7 +114,8 @@ async function allPendings(req, res, next) {
   }
 }
 
-export async function createSubscription(membership) {
+export async function createSubscription(membershipId) {
+  let membership = await Membership.getById(membershipId)
   return await Subscription.create({
     hash: uniqid().toUpperCase(),
     assignedAt: Date.now(),

@@ -157,14 +157,15 @@ async function create(req, res, next) {
 
 async function confirmAccount(req, res, next) {
   let { _id } = req.headers
+  let { membershipId } = req.params
 
   try {
-    let memberhip = await Membership.findById(_id)
+    let memberhip = await Membership.findById(membershipId)
     memberhip.status = 'confirmed'
 
     let result = await memberhip.save()
     // Create pending Subscription
-    let subscription = await createSubscription(_id)
+    let subscription = await createSubscription(membershipId)
 
     result.subscription = subscription
 
