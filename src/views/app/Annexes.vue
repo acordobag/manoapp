@@ -15,7 +15,7 @@
           pLegacy(
             v-for="legacy in annex.legacies", 
             :legacy="legacy",
-            :amount="annex.type.amount",
+            :amount="legacy.amount",
             :to="{name: 'annex/legacy/detail', params: {hash: legacy.hash, id: legacy.id}, query: {o: true}}"
           )
     PopWindow(:open="open")
@@ -23,7 +23,7 @@
 
 <script>
 import Annex from '@/services/Annex'
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   data () {
@@ -36,23 +36,28 @@ export default {
   },
   methods: {
     async activateAnnex () {
-      try {
+      try {  
+        this.sIsLoading(true)      
         let {data} = await Annex.activate(this.selectedAccount)
         if (data.newAnnex) {
-          //window.location.reload(true)
+          await this.getAnnexes()
         }
+        this.sIsLoading(true)
       } catch (e) {
         console.log(e)
       }
     },
     async getAnnexes () {
       try {
+        this.sIsLoading(true)
         let {data} = await Annex.get(this.selectedAccount.id)
         this.annexes = data
+        this.sIsLoading(false)
       } catch (e) {
         next(e)
       }
-    }
+    },
+    ...mapMutations('app', ['sIsLoading'])
   },
   computed: {
     open() {

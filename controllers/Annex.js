@@ -152,10 +152,12 @@ export async function increaseAnnexLevel(annexId) {
 }
 
 async function _createLegacies(annexId, level, quantity) {
+  let annex = await Annex.findById(annexId)
   let hash = uniqid().toUpperCase()
   // Create the legacies
   for (let i = 0; i < quantity; i++) {
     await Legacies.create({
+      amount: annex.type.amount,
       level,
       hash,
       annexId

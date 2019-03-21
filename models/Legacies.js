@@ -14,6 +14,10 @@ const model = () => {
       type: Sequelize.STRING,
       allowNull: false
     },
+    amount: {
+      type: Sequelize.DECIMAL(10, 2),
+      allowNull: true
+    },
     paid: {
       type: Sequelize.BOOLEAN,
       allowNull: true

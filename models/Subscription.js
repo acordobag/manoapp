@@ -16,7 +16,6 @@ const model = () => {
     },
     amount: {
       type: Sequelize.DECIMAL(10, 2),
-      defaultValue: 20,
       allowNull: false
     },
     paid: {

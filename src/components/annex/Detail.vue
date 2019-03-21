@@ -58,7 +58,7 @@ export default {
       return this.legacy.payer
     },
     amount () {
-      if (this.legacy.annex) return this.legacy.annex.type.amount
+      if (this.legacy.annex) return this.legacy.amount
       return {}
     },
     hash () {

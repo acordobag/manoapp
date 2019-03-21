@@ -40,6 +40,22 @@ const include = [
   }
 ]
 
+Model.findById = (id) => {
+  return Model.find({
+    where: {
+      id
+    },
+    include: [
+      'type',
+      { association: 'membership', include: ['owner'] },
+      {
+        association: 'legacies',
+        where: { status: 'empty' }, order: [Sequelize.fn('RAND')], limit: 1
+      }
+    ]
+  })
+}
+
 Model.findByType = (annexTypeId) => {
   return Model.findAll({
     where: {

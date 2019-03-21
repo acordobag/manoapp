@@ -30,7 +30,7 @@
 
 <script>
 import User from '@/services/User'
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   data () {
@@ -47,8 +47,10 @@ export default {
     },
     async getLinks () {
       try {
+        this.sIsLoading(true)
         let {data} = await User.getLinks(this.selectedAccount.id)
         this.links = data
+        this.sIsLoading(false)
       } catch (e) {
         console.log(e)
       }
@@ -80,7 +82,8 @@ export default {
         case 'receiver':
           return 'Receptor'
       }
-    }
+    },
+    ...mapMutations('app', ['sIsLoading'])
   },
   computed: {
     open () {
