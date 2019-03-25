@@ -10,6 +10,10 @@
         .p Esperando Confirmación
     .action(:class="color")
       i.fa.fa-angle-right
+    br
+    br
+    br
+    br
 </template>
 
 

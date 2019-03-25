@@ -79,7 +79,7 @@ export default {
       this.sayHi()
       this.getNulls(),
       this.getMemberhips()
-      this.selectedMembership= this.selectedAccount
+      this.selectedMembership = this.selectedAccount
     },
     goToChange () {
 
@@ -146,8 +146,9 @@ export default {
       }
     },
     accountChanged(m){
+      //let {data} = await Membership.findById(this.selectedMembership)
       this.setSelectedAccount(this.selectedMembership)
-      localStorage.setItem('selectedAccount', JSON.stringify(this.selectedMembership))
+      //localStorage.setItem('selectedAccount', JSON.stringify(this.selectedMembership))
       window.location.reload()
       //this.$forceUpdate()
     },

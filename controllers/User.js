@@ -1,7 +1,7 @@
 'use strict'
 // Controllers
-import { invitationEmail } from './email/Email'
-import { createSubscription } from './Subscription'
+import EmailController from './email/Email'
+import SubscriptionController from './Subscription'
 // Models
 import User from '../models/User'
 import Contacts from '../models/Contacts'
@@ -140,13 +140,9 @@ async function create(req, res, next) {
       ownerId: user.id
     }
 
-    console.log(memberhip)
-
-
-
     await Membership.create(memberhip)
 
-    //await invitationEmail(user.email, `${user.name} ${user.lastname}`, user.username)
+    await EmailController.invitationEmail(user.email, `${user.name} ${user.lastname}`, user.username)
 
     res.status(200).send(user).end()
   } catch (e) {
@@ -165,7 +161,7 @@ async function confirmAccount(req, res, next) {
 
     let result = await memberhip.save()
     // Create pending Subscription
-    let subscription = await createSubscription(membershipId)
+    let subscription = await SubscriptionController.createSubscription(membershipId)
 
     result.subscription = subscription
 
@@ -264,7 +260,6 @@ async function check(req, res, next) {
   }
 }
 
-
 async function changeUsername(req, res, next) {
   let { _id } = req.headers
   let { username } = req.body
@@ -279,9 +274,9 @@ async function changeUsername(req, res, next) {
   }
 }
 
-export async function _checkParentStatus(parentId) { //cambia
+async function _checkParentStatus(parentId) { //cambia
   // Aqui tengo que verificar que cumpla los requisitos y si los cumple subirle el estado
-  let parent = await User.findByUserId(parentId)
+  let parent = await Membership.findById(parentId)
   let childs = await _childsStatus(parentId)
 
   if (parent.status === 'giver' && childs.givers >= 2) {
@@ -296,7 +291,7 @@ export async function _checkParentStatus(parentId) { //cambia
 }
 
 async function _childsStatus(parentId) {
-  let links = await User.findLinks(parentId)
+  let links = await Membership.findLinks(parentId)
 
   let givers = 0
   let actives = 0
@@ -352,5 +347,6 @@ export default {
   resetPassword,
   changePassword,
   changeUsername,
-  confirmAccount
+  confirmAccount,
+  _checkParentStatus
 }

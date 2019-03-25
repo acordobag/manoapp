@@ -34,7 +34,7 @@ export default async () => {
     User.hasMany(Membership, {as: 'memberships', foreignKey: {name:'ownerId', allowNull: false }}) // new
     //
     Membership.belongsTo(MembershipType, {as: 'type', foreignKey: { allowNull: false, name: 'membershipTypeId'} }) // new
-    //Anexos y usuario
+    //Anexos y membresia
     Annex.belongsTo(Membership, {as: 'membership', foreignKey: { allowNull: false, name: 'membershipId'} }) // Changed
     Membership.hasMany(Annex, {as: 'annexes', foreignKey: {name:'membershipId', allowNull: false }}) // Changed
     //
@@ -42,8 +42,8 @@ export default async () => {
     //legados y anexos
     Legacies.belongsTo(Annex, {as: 'annex', foreignKey: { allowNull: false, name: 'annexId'} })
     Annex.hasMany(Legacies, {as: 'legacies', foreignKey: { allowNull: false, name: 'annexId'} })
-    //legados y usuario
-    Legacies.belongsTo(Membership, {as: 'membership', foreignKey: { allowNull: true, name: 'payerMembershipId'} })
+    //legados y membresia
+    Legacies.belongsTo(Membership, {as: 'payer', foreignKey: { allowNull: true, name: 'payerMembershipId'} })
     Membership.hasMany(Legacies, {as: 'pendingLegacies', foreignKey: {name:'payerMembershipId', allowNull: true }})
     //Suscripciones y usuarios
     Subscription.belongsTo(Membership, {as: 'membership', foreignKey: { allowNull: false, name: 'payerMembershipId'} })

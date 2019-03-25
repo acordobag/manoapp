@@ -29,107 +29,110 @@
 
 
 <script>
-import User from '@/services/User'
-import { mapGetters, mapMutations } from 'vuex';
+import User from "@/services/User";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  data () {
+  data() {
     return {
       links: []
-    }
+    };
   },
-  mounted () {
-    this.initialize()
+  mounted() {
+    this.initialize();
   },
   methods: {
-    initialize () {
-      this.getLinks()
+    initialize() {
+      this.getLinks();
     },
-    async getLinks () {
+    async getLinks() {
       try {
-        this.sIsLoading(true)
-        let {data} = await User.getLinks(this.selectedAccount.id)
-        this.links = data
-        this.sIsLoading(false)
+        this.sIsLoading(true);
+        let { data } = await User.getLinks(this.selectedAccount.id);
+        this.links = data;
+        this.sIsLoading(false);
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
-    setColors (val) {
+    setColors(val) {
       switch (val) {
-        case 'created':
-          return {'txt-orange': true}
-        case 'giver':
-          return {'txt-cyan': true}
-        case 'confirmed':
-          return {'txt-green': true}
-        case 'active':
-          return {'txt-blue': true}
-        case 'receiver':
-          return {'txt-manoapp': true}
+        case "created":
+        case "subscriber":
+          return { "txt-orange": true };
+        case "giver":
+          return { "txt-cyan": true };
+        case "confirmed":
+          return { "txt-green": true };
+        case "active":
+          return { "txt-blue": true };
+        case "receiver":
+          return { "txt-manoapp": true };
       }
     },
-    setStatus (val) {
+    setStatus(val) {
       switch (val) {
-        case 'created':
-          return 'Sin Confirmar'
-        case 'giver':
-          return 'Legador'
-        case 'confirmed':
-          return 'Confirmada'
-        case 'active':
-          return 'Activo'
-        case 'receiver':
-          return 'Receptor'
+        case "created":
+          return "Sin Confirmar";
+        case "subscriber":
+          return "Subscriptor";
+        case "giver":
+          return "Legador";
+        case "confirmed":
+          return "Confirmada";
+        case "active":
+          return "Activo";
+        case "receiver":
+          return "Receptor";
       }
     },
-    ...mapMutations('app', ['sIsLoading'])
+    ...mapMutations("app", ["sIsLoading"])
   },
   computed: {
-    open () {
-      return this.$route.query.o
+    open() {
+      return this.$route.query.o;
     },
-    ...mapGetters('user', ['userData', 'selectedAccount'])
+    ...mapGetters("user", ["userData", "selectedAccount"])
   },
   watch: {
-    '$route' (to, from) {
-      this.initialize()
+    $route(to, from) {
+      this.initialize();
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-  .links{
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .link-person{
-    font-size: .8em;
-    margin: 10px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-    width: 44%;
-    .photo{
+.links {
+  display: flex;
+  flex-wrap: wrap;
+}
+.link-person {
+  font-size: 0.8em;
+  margin: 10px;
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  width: 44%;
+  .photo {
+    height: 140px;
+    width: 100%;
+    .profile-image {
       height: 140px;
-      width: 100%;
-      .profile-image{
-        height: 140px;
-        width: auto;
-        background-image: url('~assets/no-photo.png');
-        background-position: center;
-        background-size: cover;
-      }
-    }
-    .data{
-      *{
-        margin: 2px;
-      }
-      .name{
-        font-size: 1.2em;
-        color: blue;
-      }
-      padding: 5px;
+      width: auto;
+      background-image: url("~assets/no-photo.png");
+      background-position: center;
+      background-size: cover;
     }
   }
+  .data {
+    * {
+      margin: 2px;
+    }
+    .name {
+      font-size: 1.2em;
+      color: blue;
+    }
+    padding: 5px;
+  }
+}
 </style>

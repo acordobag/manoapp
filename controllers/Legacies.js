@@ -6,12 +6,13 @@ import Annex from '../models/Annex'
 import User from '../models/User'
 import Membership from '../models/Membership'
 import SetOfLegacies from '../models/SetOfLegacies'
-import { _checkParentStatus } from './User'
+import UserControler from './User'
 
-import { createSubscription } from '../controllers/Subscription'
-import { increaseAnnexLevel, createHelpAnnex } from '../controllers/Annex'
+import SubscriptionController from '../controllers/Subscription'
+import AnnexController from '../controllers/Annex'
 import { socketEmit } from '../helpers/sockets'
 
+//deprecated
 async function assignInLegacy(req, res, next) {
   let { _id } = req.headers
 
@@ -25,13 +26,13 @@ async function assignInLegacy(req, res, next) {
 
 async function getPending(req, res, next) {
   let { _id } = req.headers
-  let { membershipId} = req.params
+  let { membershipId } = req.params
 
   try {
-    console.log(membershipId)
-    let pendingLegacies = await Legacies.findPendingLegacies(membershipId)
 
+    let pendingLegacies = await Legacies.findPendingLegacies(membershipId)
     res.status(200).send(pendingLegacies).end()
+
   } catch (e) {
     next(e)
   }
@@ -101,7 +102,10 @@ async function initializeProgress(req, res, next) {
 
 async function _assignInLegacy(membershipId) {
   try {
-    let legacyData = await _findRandomLegacy()
+
+    let membership = await Membership.findById(membershipId)
+
+    let legacyData = await _findRandomLegacy(membership.type.annexTypeId)
     //if(!legacyData) return null;
     let legacy = await Legacies.find({ where: { id: legacyData.id } })
 
@@ -115,7 +119,7 @@ async function _assignInLegacy(membershipId) {
 
     return data
   } catch (e) {
-    console.log('Error on assign legacies')
+    console.log('Error on assign legacies\n' + e)
     return { error: e }
   }
 }
@@ -124,23 +128,23 @@ async function _findRandomLegacy(annexType = 1) {
   let annexes = await Annex.findByType(annexType)
   let emptyLegacy
   let attemps = 0
-  
+
   while (!emptyLegacy && attemps < annexes.length) {
     let randNumber = Math.floor(Math.random() * annexes.length)
     emptyLegacy = annexes[randNumber].legacies[0]
     ++attemps
   }
 
-  if (!emptyLegacy) {
-    attemps = 0
-    annexes = await Annex.findByType(2)
+  // if (!emptyLegacy) {
+  //   attemps = 0
+  //   annexes = await Annex.findByType(2)
 
-    while (!emptyLegacy && attemps < annexes.length) {
-      let randNumber = Math.floor(Math.random() * annexes.length)
-      emptyLegacy = annexes[randNumber].legacies[0]
-      ++attemps
-    }
-  }
+  //   while (!emptyLegacy && attemps < annexes.length) {
+  //     let randNumber = Math.floor(Math.random() * annexes.length)
+  //     emptyLegacy = annexes[randNumber].legacies[0]
+  //     ++attemps
+  //   }
+  // }
 
   return emptyLegacy
 }
@@ -158,9 +162,9 @@ async function paid(req, res, next) {
 
     legacy.save()
 
-    socketEmit('update/legacies', legacy.payerId)
+    socketEmit('update/legacies', legacy.payerMembershipId)
 
-    res.status(200).send({ status: true, id, hash, setOfLegacies }).end()
+    res.status(200).send({ status: true, id, hash }).end()
   } catch (e) {
     next(e)
   }
@@ -177,19 +181,17 @@ async function confirm(req, res, next) {
 
     legacy.confirmed = true
     legacy.confirmedAt = Date.now()
-    legacy.status = 'confirmed'
-
-
+    legacy.status = 'confirmed'  
     legacy.save()
 
-    socketEmit('update/legacies', legacy.payerId)
-    // VErigicar estado de los otros legados a ver si pasa
-    let statusOfSet = await _checkSetStatus(legacy.payerId)
+    socketEmit('update/legacies', legacy.payerMembershipId)
+    // Verificar estado de los otros legados a ver si pasa
+    let statusOfSet = await _checkSetStatus(legacy.payerMembershipId)
 
-    _checkPayerStatus(legacy.payerId, statusOfSet)
+    _checkPayerStatus(legacy.payerMembershipId, statusOfSet)
 
     _checkAnnexStatus(legacy.hash)
-
+    legacy.save()
     // Chequeo si los otros de SETOFLEGACIES ya fueron pagados para hacer el UPDATE del usuario o hacerle otros legados
     res.status(200).send({ confirmed: true, statusOfSet }).end()
   } catch (e) {
@@ -198,7 +200,7 @@ async function confirm(req, res, next) {
   }
 }
 
-export async function createNewLegaciesSet(membershipId, toPay, subscription) {
+async function createNewLegaciesSet(membershipId, toPay, subscription) {
   let legacies = []
   // crear X legados pendientes
   for (let i = 0; i < toPay; i++) {
@@ -209,7 +211,7 @@ export async function createNewLegaciesSet(membershipId, toPay, subscription) {
   let sub
   if (subscription) {
     sub = []
-    let newSubscription = await createSubscription(membershipId)
+    let newSubscription = await SubscriptionController.createSubscription(membershipId)
     sub.push(newSubscription.id)
   }
 
@@ -223,7 +225,7 @@ export async function createNewLegaciesSet(membershipId, toPay, subscription) {
 async function _checkAnnexStatus(legacyHash) {
   try {
     // Get legacy hash
-    let legacies = await Legacies.findAll({ where: { hash: legacyHash } })
+    let legacies = await Legacies.findAllByHash(legacyHash)
     let count = legacies.length
 
     let confirmeds = 0
@@ -234,7 +236,7 @@ async function _checkAnnexStatus(legacyHash) {
     })
 
     if (count === confirmeds) {
-      await increaseAnnexLevel(annexId)
+      await AnnexController.increaseAnnexLevel(annexId)
     }
   } catch (e) {
     return { error: e }
@@ -243,71 +245,76 @@ async function _checkAnnexStatus(legacyHash) {
 
 async function _checkPayerStatus(payerId, update) {
   // Update Payer Status
-  let payer = await User.findByUserId(payerId)
+  let payer = await Membership.findById(payerId)
 
   // si es suscriptor y ya pago todo debe pasar a ser legador
   if (update && payer.status === 'subscriber') {
     payer.status = 'giver'
     payer.save()
-    socketEmit('update/user', payer.id)
+    socketEmit('update/user', payer.ownerId)
   } else if (update && payer.status === 'receiver') {
-    // TODO SACAR EL TYPE DINAMICO
-    let annex = await Annex.findByUserIdAndType(payer.id, 1)
-    if (annex.id) await increaseAnnexLevel(annex.id)
+    let annex = await Annex.findByUserIdAndType(payer.id, payer.annexTypeId)
+    if (annex.id) await AnnexController.increaseAnnexLevel(annex.id)
   }
-  if (payer.parentId < 3) return
-  _checkParentStatus(payer.parentId)
+  if (payer.parentId !== 1 | 2 | 3 | 4) return
+  UserControler._checkParentStatus(payer.parentId)
   let grandfather = await User.findByUserId(payer.parentId)
-  _checkParentStatus(grandfather.parentId)
+  if (grandfather !== 1 | 2 | 3 | 4) return
+  UserControler._checkParentStatus(grandfather.parentId)
 }
 
 // Esto es para usar cuando se confirman los legados
 async function _checkSetStatus(payerId) {
-  let setOfLegacies = await SetOfLegacies.findActive(payerId)
-
-  if (!setOfLegacies) return false
-  let legacies = JSON.parse(setOfLegacies.legacies)
-  let subscriptions = JSON.parse(setOfLegacies.subscriptions) || []
-  let set = await SetOfLegacies.find({
-    where: {
-      id: setOfLegacies.id
-    }
-  })
-
-  let confirmedLegacies = 0
-  let confirmedSubscriptions = 0
-  let legaciesCount = legacies.length
-  let subscriptionsCount = subscriptions.length
-  let canUpdate = false
-
-  for (let i = 0; i < legacies.length; i++) {
-    const el = legacies[i];
-    let legacy = await Legacies.findById(el)
-    if (legacy.status === 'confirmed')++confirmedLegacies
-  }
-
-  if (confirmedLegacies === legaciesCount) {
-    if (subscriptions) {
-      for (let j = 0; j < subscriptions.length; j++) {
-        const sus = subscriptions[j];
-        let subscription = await Subscriptions.findById(sus)
-        if (subscription.status === 'confirmed')++confirmedSubscriptions
+  try {
+    let setOfLegacies = await SetOfLegacies.findActive(payerId)
+    if (!setOfLegacies) return false
+    let legacies = JSON.parse(setOfLegacies.legacies)
+    let subscriptions = JSON.parse(setOfLegacies.subscriptions) || []
+    let set = await SetOfLegacies.find({
+      where: {
+        id: setOfLegacies.id
       }
+    })
 
-      if (confirmedSubscriptions === subscriptionsCount) {
+    let confirmedLegacies = 0
+    let confirmedSubscriptions = 0
+    let legaciesCount = legacies.length
+    let subscriptionsCount = subscriptions.length
+    let canUpdate = false
+
+    //Verifica los legados configmados
+    for (let i = 0; i < legacies.length; i++) {
+      const el = legacies[i];
+      let legacy = await Legacies.findById(el)
+      if (legacy.status === 'confirmed')++confirmedLegacies
+    }
+
+    if (confirmedLegacies === legaciesCount) {
+      if (subscriptions) {
+        for (let j = 0; j < subscriptions.length; j++) {
+          const sus = subscriptions[j];
+          let subscription = await Subscriptions.findById(sus)
+          if (subscription.status === 'confirmed')++confirmedSubscriptions
+        }
+
+        if (confirmedSubscriptions === subscriptionsCount) {
+          canUpdate = true
+        }
+      } else {
         canUpdate = true
       }
-    } else {
-      canUpdate = true
     }
-  }
 
-  if (canUpdate) {
-    set.status = 'complete'
-    await set.save()
+    if (canUpdate) {
+      set.status = 'complete'
+      await set.save()
+    }
+    console.log()
+    return canUpdate
+  } catch (e) {
+    console.log(e)
+    throw e
   }
-
-  return canUpdate
 }
 
 async function findNullByUser(req, res, next) {
@@ -327,7 +334,7 @@ async function findNullByUser(req, res, next) {
  * CRON JOBS 
  */
 
-export async function cronCheckNullLegacies() {
+async function cronCheckNullLegacies() {
   let sets = await SetOfLegacies.findNull()
   let pendCount = 0;
   for (let i = 0; i < sets.length; i++) {
@@ -335,26 +342,25 @@ export async function cronCheckNullLegacies() {
     let legacies = JSON.parse(el.legacies)
     for (let j = 0; j < legacies.length; j++) {
       const legacy = legacies[j];
-      if (legacy == null || legacy == 'null' ) {
-        
-        let pending = await _assignInLegacy(el.ownerId)
-        //console.log(pending)
+      if (legacy == null || legacy == 'null') {
+
+        let pending = await _assignInLegacy(el.membershipId)
         if (pending instanceof Legacies) {
           legacies.splice(j, 1)
           legacies.push(pending.id)
           el.legacies = JSON.stringify(legacies)
           await el.save()
         } else {
-          pendCount++
+          AnnexController.createHelpAnnex(el.membershipId)
         }
       }
     }
   }
-  if (pendCount>0) {
-    console.log('Creando ' + pendCount)
-    createHelpAnnex(10)
-    //cronCheckNullLegacies()
-  }
+  // if (pendCount > 0) {
+  //   console.log('Creando ' + pendCount)
+  //   AnnexController.createHelpAnnex(10)
+  //   //cronCheckNullLegacies()
+  // }
 
 }
 
@@ -365,7 +371,9 @@ export default {
   getBenefits,
   paid,
   confirm,
+  createNewLegaciesSet,
   findNullByUser,
   _findRandomLegacy,
-  initializeProgress
+  initializeProgress,
+  cronCheckNullLegacies
 }

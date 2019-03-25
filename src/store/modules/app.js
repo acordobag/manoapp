@@ -39,6 +39,9 @@ const actions = {
   isAuth ({commit}, data) {
     commit('isAuth', data)
   },
+  isLoading ({commit}, data) {
+    commit('sIsLoading', data)
+  },
   newVersion ({commit}, bool) {
     commit('newVersion', bool)
   }

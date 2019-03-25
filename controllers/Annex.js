@@ -1,13 +1,14 @@
 'use strict'
-
-import { getEstructure } from '../helpers/annex'
+//Models
 import User from '../models/User'
 import Membership from '../models/Membership'
 import Annex from '../models/Annex'
 import AnnexType from '../models/AnnexType'
 import Legacies from '../models/Legacies'
-
-import { createNewLegaciesSet } from '../controllers/Legacies'
+//Controllers
+import LegacyController from '../controllers/Legacies'
+//Helpers
+import { getEstructure } from '../helpers/annex'
 
 import uniqid from 'uniqid'
 
@@ -44,6 +45,7 @@ async function createAnnex(req, res, next) {
       membershipId: id,
       annexTypeId: membership.type.annexTypeId
     };
+
     let newAnnex = await Annex.create(annex)
 
     //Creamos el primer Nivel 
@@ -55,15 +57,22 @@ async function createAnnex(req, res, next) {
   }
 }
 
-export async function createHelpAnnex(quantity) {
-  let annex = {
-    status: 'active',
-    currentLevel: null,
-    ownerId: 2,
-    annexTypeId: 1
-  };
-  let newAnnex = await Annex.create(annex)
-  await _createLegacies(newAnnex.id, 1, quantity)
+async function createHelpAnnex(membershipId) {
+  let membership = await Membership.findById(membershipId)
+  let annexActive = await Annex.findByType(membership.type.annexTypeId)
+  let annexToCreate
+  if (annexActive.length > 0) {
+    annexToCreate = annexActive[0]
+  } else {
+    annexToCreate = await Annex.create({
+      status: 'active',
+      currentLevel: null,
+      membershipId: membership.type.annexTypeId,
+      annexTypeId: membership.type.annexTypeId
+    })
+  }
+
+  await _createLegacies(annexToCreate.id, 1, 1)
 }
 
 async function detail(req, res, next) {
@@ -116,7 +125,7 @@ async function _createLevel(annexId) {
     let legaciesQuantity = toCreate.toRecibe
 
     if (toCreate.toRecibe === 0 && toCreate.toPay >= 1) {
-      await createNewLegaciesSet(annex.membershipId, toCreate.toPay, toCreate.subscription)
+      await LegacyController.createNewLegaciesSet(annex.membershipId, toCreate.toPay, toCreate.subscription)
     } else {
       await _createLegacies(annexId, toCreateLevel, legaciesQuantity)
     }
@@ -128,17 +137,11 @@ async function _createLevel(annexId) {
   }
 }
 
-export async function increaseAnnexLevel(annexId) {
+async function increaseAnnexLevel(annexId) {
   try {
     let annex = await Annex.find({ where: { id: annexId } })
 
-    let nextLevel
-
-    if (!annex.currentLevel) {
-      nextLevel = 1
-    } else {
-      nextLevel = ++annex.currentLevel
-    }
+    let nextLevel = (++annex.currentLevel)
 
     annex.currentLevel = nextLevel
 
@@ -169,6 +172,7 @@ async function _createLegacies(annexId, level, quantity) {
 export default {
   createAnnex,
   createHelpAnnex,
+  increaseAnnexLevel,
   getAnnexes,
   test,
   detail

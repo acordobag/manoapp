@@ -29,6 +29,10 @@ main.buy-contracts
             option(v-for="country in countries", :value="country.id") {{country.name}}
         button.btn.btn-strategic.btn-block(type='submit')
           | Enlazar
+        br 
+        br 
+        br 
+        br
 </template>
 
 <script>

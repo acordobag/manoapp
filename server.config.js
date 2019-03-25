@@ -9,7 +9,7 @@ import morgan from 'morgan'
 import path from 'path'
 import sockets from './sockets'
 import router from './router'
-//require('./cronjobs')
+require('./cronjobs')
 
 export default (app, server) => {
   sockets(server)
@@ -61,6 +61,7 @@ export default (app, server) => {
   })
 
   app.use((err, req, res, next) => {
+    console.log(err)
     // set locals, only providing error in development
     res.locals.message = err.message
     res.locals.error = enviroment === 'development' ? err : {}

@@ -8,7 +8,7 @@ import _notification from './email_templates/notification'
 import config from '../../config'
 
 
-export async function invitationEmail (to, name, username) {
+async function invitationEmail (to, name, username) {
   // if (process.env.NODE_ENV !== 'production') {
   //   to = ['mariocampbellr@gmail.com', 'pruebasmanoapp@gmail.com']
   // }
@@ -24,7 +24,7 @@ export async function invitationEmail (to, name, username) {
   return sendMail(data)
 }
 
-export async function notificationEmail (email, notification) {
+async function notificationEmail (email, notification) {
   if (process.env.NODE_ENV !== 'production') {
     email = 'mariocampbellr@gmail.com'
   }
@@ -38,5 +38,10 @@ export async function notificationEmail (email, notification) {
 
   // Send Welcome Email
   return sendMail(data)
+}
+
+export default {
+  invitationEmail,
+  notificationEmail
 }
 

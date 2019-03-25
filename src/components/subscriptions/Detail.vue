@@ -31,6 +31,10 @@
       .clock.waiting(v-else)
         .p Esperando Confirmación
       .btn.margin-20.btn-block.padding-15(@click="paidSubscription" v-if="!subscription.paid") He pagado
+      br
+      br
+      br
+      br
 </template>
 
 <script>

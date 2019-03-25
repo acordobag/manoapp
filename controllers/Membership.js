@@ -1,5 +1,6 @@
 import Membership from '../models/Membership'
-import { createSubscription } from './Subscription'
+import User from '../models/User'
+import SubscriptionController from './Subscription'
 
 async function create(pMembership) {
   let m
@@ -74,16 +75,18 @@ async function confirmMembership(req, res, next){
   let { id } = req.body
 
   try {
-    let membership = await Membership.findById(id)
+    let membership = await Membership.findById(id, true)
     membership.status = 'confirmed'
 
     let result = await membership.save()
     // Create pending Subscription
-    let subscription = await createSubscription(id)
+    let subscription = await SubscriptionController.createSubscription(id)
 
     result.subscription = subscription
 
-    res.status(200).send(result).end()
+    let user = await User.findByUserId(membership.ownerId)
+
+    res.status(200).send({membership: result, owner: user}).end()
   } catch (e) {
     console.log(e)
     next(e)

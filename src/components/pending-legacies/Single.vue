@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     owner () {
-      return this.legacy.annex.owner
+      return this.legacy.annex.membership.owner
     },
     amount () {
       return this.legacy.annex.type.amount

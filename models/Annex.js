@@ -85,7 +85,7 @@ Model.findByMembershipId = (membershipId) => {
       'type',
       {
         association: 'legacies',
-        include: [{ association: 'membership', include: ['owner'] }],
+        include: [{ association: 'payer', include: ['owner'] }],
         where: {
           status: {
             [Op.ne]: ['complete']

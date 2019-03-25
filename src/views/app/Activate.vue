@@ -41,9 +41,10 @@ export default {
     async confirmAccount() {
       try {
         let {data} = await Membership.confirm(this.selectedAccount)
-        if (data.status === 'confirmed') {
+        if (data.membership.status === 'confirmed') {
           this.$alertify.alert('Felicidades, su cuenta fue confirmada con éxito!', () => {
-            this.setSelectedAccount(data)
+            this.setSelectedAccount(data.membership)
+            this.setUser(data.owner)
             this.$router.push({name: 'home/app'})
           })
         }
@@ -52,7 +53,7 @@ export default {
       }
     },
     ...mapMutations('app', ['sIsLoading']),
-    ...mapActions('user', ['setSelectedAccount'])
+    ...mapActions('user', ['setSelectedAccount', 'setUser'])
    },
    computed: {
      ...mapGetters('user', ['userData', 'selectedAccount'])

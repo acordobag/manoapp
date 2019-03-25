@@ -76,13 +76,13 @@ export default {
   computed :{
     owner() {
       if (this.legacy.annex) {
-        return this.legacy.annex.owner
+        return this.legacy.annex.membership.owner
       } 
       return {}
     },
     amount () {
       if (this.legacy.annex) {
-        return this.legacy.annex.type.amount
+        return this.legacy.amount
       }
       return {}
     },

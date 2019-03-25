@@ -32,12 +32,20 @@ const detailed = [
   { association: 'owner', include: ['country', 'images'] }
 ]
 
-async function findById(id){
+async function findById(id, flag = false) {
+
+  let inc
+  if (flag) {
+    inc = ['type']
+  } else {
+    inc = includes
+  }
+
   let result = await Model.find({
     where: {
       id
     },
-    include: includes
+    include: inc
   })
 
   return result

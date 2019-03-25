@@ -26,8 +26,7 @@ async function detail(req, res, next) {
   try {
     let subscription = await Subscription.find({
       where: {
-        hash,
-        payerId: _id
+        hash
       }
     })
 
@@ -36,7 +35,6 @@ async function detail(req, res, next) {
     next(e)
   }
 }
-
 
 async function paid(req, res, next) {
   let { _id } = req.headers
@@ -114,8 +112,8 @@ async function allPendings(req, res, next) {
   }
 }
 
-export async function createSubscription(membershipId) {
-  let membership = await Membership.getById(membershipId)
+async function createSubscription(membershipId) {
+  let membership = await Membership.findById(membershipId)
   return await Subscription.create({
     hash: uniqid().toUpperCase(),
     assignedAt: Date.now(),
@@ -129,5 +127,6 @@ export default {
   paid,
   confirm,
   getPending,
-  allPendings
+  allPendings,
+  createSubscription
 }

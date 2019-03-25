@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     payer () {
-      return this.legacy.payer
+      return this.legacy.payer.owner
     },
     amount () {
       if (this.legacy.annex) return this.legacy.amount

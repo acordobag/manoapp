@@ -7,16 +7,24 @@ import store from '@/store'
 trae.baseUrl(config.API_URL)
 
 const setHeaders = (cnf) => {
+  store.dispatch('app/isLoading', true)
   const token = window.localStorage.token
   if (token) cnf.headers['Authorization'] = token
   return cnf
 }
 
-const fullfillMiddleware = res => res
+const fullfillMiddleware = (res) => {
+  store.dispatch('app/isLoading', false)
+  return res
+}
 
 const rejectMiddleware = (err) => {
+  store.dispatch('app/isLoading', false)
   if (err.data && err.data.authorization === 'invalidToken') {
     store.dispatch('app/isAuth', false)
+  }else{
+    console.log(err)
+    //this.$alertify.error()
   }
   return Promise.reject(err)
 }

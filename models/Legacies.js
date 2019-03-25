@@ -1,7 +1,7 @@
 'use strict'
 
 import db from '../db'
-const {sequelize, Sequelize} = db
+const { sequelize, Sequelize } = db
 
 const model = () => {
   const legacies = sequelize.define('legacies', {
@@ -57,7 +57,7 @@ const Op = Sequelize.Op
 
 Model.findById = (id) => {
   return Model.find({
-    where : {
+    where: {
       id
     }
   })
@@ -71,16 +71,11 @@ Model.findPendingLegacies = (payerMembershipId) => {
         [Op.in]: ['paid', 'pending']
       },
     },
-    include: [
-      {
-        association: 'annex',
-        include: [
-          'membership',
-          'type'
-        ]
-      }
-    ]
-  })  
+    include: [{
+      association: 'annex',
+      include: ['type',{association: 'membership', include :['owner']}]
+    }]
+  })
 }
 
 Model.findOtherLegacies = (payerMembershipId) => {
@@ -88,41 +83,55 @@ Model.findOtherLegacies = (payerMembershipId) => {
     where: {
       payerMembershipId
     }
-  })  
+  })
 }
 
 Model.findDetailByHash = (hash, id, show = 'owner') => {
   let include = []
-  
+
   if (show === 'payer') {
-    include.push(
-      {association: 'payer', include: ['contacts']},
+    include.push({
+      association: 'payer',
+      include: [{
+        association: 'owner',
+        include: ['contacts']
+      }]
+    },
       {
         association: 'annex',
-        include: [
-          'type'
-        ]
+        include: ['type']
       }
     )
   } else {
-    include.push(
-      {
-        association: 'annex',
-        include: [
-          {association: 'owner', include: ['contacts', 'accounts']},
-          'type'
-        ]
-      }
+    include.push({
+      association: 'annex',
+      include: [{
+        association: 'membership',
+        include: [{
+          association: 'owner',
+          include: ['contacts',]
+        }]
+      },
+        'type'
+      ]
+    }
     )
   }
-
   return Model.find({
     where: {
       id,
       hash
     },
     include: include
-  })  
+  })
+}
+
+Model.findAllByHash = (legacyHash) => {
+  return Legacies.findAll({
+    where: {
+      hash: legacyHash
+    }
+  })
 }
 
 export default Model

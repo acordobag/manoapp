@@ -129,7 +129,7 @@ async function findByUserId(id) {
       id
     },
     attributes: { exclude: ['countryId'] },
-    include: includes
+    include: detailed
   })
 
   return result
