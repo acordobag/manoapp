@@ -14,48 +14,52 @@
 </template>
 
 <script>
-import Legacies from '@/services/Legacies'
-import { mapGetters } from 'vuex';
+import Legacies from "@/services/Legacies";
+import { mapGetters } from "vuex";
 export default {
-  data () {
+  data() {
     return {
       legacies: []
-    }
+    };
   },
-  mounted () {
-    this.initialize()
+  ready() {
+    events.$on("refresh", () => {
+      this.initialize();
+    });
+  },
+  mounted() {
+    this.initialize();
   },
   methods: {
-    initialize () {
-      this.getLegacies()
-      this.startRealTime()
+    initialize() {
+      this.getLegacies();
+      this.startRealTime();
     },
-    startRealTime () {
+    startRealTime() {
       setTimeout(() => {
-        this.socket.on('update/legacies', () => {
-          this.getLegacies()
-        })
+        this.socket.on("update/legacies", () => {
+          this.getLegacies();
+        });
       }, 100);
     },
-    async getLegacies () {
+    async getLegacies() {
       try {
-        let {data} = await Legacies.pending(this.selectedAccount.id)
-        this.$emit('setLegaciesNumber', data.length)
-        this.legacies = data
+        let { data } = await Legacies.pending(this.selectedAccount.id);
+        this.$emit("setLegaciesNumber", data.length);
+        this.legacies = data;
       } catch (e) {
-        console.log(data)
+        console.log(data);
       }
     }
   },
   computed: {
-    ...mapGetters('user', ['socket', 'selectedAccount'])
+    ...mapGetters("user", ["socket", "selectedAccount"])
   },
   components: {
-    pLegacy: () => import('@/components/pending-legacies/Single.vue')
+    pLegacy: () => import("@/components/pending-legacies/Single.vue")
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

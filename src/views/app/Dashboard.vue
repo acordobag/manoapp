@@ -49,17 +49,17 @@
 
 <script>
 // Libraries
-import {mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from "vuex";
 // Services
-import User from '@/services/User'
-import Legacies from '@/services/Legacies'
-import Membership from '@/services/Membership'
+import User from "@/services/User";
+import Legacies from "@/services/Legacies";
+import Membership from "@/services/Membership";
 
 export default {
-  mounted () {
-    this.initialize()
+  mounted() {
+    this.initialize();
   },
-  data () {
+  data() {
     return {
       welcomeText: null,
       linksCount: 0,
@@ -69,103 +69,110 @@ export default {
       contentLoad: false,
       selectedMembership: null,
       memberships: null
-    }
+    };
   },
   methods: {
-    initialize () {
-      this.getLinks()
-      this.getBenefits()
-      this.sayHi()
-      this.getNulls(),
-      this.getMemberhips()
+    initialize() {
+      this.getLinks();
+      this.getBenefits();
+      this.sayHi();
+      this.getNulls(), this.getMemberhips();
       this.selectedMembership = this.selectedAccount.id
       this.refreshSelected()
+      this.$emit("refresh")
     },
-    goToChange () {
-
+    goToChange() {},
+    initializeProcess() {
+      this.$alertify
+        .okBtn("Si, seguro")
+        .confirm(
+          "Seguro que desea empezar su proceso en ManoApp, al aceptar a usted se le asignarán 2 Legados pendientes de $20 para empezar su proceso de activación",
+          async () => {
+            try {
+              let { data } = await Legacies.initialize(this.selectedAccount);
+              //window.location.reload()
+              this.initialize();
+            } catch (e) {
+              this.$alertify.console.error(e);
+              console.log(e);
+            }
+          }
+        );
     },
-    initializeProcess () {
-      this.$alertify.okBtn('Si, seguro').confirm('Seguro que desea empezar su proceso en ManoApp, al aceptar a usted se le asignarán 2 Legados pendientes de $20 para empezar su proceso de activación', async () => {
-        try {
-          let {data} = await Legacies.initialize(this.selectedAccount)
-          //window.location.reload()
-          this.initialize()
-        } catch (e) {
-          this.$alertify.console.error(e);          
-          console.log(e)
-        }
-      })
-    },
-    async getNulls () {
+    async getNulls() {
       try {
-        let {data} = await Legacies.nulls(this.selectedAccount.id)
-        this.nullInSet = data.nullInSet
+        let { data } = await Legacies.nulls(this.selectedAccount.id);
+        this.nullInSet = data.nullInSet;
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
-    async getBenefits () {
+    async getBenefits() {
       try {
-        let {data} = await Legacies.benefits(this.selectedAccount.id)
-        this.benefits = data.benefits
+        let { data } = await Legacies.benefits(this.selectedAccount.id);
+        this.benefits = data.benefits;
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
-    async getMemberhips () {
+    async getMemberhips() {
       try {
-        let {data} = await Membership.userAccounts()
-        this.memberships = data
+        let { data } = await Membership.userAccounts();
+        this.memberships = data;
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
-    async getLinks () {
+    async getLinks() {
       try {
-        let {data} = await User.getLinks(this.selectedAccount.id)
-        this.linksCount = data.length
+        let { data } = await User.getLinks(this.selectedAccount.id);
+        this.linksCount = data.length;
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
-    setLegaciesNumber (value) {
-      this.pendingLegacies = value
-      this.contentLoad = true
+    setLegaciesNumber(value) {
+      this.pendingLegacies = value;
+      this.contentLoad = true;
     },
-    sayHi () {
-      let now = new Date()
-      let hour = now.getHours()
+    sayHi() {
+      let now = new Date();
+      let hour = now.getHours();
       if (hour < 12) {
-        this.welcomeText = 'Buenos Días'
-      } else if (hour >= 18){
-        this.welcomeText = 'Buenas Noches'
-      } else if (hour >= 12){
-        this.welcomeText = 'Buenas Tardes'
+        this.welcomeText = "Buenos Días";
+      } else if (hour >= 18) {
+        this.welcomeText = "Buenas Noches";
+      } else if (hour >= 12) {
+        this.welcomeText = "Buenas Tardes";
       }
     },
-    async accountChanged(m){
-      await this.refreshSelected()
-      this.initialize()
+    async accountChanged(m) {
+      await this.refreshSelected();
+      this.initialize();
     },
-    async refreshSelected(){
-      let {data} = await Membership.findById(this.selectedMembership)
-      this.setSelectedAccount(data)
+    async refreshSelected() {
+      let { data } = await Membership.findById(this.selectedMembership);
+      this.setSelectedAccount(data);
     },
-    ...mapActions('user', ['setSelectedAccount'])
+    ...mapActions("user", ["setSelectedAccount"])
   },
-  components:{
-    pPendingLegacies: () => import('@/components/pending-legacies/PendingLegacies.vue'),
-    pPendingSubscriptions: () => import('@/components/subscriptions/Pendings.vue')
+  components: {
+    pPendingLegacies: () =>
+      import("@/components/pending-legacies/PendingLegacies.vue"),
+    pPendingSubscriptions: () =>
+      import("@/components/subscriptions/Pendings.vue")
   },
   computed: {
-    ...mapGetters('user', ['userData', 'selectedAccount'])
+    ...mapGetters("user", ["userData", "selectedAccount"])
   },
-  watch:{
-    '$route' (to, from) {
-      this.initialize()
+  watch: {
+    $route(to, from) {
+      if (to.name == "home/app") {
+        this.initialize();
+      }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
