@@ -65,7 +65,6 @@ export default {
     }
   },
   async mounted () {
-    this.sIsLoading(true)
     this.getUserData()
     if (typeof FB !== 'undefined') {
       await this.getFacebookInfo()
@@ -131,7 +130,6 @@ export default {
               );
             } else {
               this.$alertify().alert('Debe autorizar a nuestra aplicación para poder acceder a sus datos de Facebook')
-              this.sIsLoading(false)
             }
           }, {scope: 'email'})
         }
@@ -173,12 +171,9 @@ export default {
         }
       } catch (e){
         console.log(e)
-      } finally {
-        this.sIsLoading(false)
       }
     },
-    ...mapActions('user', ['setUser']),
-    ...mapMutations('app', ['sIsLoading'])
+    ...mapActions('user', ['setUser'])
   },
   computed: {
     ...mapGetters('user', ['userData'])

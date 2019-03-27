@@ -13,8 +13,8 @@
             div
               label Cuenta
               select(v-model="selectedMembership", @change="accountChanged()") 
-                option(:value="0", disabled) Seleccione una cuenta
-                option(v-for="m in userData.memberships", :value="m") {{m.type.name}}           
+                option(:value="null", disabled) Seleccione una cuenta
+                option(v-for="m in memberships", :value="m.id") {{m.type.name}}           
             
             .details
               .cash-balance
@@ -57,7 +57,6 @@ import Membership from '@/services/Membership'
 
 export default {
   mounted () {
-    this.sIsLoading(true)
     this.initialize()
   },
   data () {
@@ -69,7 +68,7 @@ export default {
       nullInSet: false,
       contentLoad: false,
       selectedMembership: null,
-      memberhips: null
+      memberships: null
     }
   },
   methods: {
@@ -79,7 +78,8 @@ export default {
       this.sayHi()
       this.getNulls(),
       this.getMemberhips()
-      this.selectedMembership = this.selectedAccount
+      this.selectedMembership = this.selectedAccount.id
+      this.refreshSelected()
     },
     goToChange () {
 
@@ -88,10 +88,10 @@ export default {
       this.$alertify.okBtn('Si, seguro').confirm('Seguro que desea empezar su proceso en ManoApp, al aceptar a usted se le asignarán 2 Legados pendientes de $20 para empezar su proceso de activación', async () => {
         try {
           let {data} = await Legacies.initialize(this.selectedAccount)
-          window.location.reload()
+          //window.location.reload()
+          this.initialize()
         } catch (e) {
-          this.$alertify.console.error(e);
-          
+          this.$alertify.console.error(e);          
           console.log(e)
         }
       })
@@ -115,7 +115,7 @@ export default {
     async getMemberhips () {
       try {
         let {data} = await Membership.userAccounts()
-        this.memberhips = data
+        this.memberships = data
       } catch (e) {
         console.log(e)
       }
@@ -126,8 +126,6 @@ export default {
         this.linksCount = data.length
       } catch (e) {
         console.log(e)
-      } finally {
-        this.sIsLoading(false)
       }
     },
     setLegaciesNumber (value) {
@@ -145,14 +143,14 @@ export default {
         this.welcomeText = 'Buenas Tardes'
       }
     },
-    accountChanged(m){
-      //let {data} = await Membership.findById(this.selectedMembership)
-      this.setSelectedAccount(this.selectedMembership)
-      //localStorage.setItem('selectedAccount', JSON.stringify(this.selectedMembership))
-      window.location.reload()
-      //this.$forceUpdate()
+    async accountChanged(m){
+      await this.refreshSelected()
+      this.initialize()
     },
-    ...mapMutations('app', ['sIsLoading']),
+    async refreshSelected(){
+      let {data} = await Membership.findById(this.selectedMembership)
+      this.setSelectedAccount(data)
+    },
     ...mapActions('user', ['setSelectedAccount'])
   },
   components:{
@@ -161,93 +159,98 @@ export default {
   },
   computed: {
     ...mapGetters('user', ['userData', 'selectedAccount'])
+  },
+  watch:{
+    '$route' (to, from) {
+      this.initialize()
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~styles/main.scss';
-  .waitingEmptyLegacy{
-    background: $main-color;
-    padding: 20px;
-    margin: 10px;
+@import "~styles/main.scss";
+.waitingEmptyLegacy {
+  background: $main-color;
+  padding: 20px;
+  margin: 10px;
+  color: white;
+  border-radius: 5px;
+  box-shadow: $shadow;
+}
+.initializeProcess {
+  margin: 10px;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard {
+  .account-resume {
     color: white;
-    border-radius: 5px;
-    box-shadow: $shadow;
-  }
-  .initializeProcess{
-    margin: 10px;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .dashboard{
-    .account-resume{
-      color:white;
-      overflow: hidden;
-      background: $main-color;
-      display: grid;
-      grid-template-columns: 1fr;
-      a{
-        color: white;
-        text-decoration: underline;
-      }
-      .user-data{
+    overflow: hidden;
+    background: $main-color;
+    display: grid;
+    grid-template-columns: 1fr;
+    a {
+      color: white;
+      text-decoration: underline;
+    }
+    .user-data {
+      height: 100%;
+      display: flex;
+      & > * {
         height: 100%;
-        display: flex;
-        &>*{
-          height: 100%;
+      }
+      .text {
+        * {
+          margin: 2px 0;
         }
-        .text{
-          *{
-            margin: 2px 0;
-          }
-          .welcome{
-            font-size: 2em;
-            margin-bottom: 5px;
-          }
-          .details{
-            padding: 5px 0;
-            display: flex;
-            &>*{
-              margin-right: 10px;
-              padding-right: 20px;
-              border-right: 1px solid darken($main-color, 4)
-            }
-            &>:last-child{
-              border-right: none;
-            }
-
-            .number{
-              font-size: 1.5em;
-              font-family: $console-font;
-            }
-          }
-          font-size: .7em;
-          padding: 10px;
-          width: 70%;
+        .welcome {
+          font-size: 2em;
+          margin-bottom: 5px;
         }
-        .image{
-          width: 30%;
+        .details {
+          padding: 5px 0;
           display: flex;
-          padding-top: 15px;
-          justify-content: center;
-          align-items: flex-start;
-          .profile-image{
-            height: 80px;
-            width: 80px;
-            border-radius: 50%;
-            background-image: url('~assets/no-photo.png');
-            background-position: center;
-            background-size: cover;
+          & > * {
+            margin-right: 10px;
+            padding-right: 20px;
+            border-right: 1px solid darken($main-color, 4);
           }
+          & > :last-child {
+            border-right: none;
+          }
+
+          .number {
+            font-size: 1.5em;
+            font-family: $console-font;
+          }
+        }
+        font-size: 0.7em;
+        padding: 10px;
+        width: 70%;
+      }
+      .image {
+        width: 30%;
+        display: flex;
+        padding-top: 15px;
+        justify-content: center;
+        align-items: flex-start;
+        .profile-image {
+          height: 80px;
+          width: 80px;
+          border-radius: 50%;
+          background-image: url("~assets/no-photo.png");
+          background-position: center;
+          background-size: cover;
         }
       }
     }
   }
+}
 </style>

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Auth from '@/services/Auth'
 import User from '@/services/User'
 import Membership from '@/services/Membership'
@@ -52,7 +52,6 @@ export default {
         console.log(e)
       }
     },
-    ...mapMutations('app', ['sIsLoading']),
     ...mapActions('user', ['setSelectedAccount', 'setUser'])
    },
    computed: {

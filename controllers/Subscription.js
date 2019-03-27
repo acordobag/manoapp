@@ -50,6 +50,7 @@ async function paid(req, res, next) {
     subscription.save()
 
     socketEmit('update/subscription', subscription.membership.owner.id)
+    socketEmit('update/user', subscription.membership.owner.id)
 
     res.status(200).send({ _id, subscription }).end()
   } catch (e) {

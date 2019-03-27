@@ -1,4 +1,4 @@
 'use strict'
 
 require('./Legacies')
-//require('./User')
+require('./User')

@@ -38,112 +38,122 @@
 </template>
 
 <script>
-import Subscription from '@/services/Subscriptions'
-import { mapGetters } from 'vuex';
+import Subscription from "@/services/Subscriptions";
+import { mapGetters } from "vuex";
 
 export default {
-  data () {
+  data() {
     return {
       subscription: {}
-    }
+    };
   },
-  mounted () {
-    this.initialize()
+  mounted() {
+    this.initialize();
   },
   methods: {
-    initialize () {
-      this.getSubscriptionDetail()
-      this.startRealTime()
+    initialize() {
+      this.getSubscriptionDetail();
+      this.startRealTime();
     },
-    async startRealTime () {
+    async startRealTime() {
       setTimeout(() => {
-        this.socket.on('update/subscription', () => {
-          this.getSubscriptionDetail()
-        })
-      }, 100)
+        this.socket.on("update/subscription", () => {
+          this.getSubscriptionDetail();
+        });
+      }, 100);
     },
-    async paidSubscription () {
-      this.$alertify.okBtn('Si, estoy seguro').confirm('Seguro que desea marcar su suscripción como pagada, es posible que el equipo contable de ManoApp te solicite un comprobante de pago', async () => {
-        try {
-          let {data} = await Subscription.paid({hash: this.hash})
-          this.$alertify.okBtn('Entendido').alert('Se marco la suscripción como pagada, por favor espere a que un asesor de ManoApp verifique la información', () => {
-            this.$router.go(-1)
-          })
-        } catch (e) {
-          console.log(e)
-        }
-      })
+    async paidSubscription() {
+      this.$alertify
+        .okBtn("Si, estoy seguro")
+        .confirm(
+          "Seguro que desea marcar su suscripción como pagada, es posible que el equipo contable de ManoApp te solicite un comprobante de pago",
+          async () => {
+            try {
+              let { data } = await Subscription.paid({ hash: this.hash });
+              this.$alertify
+                .okBtn("Entendido")
+                .alert(
+                  "Se marco la suscripción como pagada, por favor espere a que un asesor de ManoApp verifique la información",
+                  () => {
+                    this.$router.go(-1);
+                  }
+                );
+            } catch (e) {
+              console.log(e);
+            }
+          }
+        );
     },
-    async getSubscriptionDetail () {
+    async getSubscriptionDetail() {
       try {
-        let {data} = await Subscription.detail(this.hash)
-        this.subscription = data
+        let { data } = await Subscription.detail(this.hash);
+        this.subscription = data;
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     }
   },
-  computed :{
-    hash () {
-      return this.$route.params.hash
+  computed: {
+    hash() {
+      return this.$route.params.hash;
     },
-    ...mapGetters('user', ['socket'])
+    ...mapGetters("user", ["socket"])
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-@import '~styles/main.scss';
-  .subscriptionDetail{
+@import "~styles/main.scss";
+.subscriptionDetail {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.clock {
+  padding: 20px;
+}
+.timer {
+  padding: 0 20px;
+  color: $main-color;
+  font-size: 2em;
+}
+
+.waiting {
+  font-size: 1.3em;
+}
+
+.accounts {
+  .account {
+    position: relative;
+    overflow: hidden;
+    i {
+      font-size: 7em;
+      opacity: 0.1;
+      left: 0;
+      position: absolute;
+    }
     display: flex;
     padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
     flex-direction: column;
     justify-content: center;
-    align-items: center
-  }
-  .clock{
-    padding: 20px;
-  }
-  .timer{
-    padding: 0 20px;
-    color: $main-color;
-    font-size: 2em;
-  }
-
-  .waiting{
-    font-size: 1.3em;
-  }
-
-  .accounts{
-    .account{
-      position: relative;
-      overflow: hidden;
-      i{
-        font-size: 7em;
-        opacity: .1;
-        left: 0;
-        position: absolute
-      }
-      display: flex;
-      padding: 20px;
-      margin: 10px;
-      border-radius: 10px;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      &.bitcoin{
-        background-color: goldenrod;
-        color: rgb(83, 32, 3)
-      }
-      &.bank{
-        background-color: #1DABEC;
-        color: rgb(0, 7, 109);
-      }
-      &.identification{
-        background-color: rgb(204, 204, 204);
-        color: rgb(48, 48, 48);
-      }
+    align-items: center;
+    &.bitcoin {
+      background-color: goldenrod;
+      color: rgb(83, 32, 3);
+    }
+    &.bank {
+      background-color: #1dabec;
+      color: rgb(0, 7, 109);
+    }
+    &.identification {
+      background-color: rgb(204, 204, 204);
+      color: rgb(48, 48, 48);
     }
   }
+}
 </style>
 

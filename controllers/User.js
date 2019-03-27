@@ -117,7 +117,7 @@ async function create(req, res, next) {
   let parentMembership
 
   parentMembership = await Membership.findById(data.parentId)
-  
+
   try {
     user.username = _createUsername(data.name, data.lastname)
     user.password = '123456'
@@ -325,11 +325,11 @@ function _createUsername(name, lastName) {
 
 
 export async function cronCheckUserStatus() {
-  let users = await User.findAll()
+  let users = await Membership.findAll()
 
   for (let i = 0; i < users.length; i++) {
-    const user = users[i]
-    if (user.parentId && user.parentId > 2) await _checkParentStatus(user.parentId)
+    const m = users[i]
+    if (m.parentId && m.parentId > 2) await _checkParentStatus(m.parentId)
   }
 }
 

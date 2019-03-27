@@ -143,7 +143,7 @@ export default {
         this.socket.on('update/user', async () => {
           try {
             let {data} = await Membership.findById(this.selectedAccount.id)
-            localStorage.setItem('selectedAccount', JSON.stringify(data))
+            //localStorage.setItem('selectedAccount', JSON.stringify(data))
             this.setSelectedAccount(data)
           } catch (e) {
             console.log(e)

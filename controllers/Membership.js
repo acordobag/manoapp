@@ -16,13 +16,13 @@ async function create(pMembership) {
 async function findById(req, res, next) {
   let { id } = req.params
   try {
-   return await Membership.findById(id)
+    console.log('entro')
+    let mem = await Membership.findById(id)
+    res.status(200).send(mem).end()
   } catch (error) {
     next()
     console.log(error)
   }
-
-  return m
 }
 
 async function getLinks(req, res, next) {
@@ -71,7 +71,7 @@ async function getAllByUserId(req, res, next) {
   }
 }
 
-async function confirmMembership(req, res, next){
+async function confirmMembership(req, res, next) {
   let { id } = req.body
 
   try {
@@ -86,7 +86,7 @@ async function confirmMembership(req, res, next){
 
     let user = await User.findByUserId(membership.ownerId)
 
-    res.status(200).send({membership: result, owner: user}).end()
+    res.status(200).send({ membership: result, owner: user }).end()
   } catch (e) {
     console.log(e)
     next(e)

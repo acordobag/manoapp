@@ -7,7 +7,7 @@ import {cronCheckUserStatus} from '../controllers/User'
  * CRON JOB FOR CONTRACT PRICES
  */
 
-cron.schedule('*/30 * * * *', async () => {
+cron.schedule('*/5 * * * *', async () => {
   console.log('Running User cron')
   cronCheckUserStatus()
 })

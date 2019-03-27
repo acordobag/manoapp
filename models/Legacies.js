@@ -73,7 +73,7 @@ Model.findPendingLegacies = (payerMembershipId) => {
     },
     include: [{
       association: 'annex',
-      include: ['type',{association: 'membership', include :['owner']}]
+      include: ['type', { association: 'membership', include: ['owner'] }]
     }]
   })
 }
@@ -87,23 +87,15 @@ Model.findOtherLegacies = (payerMembershipId) => {
 }
 
 Model.findDetailByHash = (hash, id, show = 'owner') => {
-  let include = []
-
-  if (show === 'payer') {
-    include.push({
+  let include = [
+    {
       association: 'payer',
       include: [{
         association: 'owner',
         include: ['contacts']
       }]
     },
-      {
-        association: 'annex',
-        include: ['type']
-      }
-    )
-  } else {
-    include.push({
+    {
       association: 'annex',
       include: [{
         association: 'membership',
@@ -115,8 +107,8 @@ Model.findDetailByHash = (hash, id, show = 'owner') => {
         'type'
       ]
     }
-    )
-  }
+  ]
+
   return Model.find({
     where: {
       id,

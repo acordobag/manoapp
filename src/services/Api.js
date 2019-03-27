@@ -3,6 +3,7 @@
 import trae from 'trae'
 import config from '@root/config/vue'
 import store from '@/store'
+import Vue from 'vue';
 
 trae.baseUrl(config.API_URL)
 
@@ -24,7 +25,7 @@ const rejectMiddleware = (err) => {
     store.dispatch('app/isAuth', false)
   }else{
     console.log(err)
-    //this.$alertify.error()
+    Vue.$alertify.error()
   }
   return Promise.reject(err)
 }

@@ -36,28 +36,23 @@ export default {
   },
   methods: {
     async activateAnnex () {
-      try {  
-        this.sIsLoading(true)      
+      try {      
         let {data} = await Annex.activate(this.selectedAccount)
         if (data.newAnnex) {
           await this.getAnnexes()
         }
-        this.sIsLoading(true)
       } catch (e) {
         console.log(e)
       }
     },
     async getAnnexes () {
       try {
-        this.sIsLoading(true)
         let {data} = await Annex.get(this.selectedAccount.id)
         this.annexes = data
-        this.sIsLoading(false)
       } catch (e) {
         next(e)
       }
-    },
-    ...mapMutations('app', ['sIsLoading'])
+    }
   },
   computed: {
     open() {

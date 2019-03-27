@@ -162,7 +162,7 @@ async function paid(req, res, next) {
 
     legacy.save()
 
-    socketEmit('update/legacies', legacy.payerMembershipId)
+    socketEmit('update/legacies', legacy.payer.ownerId)
 
     res.status(200).send({ status: true, id, hash }).end()
   } catch (e) {
@@ -184,15 +184,14 @@ async function confirm(req, res, next) {
     legacy.status = 'confirmed'  
     legacy.save()
 
-    socketEmit('update/legacies', legacy.payerMembershipId)
+    socketEmit('update/legacies', legacy.payer.ownerId)
+    socketEmit('update/user', legacy.payer.ownerId)
     // Verificar estado de los otros legados a ver si pasa
     let statusOfSet = await _checkSetStatus(legacy.payerMembershipId)
 
     _checkPayerStatus(legacy.payerMembershipId, statusOfSet)
-
     _checkAnnexStatus(legacy.hash)
-    legacy.save()
-    // Chequeo si los otros de SETOFLEGACIES ya fueron pagados para hacer el UPDATE del usuario o hacerle otros legados
+
     res.status(200).send({ confirmed: true, statusOfSet }).end()
   } catch (e) {
     console.log(e)
@@ -256,10 +255,10 @@ async function _checkPayerStatus(payerId, update) {
     let annex = await Annex.findByUserIdAndType(payer.id, payer.annexTypeId)
     if (annex.id) await AnnexController.increaseAnnexLevel(annex.id)
   }
-  if (payer.parentId !== 1 | 2 | 3 | 4) return
+  if (payer.parentId == 1 | 2 | 3 | 4) return
   UserControler._checkParentStatus(payer.parentId)
   let grandfather = await User.findByUserId(payer.parentId)
-  if (grandfather !== 1 | 2 | 3 | 4) return
+  if (grandfather == 1 | 2 | 3 | 4) return
   UserControler._checkParentStatus(grandfather.parentId)
 }
 
