@@ -79,7 +79,8 @@ export default {
       this.getNulls(), this.getMemberhips();
       this.selectedMembership = this.selectedAccount.id
       this.refreshSelected()
-      this.$emit("refresh")
+      this.$refs.pPendingLegacies.initialize();
+      this.$refs.pPendingSubscriptions.initialize();
     },
     goToChange() {},
     initializeProcess() {
