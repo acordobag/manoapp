@@ -65,7 +65,6 @@ async function getBenefits(req, res, next) {
 
     legacies.map(el => {
       if (el.status === 'confirmed') {
-        console.log(el.amount)
         benefits = benefits + parseFloat(el.amount)
       }
     })
