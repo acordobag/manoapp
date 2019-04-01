@@ -6,7 +6,7 @@ import User from '../models/User'
 async function paid (req, res, next) {
   let {_id} = req.headers
   let {hash} = req.body
-  console.log('Entra aqui')
+
   try {
     let subscription = await Subsctiption.find({where: {hash}})
     subscription.status = 'paid'

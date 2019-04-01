@@ -16,7 +16,6 @@ async function create(pMembership) {
 async function findById(req, res, next) {
   let { id } = req.params
   try {
-    console.log('entro')
     let mem = await Membership.findById(id)
     res.status(200).send(mem).end()
   } catch (error) {
