@@ -17,7 +17,10 @@ const model = () => {
     suscriptionAmount: {
       type: Sequelize.DECIMAL(10,2),
       allowNull: false
-    }
+    },
+    initialLegacies: {
+      type: Sequelize.INTEGER
+    },
   })
 
   return MembershipType
