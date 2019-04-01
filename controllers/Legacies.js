@@ -65,7 +65,8 @@ async function getBenefits(req, res, next) {
 
     legacies.map(el => {
       if (el.status === 'confirmed') {
-        benefits = benefits + 20
+        console.log(el.amount)
+        benefits = benefits + parseFloat(el.amount)
       }
     })
 
@@ -90,7 +91,7 @@ async function initializeProgress(req, res, next) {
     if (otherLegacies) return res.status(500).send({ error: 'user have other legacies' }).end()
 
     if (membership.status = 'subscriber') {
-      await createNewLegaciesSet(id, 2, false)
+      await createNewLegaciesSet(id, membership.type.initialLegacies, false)
     }
 
     res.status(200).send(result).end()
