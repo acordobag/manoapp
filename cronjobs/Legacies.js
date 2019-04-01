@@ -8,5 +8,6 @@ import Legacy from '../controllers/Legacies'
  */
 
 cron.schedule('*/1 * * * *', async () => {
+  console.log('Running Legacies cron')
   Legacy.cronCheckNullLegacies()
 })

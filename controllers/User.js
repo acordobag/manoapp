@@ -200,6 +200,7 @@ async function resetPassword(req, res, next) {
   let { clientId } = req.body
   let password = crypto.randomBytes(4).toString('hex')
 
+  console.log(password)
 
   res.status(200).send(password).end()
 }

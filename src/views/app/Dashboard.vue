@@ -77,12 +77,10 @@ export default {
       this.getBenefits();
       this.sayHi();
       this.getNulls(), this.getMemberhips();
-      this.selectedMembership = this.selectedAccount.id;
-      this.refreshSelected();
-      if (this.$refs.pPendingLegacies && this.$refs.pPendingSubscriptions) {
-        this.$refs.pPendingLegacies.initialize();
-        this.$refs.pPendingSubscriptions.initialize();
-      }
+      this.selectedMembership = this.selectedAccount.id
+      this.refreshSelected()
+      this.$refs.pPendingLegacies.initialize();
+      this.$refs.pPendingSubscriptions.initialize();
     },
     goToChange() {},
     initializeProcess() {

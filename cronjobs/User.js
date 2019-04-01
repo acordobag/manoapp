@@ -8,5 +8,6 @@ import {cronCheckUserStatus} from '../controllers/User'
  */
 
 cron.schedule('*/5 * * * *', async () => {
+  console.log('Running User cron')
   cronCheckUserStatus()
 })
