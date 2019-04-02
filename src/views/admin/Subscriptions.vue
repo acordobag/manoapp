@@ -4,10 +4,8 @@
       .sub(v-for="sub in subscriptions")
         .date
           backClock(:date="sub.assignedAt")
-        .userId {{sub.membership.id}}
-        .name {{sub.membership.owner.fullName}}
-        .amount {{sub.amount}}
-        .status {{sub.status}}
+        .name {{sub.membership.owner.name}}
+        .amount ${{Math.round(sub.amount)}}
         .action(v-if="sub.paid")
           .btn(@click="confirmSubscription(sub.membership.owner, sub.hash)") Confirmar
 </template>

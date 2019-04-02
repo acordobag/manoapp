@@ -64,7 +64,7 @@ export default (app, server) => {
     console.log(err)
     // set locals, only providing error in development
     res.locals.message = err.message
-    res.locals.error = enviroment === 'development' ? err : {}
+    res.locals.error = enviroment === 'development' ? err : {error:'Ocurrió un error inesperado, por favor contacte a su administrador.'}
     // render the error page
     res.status(err.status || 500)
     // custom error for sequelize validation

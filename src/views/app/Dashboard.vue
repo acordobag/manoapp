@@ -42,9 +42,9 @@
     .initializeProcess(v-if="!nullInSet && selectedAccount.status === 'subscriber' && pendingLegacies === 0 && contentLoad")
       .init Ya puedes empezar el proceso para activarte como ejecutivo ManoApp
       .btn.btn-block.margin-top-10.padding-10(@click="initializeProcess") Empezar
-    pPendingLegacies(@setLegaciesNumber="setLegaciesNumber")
+    pPendingLegacies(ref="legacies",@setLegaciesNumber="setLegaciesNumber")
     .pk-spacer
-    pPendingSubscriptions
+    pPendingSubscriptions(ref="subscriptions")
 </template>
 
 <script>
@@ -73,23 +73,19 @@ export default {
   },
   methods: {
     initialize() {
-      this.getLinks();
-      this.getBenefits();
-      this.sayHi();
-      this.getNulls(), this.getMemberhips();
-      this.selectedMembership = this.selectedAccount.id;
-      this.refreshSelected();
-      if (this.$refs.pPendingLegacies && this.$refs.pPendingSubscriptions) {
-        this.$refs.pPendingLegacies.initialize();
-        this.$refs.pPendingSubscriptions.initialize();
-      }
+      this.getLinks()
+      this.getBenefits()
+      this.sayHi()
+      this.getNulls(), this.getMemberhips()
+      this.selectedMembership = this.selectedAccount.id
+      this.refreshSelected()
     },
     goToChange() {},
     initializeProcess() {
       this.$alertify
         .okBtn("Si, seguro")
         .confirm(
-          "Seguro que desea empezar su proceso en ManoApp, al aceptar a usted se le asignarán 2 Legados pendientes de $20 para empezar su proceso de activación",
+          `Seguro que desea empezar su proceso en ManoApp, al aceptar a usted se le asignarán ${this.selectedAccount.type.initialLegacies} Legados pendientes de $${this.selectedAccount.type.suscriptionAmount} para empezar su proceso de activación`,
           async () => {
             try {
               let { data } = await Legacies.initialize(this.selectedAccount);
@@ -149,13 +145,20 @@ export default {
         this.welcomeText = "Buenas Tardes";
       }
     },
-    async accountChanged(m) {
-      await this.refreshSelected();
-      this.initialize();
+    async accountChanged() {
+      await this.refreshSelected()
+      if(this.selectedAccount.status == "created"){
+        this.$router.push({name: this.userData.username + '/activate'})
+      }
+      this.initialize()
     },
     async refreshSelected() {
-      let { data } = await Membership.findById(this.selectedMembership);
-      this.setSelectedAccount(data);
+      let { data } = await Membership.findById(this.selectedMembership)
+      this.setSelectedAccount(data)
+      if (this.$refs.legacies && this.$refs.subscriptions) {
+        this.$refs.legacies.initialize()
+        this.$refs.subscriptions.initialize()
+      }
     },
     ...mapActions("user", ["setSelectedAccount"])
   },

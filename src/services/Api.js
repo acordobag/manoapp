@@ -1,9 +1,9 @@
 'use strict'
 
+import alertify from 'alertify.js'
 import trae from 'trae'
 import config from '@root/config/vue'
 import store from '@/store'
-import Vue from 'vue';
 
 trae.baseUrl(config.API_URL)
 
@@ -23,10 +23,11 @@ const rejectMiddleware = (err) => {
   store.dispatch('app/isLoading', false)
   if (err.data && err.data.authorization === 'invalidToken') {
     store.dispatch('app/isAuth', false)
-  }else{
-    console.log(err)
-    Vue.$alertify.error()
-  }
+  } else if(err.data && err.data.error){
+    alertify.error('Error '+ err.data.error)
+  }/*else{
+    alertify.error('Ocurrió un error inesperado, por favor contacte a su administrador.')
+  }*/
   return Promise.reject(err)
 }
 

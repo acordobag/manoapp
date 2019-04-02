@@ -5,7 +5,19 @@ main.buy-contracts
     .pk-tile-header.dark
       .pk-tile-title Nuevo Enlace
     .pk-tile-body
-      form.form-horizontal(role='form', @submit.prevent="newLink")
+      h3.control-label(for='isNew')
+        | ¿Es un usuario ya registrado?
+      label.switch
+        input(type="checkbox", v-model="isCurrentUser")
+        span.slider.round
+      form.form-horizontal(v-if="isCurrentUser", role='form', @submit.prevent="newLink")
+        .pk-input-group
+          label.control-label(for='email')
+            | Email
+          input.pk-input.bordered(type="email", placeholder="Email", v-model="email")
+        button.btn.btn-strategic.btn-block(type='submit')
+          | Enlazar
+      form.form-horizontal(v-else, role='form', @submit.prevent="newLink")
         .pk-input-group
           label.control-label(for='name')
             | Nombre
@@ -47,7 +59,8 @@ export default {
       email: null,
       identification: null,
       countryId: 0,
-      countries: []
+      countries: [],
+      isCurrentUser: false
     }
   },
   mounted () {
@@ -69,7 +82,8 @@ export default {
         email: this.email,
         countryId: this.countryId,
         identification: this.identification,
-        parentId : this.selectedAccount.id
+        parentId : this.selectedAccount.id,
+        isCurrentUser: this.isCurrentUser
       }
       this.$alertify.okBtn('Si, enlazar').confirm(`Seguro que desea enlazar a ${this.name}?.
       Este proceso no puede ser revertido,
@@ -83,7 +97,7 @@ export default {
           if (e.data.type === 'validation') {
             return this.handleError(e.data)
           }
-          return this.$alertify.alert('Ocurrio un error inesperado, por favor contacte a soporte al empresario para mas ayuda')
+          return this.$alertify.okBtn('Entendido').alert(e.data.error)
         }
       })
     },
@@ -93,7 +107,7 @@ export default {
         if (e.errors.length) {
           switch (e.errors[0].field) {
             case 'email':
-              return this.$alertify.okBtn('Entendido').alert(`No se puede enlazar a ${this.name} ${this.lastname} ya que el correo electrónico ${this.email} ya se encuentra en nuestra base de datos`)
+              return this.$alertify.okBtn('Entendido').alert(`Parece que ${this.name} ${this.lastname} ya es parte de nuestro sistema, por favor seleciona la opción de enlazar usuario ya registrado`)
             case 'identification':
               return this.$alertify.okBtn('Entendido').alert(`No se puede enlazar a ${this.name} ${this.lastname} ya que la identifciación ${this.identification} ya se encuentra en nuestra base de datos`)
           }
@@ -106,3 +120,65 @@ export default {
   },
 }
 </script>
+<style>
+.switch {
+  margin-top: 10px;
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 28px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #712887;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #712887;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>

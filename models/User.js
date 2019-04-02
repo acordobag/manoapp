@@ -105,7 +105,7 @@ async function findByEmail(username) {
       email: username
     },
     attributes: { exclude: ['countryId', 'parentId'] },
-    include: includes
+    include: detailed
   })
 
   return result
