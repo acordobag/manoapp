@@ -74,7 +74,7 @@ async function confirm(req, res, next) {
     let othersSubscriptions = await Subscription.findOtherSubscriptions(subscription.payerMembershipId, hash)
     let pendingLegacies = await Legacies.findPendingLegacies(subscription.payerMembershipId)
 
-    if (pendingLegacies.length) return res.status(500).send({ error: 'Tiene legados pendientes' }).end()
+    if (pendingLegacies.length) return res.status(500).send({ error: 'Tienes legados pendientes por pagr aún.' }).end()
 
     subscription.status = 'confirmed'
     subscription.confirmed = true

@@ -87,7 +87,7 @@ async function initializeProgress(req, res, next) {
     // Chequear que no tenga otros asignados
     let otherLegacies = await SetOfLegacies.findActive(id)
 
-    if (otherLegacies) return res.status(500).send({ error: 'user have other legacies' }).end()
+    if (otherLegacies) return res.status(500).send({ error: 'Ya se te ha cargado un set de legados, intenta refrescar la página.' }).end()
 
     if (membership.status = 'subscriber') {
       await createNewLegaciesSet(id, membership.type.initialLegacies, false)
@@ -176,8 +176,8 @@ async function confirm(req, res, next) {
   try {
     let legacy = await Legacies.findDetailByHash(hash, id)
 
-    if (!legacy.paid) return res.status(500).send({ error: 'No se ha marcado como pagado' }).end()
-    if (legacy.confirmed) return res.status(500).send({ error: 'Ya se ha marcado como confirmado' }).end()
+    if (!legacy.paid) return res.status(500).send({ error: 'El legado no se ha marcado como pagado.' }).end()
+    if (legacy.confirmed) return res.status(500).send({ error: 'El legado ya se ha marcado como confirmado.' }).end()
 
     legacy.confirmed = true
     legacy.confirmedAt = Date.now()
@@ -308,7 +308,6 @@ async function _checkSetStatus(payerId) {
       set.status = 'complete'
       await set.save()
     }
-    console.log()
     return canUpdate
   } catch (e) {
     console.log(e)

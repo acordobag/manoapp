@@ -113,34 +113,40 @@ async function changePassword(req, res, next) {
 async function create(req, res, next) {
   let data = req.body
   let user = {}
-  let memberhip
+  let membership
   let parentMembership
 
   parentMembership = await Membership.findById(data.parentId)
 
   try {
-    user.username = _createUsername(data.name, data.lastname)
-    user.password = '123456'
-    user.name = data.name
-    user.lastname = data.lastname
-    user.email = data.email
-    user.identification = data.identification
-    user.countryId = data.countryId
-    try {
-      user = await User.create(user)
-    } catch (e) {
-      data.username + '1';
-      user = await User.create(user)
+    if (!data.isCurrentUser) {
+      user.username = _createUsername(data.name, data.lastname)
+      user.password = '123456'
+      user.name = data.name
+      user.lastname = data.lastname
+      user.email = data.email
+      user.identification = data.identification
+      user.countryId = data.countryId
+      try {
+        user = await User.create(user)
+      } catch (e) {
+        data.username + '1';
+        user = await User.create(user)
+      }
+    } else {
+      user = await User.findByEmail(data.email)
     }
-
+    //check if is in this membership
+    membership = await Membership.findByUserAndType(user.id,parentMembership.membershipTypeId)
+    if (membership) return res.status(500).send({ error: `Vaya! No pudimos crear el enlace, parece que ${user.name} ya sido enlazado por otra persona en esta membresía.`}).end()
     //create membership
-    memberhip = {
+    membership = {
       membershipTypeId: parentMembership.membershipTypeId,
       parentId: parentMembership.id,
       ownerId: user.id
     }
 
-    await Membership.create(memberhip)
+    await Membership.create(membership)
 
     await EmailController.invitationEmail(user.email, `${user.name} ${user.lastname}`, user.username)
 

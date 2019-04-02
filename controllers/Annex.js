@@ -31,12 +31,12 @@ async function createAnnex(req, res, next) {
     let user = await User.findByUserId(_id)
     let membership = await Membership.findById(id);
 
-    if (membership.status !== 'receiver') return res.status(500).send({ error: "No puede ser receptor todavia" }).end()
+    if (membership.status !== 'receiver') return res.status(500).send({ error: "Parece que aún no eres reptor en esta membresía" }).end()
 
     if (user.permissions !== 'superadmin') {
       // Verificar que no tenga otro Annexo del mismo nivel activo
       let otherAnnexes = await Annex.findOthersOfSame(id, membership.type.annexTypeId)
-      if (otherAnnexes.length) return res.status(500).send({ error: "Ya tiene un anexo creado" }).end()
+      if (otherAnnexes.length) return res.status(500).send({ error: "Parece que ya tienes un anexo creado!" }).end()
     }
 
     let annex = {

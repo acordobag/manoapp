@@ -51,6 +51,18 @@ async function findById(id, flag = false) {
   return result
 }
 
+async function findByUserAndType(ownerId, membershipTypeId) {
+  let result = await Model.find({
+    where: {
+      ownerId,
+      membershipTypeId
+    },
+    include: includes
+  })
+
+  return result
+}
+
 async function findLinks(parentId) {
   let result = await Model.findAll({
     where: {
@@ -90,6 +102,7 @@ Model.findById = findById
 Model.findByOwnerId = findByOwnerId
 Model.findLinks = findLinks
 Model.findInGiverStateByOId = findInGiverStateByOId
+Model.findByUserAndType = findByUserAndType
 
 
 export default Model
