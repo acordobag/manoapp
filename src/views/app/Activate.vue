@@ -42,7 +42,7 @@ export default {
       try {
         let {data} = await Membership.confirm(this.selectedAccount)
         if (data.membership.status === 'confirmed') {
-          this.$alertify.alert('Felicidades, su cuenta fue confirmada con éxito!', () => {
+          this.$alertify.okBtn('Ir a la app').alert('Felicidades, su cuenta fue confirmada con éxito!', () => {
             this.setSelectedAccount(data.membership)
             this.setUser(data.owner)
             this.$router.push({name: 'home/app'})

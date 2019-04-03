@@ -2,6 +2,7 @@
 
 import Subscription from '../models/Subscription'
 import Legacies from '../models/Legacies'
+import Parameters from '../models/Parameters'
 import Membership from '../models/Membership'
 import { socketEmit } from '../helpers/sockets'
 import uniqid from 'uniqid'
@@ -74,7 +75,7 @@ async function confirm(req, res, next) {
     let othersSubscriptions = await Subscription.findOtherSubscriptions(subscription.payerMembershipId, hash)
     let pendingLegacies = await Legacies.findPendingLegacies(subscription.payerMembershipId)
 
-    if (pendingLegacies.length) return res.status(500).send({ error: 'Tienes legados pendientes por pagr aún.' }).end()
+    if (pendingLegacies.length) return res.status(500).send({ error: 'Tienes legados pendientes por pagar aún.' }).end()
 
     subscription.status = 'confirmed'
     subscription.confirmed = true
@@ -113,14 +114,18 @@ async function allPendings(req, res, next) {
   }
 }
 
-async function createSubscription(membershipId) {
+async function createSubscription(membershipId, first = false) {
+
   let membership = await Membership.findById(membershipId)
+  let amount = first ? (await Parameters.findParam('initialPayment')).value : membership.type.suscriptionAmount
+
   return await Subscription.create({
     hash: uniqid().toUpperCase(),
     assignedAt: Date.now(),
     payerMembershipId: membership.id,
-    amount: membership.type.suscriptionAmount
+    amount: amount
   })
+
 }
 
 export default {
