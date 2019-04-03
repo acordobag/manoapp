@@ -133,7 +133,7 @@ async function _createLevel(annexId) {
     return { created: true, estructure, maxLevels, toCreateLevel, legaciesQuantity, currentLevel, toCreate }
   } catch (e) {
     console.log(e)
-    return { error: true }
+    return { error: 'No se pudo creare el anexo.' }
   }
 }
 

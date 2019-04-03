@@ -1,6 +1,6 @@
 'use strict'
 
-let {enviroment} = require('./config')
+let { enviroment } = require('./config')
 if (enviroment === 'development') require('longjohn')
 
 import express from 'express'
@@ -21,7 +21,7 @@ export default (app, server) => {
   // |_____|_____| | |\/| | |/ _` |/ _` | |/ _ \ \ /\ / / _` | '__/ _ / __| |_____|_____|
   // |_____|_____| | |  | | | (_| | (_| | |  __/\ V  V | (_| | | |  __\__ \ |_____|_____|
   //               |_|  |_|_|\__,_|\__,_|_|\___| \_/\_/ \__,_|_|  \___|___/
-  
+
   app.use(cors())
   //app.use(morgan('dev'))
   app.use(express.json())
@@ -64,7 +64,7 @@ export default (app, server) => {
     console.log(err)
     // set locals, only providing error in development
     res.locals.message = err.message
-    res.locals.error = enviroment === 'development' ? err : {error:'Ocurrió un error inesperado, por favor contacte a su administrador.'}
+    res.locals.error = enviroment === 'development' ? err : { error: 'Ocurrió un error inesperado, por favor contacte a su administrador.' }
     // render the error page
     res.status(err.status || 500)
     // custom error for sequelize validation
@@ -80,8 +80,8 @@ export default (app, server) => {
         errors.push(error)
       })
 
-      return res.json({error: true, type: 'validation', errors})
+      return res.json({ error: true, type: 'validation', errors })
     }
-    res.json({'Error': err})
+    res.json({ error : err })
   })
 }

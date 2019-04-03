@@ -275,3 +275,6 @@ INSERT INTO `memberships` (`id`,`status`, `ownerId`, `membershipTypeId`, `create
 VALUES ('3','receiver', '2', '3', '2019-03-24 04:40:29', '2019-03-24 04:40:29');
 INSERT INTO `memberships` (`id`,`status`, `ownerId`, `membershipTypeId`, `createdAt`, `updatedAt`)
 VALUES ('4','receiver', '2', '4', '2019-03-24 04:40:29', '2019-03-24 04:40:29');
+
+INSERT INTO `parameters` (`key`, `value`, `createdAt`, `updatedAt`) VALUES ('initialPayment', '20', '2019-04-02 04:40:29', '2019-04-02 04:40:29');
+
